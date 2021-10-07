@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import BadgeComponent, { Props } from "@components/toasts/Badge";
-import Text from "@components/asorted/Text";
 
 export default {
   title: "Toasts/Badge",
