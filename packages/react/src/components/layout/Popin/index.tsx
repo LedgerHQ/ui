@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import Button from "@ui/components/cta/Button";
-import Close from "@ui/assets/icons/CloseRegular";
-import TransitionInOut from "@ui/components/transitions/TransitionInOut";
-import TransitionScale from "@ui/components/transitions/TransitionScale";
+import Button from "../../cta/Button";
+import Close from "../../../assets/icons/CloseRegular";
+import TransitionInOut from "../../transitions/TransitionInOut";
+import TransitionScale from "../../transitions/TransitionScale";
 
 const Container = styled.div`
   position: relative;

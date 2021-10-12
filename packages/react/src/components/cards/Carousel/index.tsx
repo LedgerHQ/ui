@@ -1,16 +1,16 @@
 import React, { useRef, useCallback, useState, useEffect } from "react";
 import styled from "styled-components";
 import { TransitionGroup } from "react-transition-group";
-import TransitionSlide from "@ui/components/transitions/TransitionSlide";
+import TransitionSlide from "../../transitions/TransitionSlide";
 
-import Button from "@ui/components/cta/Button";
-import Text from "@ui/components/asorted/Text";
-import Flex from "@ui/components/layout/Flex";
-import Slide, { Props as SlideProps } from "@components/cards/Carousel/Slide";
+import Button from "../../cta/Button";
+import Text from "../../asorted/Text";
+import Flex from "../../layout/Flex";
+import Slide, { Props as SlideProps } from "./Slide";
 
-import IconLeft from "@ui/assets/icons/ArrowLeftMedium";
-import IconRight from "@ui/assets/icons/ArrowRightMedium";
-import IconClose from "@ui/assets/icons/CloseMedium";
+import IconLeft from "../../../assets/icons/ArrowLeftMedium";
+import IconRight from "../../../assets/icons/ArrowRightMedium";
+import IconClose from "../../../assets/icons/CloseMedium";
 
 const CarouselWrapper = styled.div`
   width: 100%;

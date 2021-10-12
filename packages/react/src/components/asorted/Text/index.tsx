@@ -13,7 +13,7 @@ import {
   layout,
   LayoutProps,
 } from "styled-system";
-import fontFamily from "@ui/styles/styled/fontFamily";
+import fontFamily from "../../../styles/styled/fontFamily";
 
 const uppercase = system({
   uppercase: {

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Text from "@ui/components/asorted/Text";
-import Flex from "@ui/components/layout/Flex";
+import Text from "../../asorted/Text";
+import Flex from "../../layout/Flex";
 
 const Container = styled(Flex).attrs({ alignItems: "center", flexDirection: "row" })`
   width: fit-content;

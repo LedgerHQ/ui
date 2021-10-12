@@ -2,8 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 import { rgba } from "./helpers";
 import reset from "./reset";
-import TextStyles from "@components/asorted/Text/styles";
-import TippyStyles from "@components/message/Tooltip/styles";
+import TextStyles from "../components/asorted/Text/styles";
+import TippyStyles from "../components/message/Tooltip/styles";
 
 export type GlobalStyleProps = { fontsPath: string };
 

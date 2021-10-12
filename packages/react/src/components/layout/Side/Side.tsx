@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import Button from "@ui/components/cta/Button";
-import FlexBox from "@ui/components/layout/Flex";
-import Close from "@ui/assets/icons/CloseRegular";
-import ArrowLeft from "@ui/assets/icons/ArrowLeftRegular";
-import TransitionSlide from "@ui/components/transitions/TransitionSlide";
-import TransitionInOut from "@ui/components/transitions/TransitionInOut";
+import Button from "../../cta/Button";
+import FlexBox from "../../layout/Flex";
+import Close from "../../../assets/icons/CloseRegular";
+import ArrowLeft from "../../../assets/icons/ArrowLeftRegular";
+import TransitionSlide from "../../transitions/TransitionSlide";
+import TransitionInOut from "../../transitions/TransitionInOut";
 
 const Container = styled(FlexBox)`
   width: 100%;

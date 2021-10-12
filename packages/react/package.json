@@ -20,7 +20,7 @@
     "icons:generate": "node scripts/buildReactIcons",
     "posticons:generate": "eslint src/assets/icons --ext .js,.jsx,.ts,.tsx --fix --quiet",
     "prepare": "cd ../.. && yarn",
-    "prepublishOnly": "rimraf ./lib tsconfig.tsbuildinfo && npm run build && node scripts/prepublish.js"
+    "prepublishOnly": "rimraf lib tsconfig.tsbuildinfo && npm run build && node scripts/prepublish.js"
   },
   "dependencies": {
     "@tippyjs/react": "^4.2.5",

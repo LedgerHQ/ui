@@ -1,6 +1,6 @@
 import React from "react";
 import { components, IndicatorContainerProps, OptionTypeBase } from "react-select";
-import FlexBox from "@components/layout/Flex";
+import FlexBox from "../../layout/Flex";
 
 export function IndicatorsContainer<
   T extends OptionTypeBase = { label: string; value: string },

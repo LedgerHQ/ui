@@ -1,11 +1,11 @@
 import React from "react";
 import { components, ControlProps, OptionTypeBase, ValueContainerProps } from "react-select";
-import SelectInput, { Props as SelectInputProps } from "@components/form/SelectInput";
-import Text from "@components/asorted/Text";
-import { ValueContainer } from "@components/form/SelectInput/ValueContainer";
-import { ChevronBottomMedium, ChevronTopMedium } from "@assets/icons";
-import FlexBox from "@components/layout/Flex";
 import { useTheme } from "styled-components";
+import SelectInput, { Props as SelectInputProps } from "../../form/SelectInput";
+import Text from "../../asorted/Text";
+import { ValueContainer } from "../../form/SelectInput/ValueContainer";
+import { ChevronBottomMedium, ChevronTopMedium } from "../../../assets/icons";
+import FlexBox from "../../layout/Flex";
 
 export type Props = SelectInputProps & { label: string };
 

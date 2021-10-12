@@ -1,4 +1,4 @@
-import { GlobalStyleProps } from "@styles/global";
+import { GlobalStyleProps } from "../../../styles/global";
 import { css } from "styled-components";
 
 const getFontSource = (name: string) => (props: GlobalStyleProps) => {

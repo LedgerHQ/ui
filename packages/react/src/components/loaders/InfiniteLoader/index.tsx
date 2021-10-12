@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import InfiniteLoaderImage from "@ui/assets/images/infiniteLoader.png";
+import InfiniteLoaderImage from "../../../assets/images/infiniteLoader.png";
 
 const rotate = keyframes`
   0% {

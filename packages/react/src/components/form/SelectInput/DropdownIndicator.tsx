@@ -1,8 +1,8 @@
 import React from "react";
 import { components, Styles, IndicatorProps, OptionTypeBase } from "react-select";
 import { useTheme } from "styled-components";
-import Text from "@components/asorted/Text";
-import { ChevronBottomMedium, ChevronTopMedium } from "@assets/icons";
+import Text from "../../asorted/Text";
+import { ChevronBottomMedium, ChevronTopMedium } from "../../../assets/icons";
 
 export function getStyles<
   T extends OptionTypeBase = { label: string; value: string },

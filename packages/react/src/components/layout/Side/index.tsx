@@ -1,7 +1,7 @@
 import React, { useRef, useCallback, useEffect, useState } from "react";
 import { TransitionGroup } from "react-transition-group";
 import Side from "./Side";
-import TransitionSlide from "@components/transitions/TransitionSlide";
+import TransitionSlide from "../../transitions/TransitionSlide";
 import { useSide } from "./Provider";
 
 export interface SideProps {

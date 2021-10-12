@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { border, BorderProps, space, SpaceProps, color, ColorProps } from "styled-system";
-import Text from "@components/asorted/Text";
+import Text from "../../asorted/Text";
 
 export type Props = React.PropsWithChildren<{
   /**

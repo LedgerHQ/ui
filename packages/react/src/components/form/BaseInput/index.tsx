@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 import { typography, TypographyProps } from "styled-system";
 import React, { InputHTMLAttributes } from "react";
-import FlexBox from "@ui/components/layout/Flex";
-import Text from "@ui/components/asorted/Text";
-import { rgba } from "@ui/styles/helpers";
+import FlexBox from "../../layout/Flex";
+import Text from "../../asorted/Text";
+import { rgba } from "../../../styles/helpers";
 
 export type CommonProps = InputHTMLAttributes<HTMLInputElement> &
   TypographyProps & {

@@ -1,6 +1,6 @@
 import React from "react";
-import Input, { InputProps, InputRenderRightContainer } from "@components/form/BaseInput";
-import Text from "@ui/components/asorted/Text";
+import Input, { InputProps, InputRenderRightContainer } from "../BaseInput";
+import Text from "../../asorted/Text";
 
 export type Props = InputProps & { legend: string };
 

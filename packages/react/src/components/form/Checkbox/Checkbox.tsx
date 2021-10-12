@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Text from "@ui/components/asorted/Text";
-import CheckAloneRegular from "@ui/assets/icons/CheckAloneRegular";
+import Text from "../../asorted/Text";
+import CheckAloneRegular from "../../../assets/icons/CheckAloneRegular";
 import { renderToStaticMarkup } from "react-dom/server";
 
 const Icon = styled(CheckAloneRegular).attrs({ size: 13, color: "white" })``;

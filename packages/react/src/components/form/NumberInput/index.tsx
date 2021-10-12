@@ -1,7 +1,7 @@
 import React from "react";
-import Input, { InputProps } from "@components/form/BaseInput";
-import FlexBox from "@ui/components/layout/Flex";
-import Text from "@ui/components/asorted/Text";
+import Input, { InputProps } from "../BaseInput";
+import FlexBox from "../../layout/Flex";
+import Text from "../../asorted/Text";
 import styled from "styled-components";
 
 const MaxButton = styled.button<{ active?: boolean }>`

@@ -1,7 +1,7 @@
 import React from "react";
 import { components, Styles, OptionProps, OptionTypeBase } from "react-select";
 import styled from "styled-components";
-import Text from "@components/asorted/Text";
+import Text from "../../asorted/Text";
 
 export function getStyles<
   T extends OptionTypeBase = { label: string; value: string },
