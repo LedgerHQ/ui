@@ -1,5 +1,5 @@
 import React from "react";
-import { Svg, Circle, G, Rect } from "react-native-svg";
+import { Svg, Circle, G } from "react-native-svg";
 import { useTheme } from "styled-components/native";
 import { TouchableOpacity } from "react-native";
 
@@ -10,19 +10,21 @@ type Props = {
   // function triggered when pressing the loader
   onPress?: () => void;
 
-  // Display the square in the middle of the loader
-  displayCancelIcon?: boolean;
+  // Display an Icon
+  Icon?: typeof React.Component;
 };
 
 const radius = 25;
 const strokeWidth = 2;
 const normalizedRadius = radius - strokeWidth / 2;
 const circumference = normalizedRadius * 2 * Math.PI;
+const iconSize = 22;
+const iconOffset = radius - iconSize / 2;
 
 const ProgressLoader = ({
   progress = 0,
   onPress,
-  displayCancelIcon = true,
+  Icon,
 }: Props): React.ReactElement => {
   const { colors } = useTheme();
   const backgroundColor = colors.palette.primary.c20;
@@ -53,16 +55,11 @@ const ProgressLoader = ({
             strokeDashoffset={strokeDashoffset}
           />
         </G>
-        {displayCancelIcon && (
-          <Rect
-            fill={progressColor}
-            height="10"
-            width="10"
-            y="20"
-            x="20"
-            rx="1"
-          />
-        )}
+        {Icon ? (
+          <G transform={`translate(${iconOffset}, ${iconOffset})`}>
+            <Icon color={progressColor} size={iconSize} />
+          </G>
+        ) : null}
       </Svg>
     </TouchableOpacity>
   );
