@@ -2,8 +2,12 @@ import { createGlobalStyle } from "styled-components";
 
 import { rgba } from "./helpers";
 import reset from "./reset";
+import TextStyles from "@components/asorted/Text/styles";
+import TippyStyles from "@components/message/Tooltip/styles";
 
-export const GlobalStyle = createGlobalStyle`
+export type GlobalStyleProps = { fontsPath: string };
+
+export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   ${reset};
 
   body {
@@ -11,54 +15,7 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 100%;
   }
 
-  @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/inter/Inter-ExtraLight-BETA.woff2") format("woff2");
-    font-weight: 100;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/inter/Inter-Light-BETA.woff2") format("woff2");
-    font-weight: 300;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/inter/Inter-Regular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/inter/Inter-Medium.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/inter/Inter-SemiBold.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Inter";
-    src: url("./assets/fonts/inter/Inter-ExtraBold.woff2") format("woff2");
-    font-weight: 900;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: "Alpha";
-    src: url("./assets/fonts/alpha/HMAlphaMono-Medium.woff2") format("woff2");
-    font-weight: 500;
-    font-style: normal;
-  }
+  ${TextStyles}
 
   .spectron-run canvas:not(.visible-for-spectron) {
     visibility: hidden;
@@ -102,6 +59,7 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 0;
   }
 
+<<<<<<< HEAD
   .tippy-box[data-animation=fade][data-state=hidden] {
     opacity: 0
   }
@@ -189,4 +147,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 8px 10px;
     z-index: 1
   }
+=======
+  ${TippyStyles}
+>>>>>>> 16f5d20 (wip!)
 `;

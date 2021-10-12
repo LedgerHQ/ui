@@ -5,9 +5,10 @@
   "author": "Ledger Live Team <team-live@ledger.fr>",
   "repository": "https://github.com/LedgerHQ/ui",
   "license": "MIT",
-  "browser": "lib/index.js",
   "files": [
-    "lib/**/*"
+    "components/**/*",
+    "assets/**/*",
+    "styles/**/*"
   ],
   "scripts": {
     "storybook": "start-storybook -p 6006 -s ./src",
@@ -18,7 +19,8 @@
     "typecheck": "tsc --p . --noEmit",
     "icons:generate": "node scripts/buildReactIcons",
     "posticons:generate": "eslint src/assets/icons --ext .js,.jsx,.ts,.tsx --fix --quiet",
-    "prepare": "cd ../.. && yarn"
+    "prepare": "cd ../.. && yarn",
+    "prepublishOnly": "rimraf ./lib tsconfig.tsbuildinfo && npm run build && node scripts/prepublish.js"
   },
   "dependencies": {
     "@tippyjs/react": "^4.2.5",
@@ -58,6 +60,7 @@
     "eslint-plugin-react": "^7.25.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
     "typescript": "^4.3.5"
   }
 }

@@ -6,7 +6,7 @@ import type { ItemType } from "./Item";
 import SideBarContext from "@ui/components/navigation/sideBar";
 import Text from "@ui/components/asorted/Text";
 import Flex from "@ui/components/layout/Flex";
-import { StoryTemplate } from "@ui/helpers";
+import { StoryTemplate } from "@components/helpers";
 
 export default {
   title: "Navigation/SideBar/Item",

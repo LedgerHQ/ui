@@ -14,7 +14,6 @@ import {
   LayoutProps,
 } from "styled-system";
 import fontFamily from "@ui/styles/styled/fontFamily";
-import "./Text.css";
 
 const uppercase = system({
   uppercase: {

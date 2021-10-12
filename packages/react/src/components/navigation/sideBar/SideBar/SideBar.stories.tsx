@@ -13,7 +13,7 @@ import LendIcon from "@ui/assets/icons/LendMedium";
 import NanoFoldedIcon from "@ui/assets/icons/NanoFoldedMedium";
 
 import { useArgs } from "@storybook/client-api";
-import { StoryTemplate } from "@ui/helpers";
+import { StoryTemplate } from "@components/helpers";
 
 export default {
   title: "Navigation/SideBar/SideBar",
