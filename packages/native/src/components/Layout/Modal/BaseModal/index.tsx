@@ -28,7 +28,7 @@ export type BaseModalProps = {
 } & ModalProps;
 
 const Container = styled.View`
-  background-color: ${(p) => p.theme.colors.palette.environment.background};
+  background-color: ${(p) => p.theme.colors.palette.background.main};
   width: 100%;
   padding: 16px;
   min-height: 350px;
@@ -42,13 +42,13 @@ const ContentContainer = styled.View`
 const HeaderContainer = styled.View`
   display: flex;
   align-items: center;
-  margin-bottom: ${(p) => p.theme.space[4]}px;
+  margin-bottom: ${(p) => p.theme.space[7]}px;
 `;
 
 const CloseContainer = styled.View`
   display: flex;
   align-items: flex-end;
-  margin-bottom: ${(p) => p.theme.space[4]}px;
+  margin-bottom: ${(p) => p.theme.space[7]}px;
 `;
 
 const StyledTitle = styled(Text).attrs({ type: "h3" })`
@@ -60,7 +60,7 @@ const StyledDescription = styled(Text).attrs({
   color: "palette.neutral.c80",
 })`
   text-transform: capitalize;
-  margin-top: ${(p) => p.theme.space[1]}px;
+  margin-top: ${(p) => p.theme.space[2]}px;
 `;
 
 const StyledSubtitle = styled(Text).attrs({
@@ -68,7 +68,7 @@ const StyledSubtitle = styled(Text).attrs({
   color: "palette.neutral.c80",
 })`
   text-transform: uppercase;
-  margin-bottom: ${(p) => p.theme.space[1]}px;
+  margin-bottom: ${(p) => p.theme.space[2]}px;
 `;
 
 const defaultModalStyle = {
