@@ -1,12 +1,12 @@
 import React from "react";
 import { components, OptionTypeBase } from "react-select";
 import SplitInput, { Props } from "./index";
-import Input from "@components/form/BaseInput";
-import QuantityInput from "@components/form/QuantityInput";
-import QrCodeInput from "@components/form/QrCodeInput";
-import SelectInput from "@components/form/SelectInput";
-import FlexBox from "@ui/components/layout/Flex";
-import Text from "@ui/components/asorted/Text";
+import Input from "../BaseInput";
+import QuantityInput from "../QuantityInput";
+import QrCodeInput from "../QrCodeInput";
+import SelectInput from "../SelectInput";
+import FlexBox from "../../layout/Flex";
+import Text from "../../asorted/Text";
 
 export default {
   title: "Form/Input/Split",

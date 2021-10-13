@@ -1,5 +1,6 @@
-import { StoryTemplate } from "@components/helpers";
 import React from "react";
+
+import { StoryTemplate } from "../helpers";
 import Tag, { Props } from "./index";
 
 export default {

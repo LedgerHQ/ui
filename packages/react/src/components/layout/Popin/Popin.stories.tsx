@@ -1,8 +1,9 @@
 import React from "react";
-import Popin from "./index";
-import Text from "@ui/components/asorted/Text";
-import theme from "@ui/styles/theme";
 import { useArgs } from "@storybook/client-api";
+
+import Popin from "./index";
+import Text from "../../asorted/Text";
+import theme from "../../../styles/theme";
 
 export default {
   title: "Layout/Drawer/Popin",

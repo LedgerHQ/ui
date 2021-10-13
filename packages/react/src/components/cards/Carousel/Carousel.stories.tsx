@@ -1,7 +1,9 @@
 import React from "react";
 import { useArgs } from "@storybook/client-api";
+
+import image from "../../../assets/images/sampleSlide.png";
 import Carousel, { Props as CarouselProps } from ".";
-import image from "@assets/images/sampleSlide.png";
+
 export default {
   title: "Cards/Portfolio/Carousel",
   argTypes: {

@@ -1,13 +1,14 @@
 import React from "react";
+import { useTheme } from "styled-components";
 import { OptionProps, ValueContainerProps } from "react-select";
-import Text from "@components/asorted/Text";
-import Flex from "@components/layout/Flex";
-import SearchMedium from "@assets/icons/SearchMedium";
+
+import Text from "../../asorted/Text";
+import Flex from "../../layout/Flex";
+import SearchMedium from "../../../assets/icons/SearchMedium";
 import SelectInput, { Props } from "./index";
 import { Option } from "./Option";
 import { VirtualMenuList } from "./VirtualMenuList";
 import { ValueContainer } from "./ValueContainer";
-import { useTheme } from "styled-components";
 
 export default {
   title: "Form/Input/Select",

@@ -1,8 +1,9 @@
 import React from "react";
+import { useArgs } from "@storybook/client-api";
+
 import Checkbox from "./index";
 import type { CheckboxProps } from "./Checkbox";
-import { useArgs } from "@storybook/client-api";
-import { StoryTemplate } from "@components/helpers";
+import { StoryTemplate } from "../../helpers";
 
 export default {
   title: "Form/SelectionControls/Checkbox",

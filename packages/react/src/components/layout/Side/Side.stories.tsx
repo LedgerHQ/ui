@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect } from "react";
 import styled from "styled-components";
-import Button from "@components/cta/Button";
+
+import Button from "../../cta/Button";
+import { lipsum } from "../../helpers";
 import Side, { SideProps } from "./index";
 import SideProvider, { setSide } from "./Provider";
-import { lipsum } from "../../helpers";
 
 const DummyContentWrapper = styled.div`
   width: 100%;

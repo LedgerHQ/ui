@@ -1,8 +1,9 @@
 import React from "react";
+import { useArgs } from "@storybook/client-api";
+
 import Switch from "./index";
 import type { SwitchProps } from "./Switch";
-import { useArgs } from "@storybook/client-api";
-import { StoryTemplate } from "@components/helpers";
+import { StoryTemplate } from "../../helpers";
 
 export default {
   title: "Form/SelectionControls/Switch",
