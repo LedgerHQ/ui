@@ -33,6 +33,8 @@ type ItemState = "CURRENT" | "PENDING" | "COMPLETED";
 type ItemProps = {
   state: ItemState;
   label: string;
+  showLeftSeparator?: boolean;
+  showRightSeparator?: boolean;
 };
 
 const StepIcon = {
@@ -66,15 +68,20 @@ const StepView = styled.View`
   align-items: center;
 `;
 
-function Step({ state, label }: ItemProps): React.ReactElement {
+function Step({
+  state,
+  label,
+  showLeftSeparator,
+  showRightSeparator,
+}: ItemProps): React.ReactElement {
   return (
     <StepView>
       <StepIcon.Container mb={2}>
-        <Separator />
+        {showLeftSeparator && <Separator />}
         <StepIcon.Background mx={2}>
           <StepIcon.Current />
         </StepIcon.Background>
-        <Separator />
+        {showRightSeparator && <Separator />}
       </StepIcon.Container>
       {state === "CURRENT" ? (
         <ActiveText>{label}</ActiveText>
@@ -93,6 +100,8 @@ function Stepper({ steps, activeIndex }: StepperProps): React.ReactElement {
           <Step
             label={label}
             state={i === activeIndex ? "CURRENT" : "PENDING"}
+            showLeftSeparator={i > 0}
+            showRightSeparator={i < steps.length - 1}
           />
           {i < steps.length - 1 ? <StepSeparator /> : null}
         </>
