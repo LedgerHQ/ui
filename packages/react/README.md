@@ -63,7 +63,9 @@ function Hello() {
 ### Fonts
 
 Ledger fonts can be either imported or added manually to your project.
-After picking a method do not forget to add the `fontsPath` property to the `StyleProvider` component!
+
+After picking a method add the `fontsPath` property to the `StyleProvider` component to automatically generate
+`@font-face` blocks and register the `Inter` and `Alpha` font families.
 
 ```tsx
 // Create a global css font style that will import the required fonts based on the fontsPath prefix.
@@ -78,7 +80,7 @@ Using the import requires you to use a bundler to export and save the files to t
 import "@ledgerhq/react-ui/assets/fonts";
 ```
 
-With webpack 5 the rule below will process the font files and save them in the `/assets/fonts` folder.
+With webpack 5 the rule below will process the font files and save them in the `src/assets/fonts` folder.
 
 ```js
 {
@@ -94,9 +96,14 @@ With webpack 5 the rule below will process the font files and save them in the `
 
 The `.woff2` font files are located in the `assets/fonts` folder.
 
+Copy the files (or process them with a bundler) and either :
+
+- make them reacheable during the build and add the `fontsPath` prop
+- register the `Inter` and `Alpha` font families yourself
+
 ## Minimal Working Example
 
-*Assuming dependencies, webpack and babel (or equivalents) are installed and configured.*
+_Assuming dependencies, webpack and babel (or equivalents) are installed and configured._
 
 ```tsx
 import React from "react";
@@ -133,4 +140,3 @@ ReactDOM.render(<Root />, document.getElementById("react-root"));
 ```
 
 <img width="300" alt="exapmple" src="https://user-images.githubusercontent.com/86958797/137143696-6dffdb16-83fa-4a4e-9bd0-a76fde4f82be.gif" />
-
