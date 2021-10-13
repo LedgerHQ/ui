@@ -55,9 +55,12 @@ export type ColorPalette = {
     c80: string;
     c100: string;
   };
-  environment: {
-    background: string;
+  constant: {
     overlay: string;
+    white: string;
+  };
+  background: {
+    main: string;
   };
 };
 
