@@ -1,6 +1,5 @@
 import { storiesOf } from "@storybook/react-native";
 import { withKnobs, number, object, boolean } from "@storybook/addon-knobs";
-import { action } from "@storybook/addon-actions";
 import React from "react";
 import Stepper from "@components/Navigation/Stepper";
 import CenterView from "../../CenterView";
@@ -17,7 +16,6 @@ storiesOf("Navigation", module)
         { label: "Fourth step" },
       ])}
       activeIndex={number("activeIndex", 0, { min: 0, max: 6 })}
-      onIndexChange={action("onChange")}
       errored={boolean("errored", false)}
     />
   ));

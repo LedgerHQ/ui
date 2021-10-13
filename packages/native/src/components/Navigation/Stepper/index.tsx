@@ -11,29 +11,12 @@ import Animated, {
   Easing,
 } from "react-native-reanimated";
 
-export type StepperProps = {
-  steps: Array<{ label: string; disabled?: boolean }>;
-  activeIndex: number;
-  errored?: boolean;
-  onIndexChange: (index: number) => void;
+// #region Separator
+type AnimatedSeparatorProps = {
+  filled: boolean;
+  delay: number;
+  duration: number;
 };
-
-const ActiveText = styled(Text)`
-  color: ${(p) => p.theme.colors.palette.neutral.c100};
-`;
-
-const PendingText = styled(Text)`
-  color: ${(p) => p.theme.colors.palette.neutral.c70};
-`;
-
-const ErroredText = styled(Text)`
-  color: ${(p) => p.theme.colors.palette.error.c100};
-`;
-
-const Container = styled.View`
-  flex-direction: row;
-  width: 100%;
-`;
 
 const Separator = styled.View<SpaceProps>`
   flex: 1;
@@ -46,12 +29,6 @@ const SeparatorFilling = Animated.createAnimatedComponent(styled.View`
   height: 100%;
   background-color: ${(p) => p.theme.colors.palette.neutral.c100};
 `);
-
-type AnimatedSeparatorProps = {
-  filled: boolean;
-  delay: number;
-  duration: number;
-};
 
 const AnimatedSeparator = ({
   filled,
@@ -76,15 +53,9 @@ const AnimatedSeparator = ({
   );
 };
 
-type ItemState = "CURRENT" | "PENDING" | "COMPLETED" | "ERRORED";
+// #endregion
 
-type ItemProps = {
-  state: ItemState;
-  label: string;
-  showLeftSeparator?: boolean;
-  showRightSeparator?: boolean;
-};
-
+// #region StepIcon
 const StepIcon = {
   Container: styled.View<SpaceProps>`
     flex-direction: row;
@@ -128,18 +99,41 @@ const StepIcon = {
     <CloseMedium size={16} color={color} />
   ),
 };
+// #endregion
 
+// #region Step
 const StepView = styled.View`
   align-items: center;
   justify-content: center;
 `;
+
+const ActiveText = styled(Text)`
+  color: ${(p) => p.theme.colors.palette.neutral.c100};
+`;
+
+const PendingText = styled(Text)`
+  color: ${(p) => p.theme.colors.palette.neutral.c70};
+`;
+
+const ErroredText = styled(Text)`
+  color: ${(p) => p.theme.colors.palette.error.c100};
+`;
+
+type StepState = "CURRENT" | "PENDING" | "COMPLETED" | "ERRORED";
+
+type StepProps = {
+  state: StepState;
+  label: string;
+  showLeftSeparator?: boolean;
+  showRightSeparator?: boolean;
+};
 
 function Step({
   state,
   label,
   showLeftSeparator,
   showRightSeparator,
-}: ItemProps): React.ReactElement {
+}: StepProps): React.ReactElement {
   const labelText = useMemo(() => {
     switch (state) {
       case "COMPLETED":
@@ -205,6 +199,28 @@ function Step({
     </StepView>
   );
 }
+// #endregion
+
+// #region Stepper
+export type StepperProps = {
+  /**
+   * An array of labels that will determine the progress bar steps.
+   */
+  steps: string[];
+  /**
+   * Index of the active step, starting at zero and defaulting to 0 if omitted.
+   */
+  activeIndex?: number;
+  /**
+   * If true the current step is considered as a failure.
+   */
+  errored?: boolean;
+};
+
+const Container = styled.View`
+  flex-direction: row;
+  width: 100%;
+`;
 
 function Stepper({
   steps,
@@ -216,7 +232,7 @@ function Stepper({
   const separatorMarginTop = useMemo(() => Math.floor(space[5] / 2), [space]);
   return (
     <Container>
-      {steps.map(({ label }, i) => (
+      {steps.map((label, i) => (
         <React.Fragment key={i}>
           <Step
             label={label}
@@ -225,7 +241,7 @@ function Stepper({
                 ? errored
                   ? "ERRORED"
                   : "CURRENT"
-                : i < activeIndex
+                : i < (activeIndex ?? 0)
                 ? "COMPLETED"
                 : "PENDING"
             }
@@ -234,7 +250,7 @@ function Stepper({
           />
           {i < steps.length - 1 ? (
             <AnimatedSeparator
-              filled={i < activeIndex}
+              filled={i < (activeIndex ?? 0)}
               duration={250}
               delay={100}
               mt={separatorMarginTop}
@@ -245,5 +261,6 @@ function Stepper({
     </Container>
   );
 }
+// #endregion
 
 export default Stepper;
