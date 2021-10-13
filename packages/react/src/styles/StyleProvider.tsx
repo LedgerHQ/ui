@@ -6,14 +6,14 @@ import { Theme } from "./theme";
 
 interface Props {
   children: React.ReactNode;
-  selectedPalette: ThemeNames;
-  fontsPath: string;
+  selectedPalette?: ThemeNames;
+  fontsPath?: string;
 }
 
 export const StyleProvider = ({
   children,
   fontsPath,
-  selectedPalette,
+  selectedPalette = "light",
 }: Props): React.ReactElement => {
   const theme: Theme = useMemo(
     () => ({
