@@ -49,7 +49,7 @@ yalc.lock
 packages/react/lib
 
 # Storybook jazz
-packages/react/storybook-static/\*
+packages/react/storybook-static
 
 # IDE
 .vscode/\*
