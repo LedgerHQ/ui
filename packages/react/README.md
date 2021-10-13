@@ -30,7 +30,7 @@ npm i react react-dom
 
 Before using the library components, the style provider must be imported and rendered once to provide the components with the right context.
 
-```ts
+```tsx
 import { StyleProvider } from "@ledgerhq/react-ui";
 
 function Root({ children }) {
@@ -43,7 +43,7 @@ function Root({ children }) {
 
 Import the components from `@ledgerhq/react-ui`.
 
-```ts
+```tsx
 import { Text, Flex, Logos } from "@ledgerhq/react-ui";
 
 function Hello() {
@@ -65,7 +65,7 @@ function Hello() {
 Ledger fonts can be either imported or added manually to your project.
 After picking a method do not forget to add the `fontsPath` property to the `StyleProvider` component!
 
-```ts
+```tsx
 // Create a global css font style that will import the required fonts based on the fontsPath prefix.
 <StyleProvider fontsPath="assets/fonts">
 ```
@@ -96,7 +96,9 @@ The `.woff2` font files are located in the `assets/fonts` folder.
 
 ## Minimal Working Example
 
-```ts
+*Assuming dependencies, webpack and babel (or equivalents) are installed and configured.*
+
+```tsx
 import React from "react";
 import ReactDOM from "react-dom";
 import "@ledgerhq/react-ui/assets/fonts";
@@ -129,3 +131,6 @@ function Root() {
 
 ReactDOM.render(<Root />, document.getElementById("react-root"));
 ```
+
+<img width="300" alt="exapmple" src="https://user-images.githubusercontent.com/86958797/137143696-6dffdb16-83fa-4a4e-9bd0-a76fde4f82be.gif" />
+
