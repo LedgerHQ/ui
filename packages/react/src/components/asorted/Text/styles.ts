@@ -6,7 +6,7 @@ const getFontSource = (name: string) => (props: GlobalStyleProps) => {
   return `url("${fontsPath}/${name}.woff2") format("woff2")`;
 };
 
-export default css`
+export const fontStyles = css`
   @font-face {
     font-family: "Inter";
     src: ${getFontSource("Inter-ExtraLight-BETA")};
@@ -55,7 +55,9 @@ export default css`
     font-weight: 500;
     font-style: normal;
   }
+`;
 
+export default css`
   .ll-text_h1 {
     font-family: Alpha, Arial;
     font-size: 36px;
