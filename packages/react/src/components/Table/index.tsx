@@ -12,7 +12,7 @@ import {
   gridColumn,
   GridColumnProps,
 } from "styled-system";
-import Grid, { Props as GridProps } from "../../layout/Grid";
+import Grid, { Props as GridProps } from "../layout/Grid";
 import type { Column } from "./Columns";
 export type { Column };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "styled-components";
-import Text from "../../asorted/Text";
+import Text from "../asorted/Text";
 import { Column } from "./index";
 import { IconColumn, TextColumn, CellProps } from "./Columns";
 
