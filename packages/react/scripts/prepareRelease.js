@@ -25,9 +25,10 @@ requiredFiles.forEach((filename) => {
   fs.copySync(filePath, destPath);
 });
 
-// Remove the private and script fields from the package json file.
+// Remove the private, script and dev. deps. fields from the package json file.
 const packageJsonPath = path.join(destination, "package.json");
 const package = require(packageJsonPath);
 delete package.private;
 delete package.scripts;
+delete package.devDependencies;
 fs.writeFileSync(packageJsonPath, JSON.stringify(package, null, 2));
