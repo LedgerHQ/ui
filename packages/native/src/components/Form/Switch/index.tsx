@@ -1,50 +1,50 @@
 import React from "react";
-import { View, TextInputProps } from "react-native";
-import styled, { css } from "styled-components/native";
+import { Switch as NativeSwitch } from "react-native";
+import { useTheme } from "styled-components/native";
+import Text from "@components/Text";
+import Flex from "@components/Layout/Flex";
 
-type CommonProps = TextInputProps & {
+type SwitchProps = {
+  checked: boolean;
+  onChange?: (value: boolean) => void;
   disabled?: boolean;
+  label?: string;
 };
 
-export type InputProps = CommonProps & {
-  label: string;
-  value?: boolean;
-  onChange: () => void;
-};
-
-const InputContainer = styled.View<Partial<CommonProps> & { focus?: boolean }>`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  background: ${(p) => p.theme.colors.palette.neutral.c00};
-  height: 48px;
-  border: ${(p) => `1px solid ${p.theme.colors.palette.neutral.c40}`};
-  border-radius: 24px;
-  color: ${(p) => p.theme.colors.palette.neutral.c100};
-
-  ${(p) =>
-    p.disabled &&
-    css`
-      color: ${p.theme.colors.palette.neutral.c60};
-      background: ${(p) => p.theme.colors.palette.neutral.c30};
-    `};
-`;
-
-const Buble = styled.View<CommonProps>``;
-
-const Label = styled.Text<CommonProps>`
-  flex: 1;
-`;
-
-export default function Input(props: InputProps): JSX.Element {
-  const { value, disabled, label } = props;
+const Switch = ({
+  checked,
+  onChange,
+  disabled,
+  label,
+}: SwitchProps): JSX.Element => {
+  const { colors, space } = useTheme();
 
   return (
-    <View style={{ display: "flex", width: "100%" }}>
-      <InputContainer disabled={disabled}>
-        <Buble value={value} />
-        <Label>{label}</Label>
-      </InputContainer>
-    </View>
+    <Flex flexDirection="row" alignItems="center">
+      <NativeSwitch
+        trackColor={{
+          false: colors.palette.neutral.c50,
+          true: colors.palette.primary.c80,
+        }}
+        thumbColor={colors.palette.neutral.c00}
+        onValueChange={onChange}
+        value={checked}
+        disabled={disabled}
+        ios_backgroundColor={colors.palette.neutral.c50}
+      />
+      {label ? (
+        <Text
+          type="body"
+          color={
+            checked ? colors.palette.primary.c90 : colors.palette.neutral.c100
+          }
+          style={{ marginLeft: space[3] }}
+        >
+          {label}
+        </Text>
+      ) : null}
+    </Flex>
   );
-}
+};
+
+export default Switch;
