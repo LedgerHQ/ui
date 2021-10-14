@@ -13,10 +13,11 @@ import React from "react";
 import FlexBox from "@components/Layout/Flex";
 import Row from "@components/Layout/Table/Row";
 import Text from "@components/Text";
+import Badge from "@components/tags/Badge";
 import CenterView from "../CenterView";
 import CircledCheck from "@assets/icons/CircledCheckRegular";
 
-const Icon = ({size, color = "orange"}) => (
+const Icon = ({ size, color = "orange" }) => (
   <View
     style={{
       height: size,
@@ -35,13 +36,7 @@ const TopLeft = () => {
   } = useTheme();
   return (
     <FlexBox flexDirection="row" flexShrink={1} alignItems="center">
-      <Text
-        color={neutral.c100}
-        style={{ flexShrink: 1, flexWrap: "wrap" }}
-        type="body"
-        fontWeight="semibold"
-        mr={2}
-      >
+      <Text color={neutral.c100} type="body" fontWeight="semibold" mr={2}>
         {text("topLeftText", "Bitcoin 1", "content")}
       </Text>
       <CircledCheck size={12.5} color={success.c100} />
@@ -60,7 +55,7 @@ const BottomLeft = () => {
 const TopRight = () => {
   const { colors } = useTheme();
   return (
-    <Text color={colors.palette.neutral.c100} type="body" style={{fontWeight:100}}>
+    <Text color={colors.palette.neutral.c100} type="body" fontWeight="semibold">
       {text("topRightText", "1.23456 BTC", "content")}
     </Text>
   );
@@ -86,7 +81,7 @@ const ARow = () => {
     "TopRight",
     "BottomRight",
     "Icon",
-  ].map((item) => radios(item, { [item]: 1, "null": null }, 1, "props"));
+  ].map((item) => radios(item, { [item]: 1, null: null }, 1, "props"));
   return (
     <Row
       Icon={hasIcon && Icon}
