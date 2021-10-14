@@ -6,7 +6,7 @@ type Props = {
   color?: string;
 };
 
-const IconContainer = styled.View`
+export const IconContainer = styled.View`
   width: 56px;
   height: 56px;
   display: flex;
