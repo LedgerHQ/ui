@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components/native";
 import FlexBox, { FlexBoxProps } from "@components/Layout/Flex";
 import IconBox from "@ui/components/Icon/IconBox";
 
