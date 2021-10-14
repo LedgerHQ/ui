@@ -21,13 +21,12 @@ function Sample(args: Props) {
   );
 }
 
-export const Badge = (args: Props): React.ReactNode[] =>
-  [
-    <Sample value={args.value} />,
-    ...badges.reduce<React.ReactNode[]>((acc, _, index) => {
-      return [...acc, <Sample value={_} key={index} />];
-    }, [])
-  ];
+export const Badge = (args: Props): React.ReactNode[] => [
+  <Sample value={args.value} />,
+  ...badges.reduce<React.ReactNode[]>((acc, _, index) => {
+    return [...acc, <Sample value={_} key={index} />];
+  }, []),
+];
 
 Badge.args = {
   value: 4,

@@ -1,8 +1,16 @@
-import React, { useState, useEffect, useRef, forwardRef } from "react";
-import styled, { useTheme } from "styled-components";
+import React, { useState, useEffect, createRef, forwardRef } from "react";
+import styled from "styled-components";
 import Flex from "@components/layout/Flex";
 import Badge from "@components/toasts/Badge";
 import Text from "@components/asorted/Text";
+
+export interface TabContent {
+  index: number;
+  title: string;
+  disabled?: boolean;
+  badge?: string | number;
+  Component: React.ReactFragment;
+}
 
 export type Props = React.PropsWithChildren<{
   /**
@@ -14,13 +22,7 @@ export type Props = React.PropsWithChildren<{
    * If omitted, then initially no tabs will be selected.
    */
   activeIndex?: number;
-  tabs: {
-    index: number;
-    title: string;
-    disabled?: boolean;
-    badge?: string | number;
-    Component: React.ReactFragment;
-  }[];
+  tabs: TabContent[];
 }>;
 
 const Container = styled(Flex).attrs({
@@ -34,7 +36,7 @@ const TabHeader = styled.div`
   flex-direction: column;
   flex: 1;
   width: 100%;
-`
+`;
 
 const TabHeaderContent = styled(Flex).attrs({
   flex: 1,
@@ -48,8 +50,7 @@ const TabHeaderBox = styled.div<{ disabled: boolean }>`
   flex-grow: inherit;
   justify-content: center;
   text-align: center;
-  cursor: ${(p) =>
-    p.disabled ? "default" : "pointer"};
+  cursor: ${(p) => (p.disabled ? "default" : "pointer")};
   padding: 8px 12px;
 `;
 
@@ -80,16 +81,18 @@ const HeaderBottomBarMoving = styled.div<HeaderBottomBarProps>`
 `;
 
 interface HeaderBottomBarProps {
-  left: number, 
-  width: number,
+  left: number;
+  width: number;
 }
 
-const MyBottomBar = (props: HeaderBottomBarProps) => {  
-  const {width, left} = props;
-  return <>
-    <HeaderBottomBarFixed />
-    <HeaderBottomBarMoving width={width} left={left} />
-  </>;
+const MyBottomBar = (props: HeaderBottomBarProps) => {
+  const { width, left } = props;
+  return (
+    <>
+      <HeaderBottomBarFixed />
+      <HeaderBottomBarMoving width={width} left={left} />
+    </>
+  );
 };
 
 interface HeaderElementProps {
@@ -100,13 +103,11 @@ interface HeaderElementProps {
   onClick: () => void;
 }
 
-const HeaderElement = forwardRef<HTMLDivElement, HeaderElementProps>( (props, ref) => {
+const HeaderElement = forwardRef<HTMLDivElement, HeaderElementProps>((props, ref) => {
   const { onClick, badge, disabled, selected, title } = props;
   return (
     <TabHeaderBox ref={ref} disabled={disabled} onClick={onClick}>
-      <HeaderTitle selected={selected}>
-        {title}
-      </HeaderTitle>
+      <HeaderTitle selected={selected}>{title}</HeaderTitle>
       {(badge || badge === 0) && <Badge value={badge} />}
     </TabHeaderBox>
   );
@@ -114,7 +115,7 @@ const HeaderElement = forwardRef<HTMLDivElement, HeaderElementProps>( (props, re
 
 const MainContent = styled(Flex).attrs({
   flex: 1,
-})<{ active?: boolean}>`
+})<{ active?: boolean }>`
   width: 100%;
   color: ${(p) =>
     p.active ? p.theme.colors.palette.neutral.c00 : p.theme.colors.palette.neutral.c70};
@@ -125,33 +126,27 @@ const MainContent = styled(Flex).attrs({
 export default function Tabs(props: Props): JSX.Element {
   const { tabs, onTabChange } = props;
   const [activeIndex, setActiveIndex] = useState(0);
-  const [bottomBar, updateBottomBar] = useState<HeaderBottomBarProps>({ left:0, width: 0 });
+  const [bottomBar, updateBottomBar] = useState<HeaderBottomBarProps>({ left: 0, width: 0 });
   const mainTab = activeIndex >= 0 ? tabs[activeIndex] : null;
-  const refs = tabs.map(t => useRef<HTMLDivElement>(null));
+  const refs = tabs.map(() => createRef<HTMLDivElement>());
 
-  useEffect(
-    () => {
-      const newIndex = props.activeIndex || activeIndex
-      setActiveIndex(newIndex);
+  useEffect(() => {
+    const newIndex = props.activeIndex || activeIndex;
+    setActiveIndex(newIndex);
 
-      if(refs[0].current){
-        const refsToHandle = refs.slice(0, activeIndex);
-        const width = refs[newIndex].current?.offsetWidth || 0;
-        const left = refsToHandle.reduce(
-          (total, ref) => total + (ref.current?.offsetWidth || 0),
-          0,
-        );
-        updateBottomBar({
-          width,
-          left
-        })
-      }
-    },
-    [activeIndex],
-  );
+    if (refs[0].current) {
+      const refsToHandle = refs.slice(0, activeIndex);
+      const width = refs[newIndex].current?.offsetWidth || 0;
+      const left = refsToHandle.reduce((total, ref) => total + (ref.current?.offsetWidth || 0), 0);
+      updateBottomBar({
+        width,
+        left,
+      });
+    }
+  }, [activeIndex]);
 
   const onTabClick = (index: number) => {
-    if(!tabs[index].disabled){
+    if (!tabs[index].disabled) {
       setActiveIndex(index);
       onTabChange && onTabChange(index);
     }

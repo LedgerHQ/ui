@@ -6,11 +6,14 @@ export interface Palette {
   type: ThemeNames;
   primary: {
     c05: string;
+    c10: string;
     c20: string;
+    c30: string;
     c40: string;
     c60: string;
     c70: string;
     c80: string;
+    c90: string;
     c100: string;
     c120: string;
     c140: string;
@@ -43,6 +46,7 @@ export interface Palette {
     c05: string;
     c10: string;
     c20: string;
+    c30: string;
     c40: string;
     c60: string;
     c80: string;
@@ -52,6 +56,7 @@ export interface Palette {
     c05: string;
     c10: string;
     c20: string;
+    c30: string;
     c40: string;
     c60: string;
     c80: string;

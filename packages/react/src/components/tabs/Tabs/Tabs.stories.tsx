@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TabsComponent, { Props } from "@components/tabs/Tabs";
+import TabsComponent, { Props, TabContent } from "@components/tabs/Tabs";
 import Text from "@components/asorted/Text";
 
 export default {
@@ -17,18 +17,23 @@ const Content = styled.div`
   padding: 10px;
 `;
 
-const myTabs = [
+const myTabs: TabContent[][] = [
   [
     {
+      index: 0,
       title: "Title 1",
       badge: 2,
       Component: <Content>Have a break, have a KitKat !</Content>,
     },
     {
+      index: 1,
       title: "Title 2",
-      Component: <Content>I'm disabled below, you will never see me... So stay here pls ^^</Content>,
+      Component: (
+        <Content>I'm disabled below, you will never see me... So stay here pls ^^</Content>
+      ),
     },
     {
+      index: 2,
       title: "Title 3",
       badge: "banana",
       Component: <Content>Look mom i'm on tv !</Content>,
@@ -36,17 +41,20 @@ const myTabs = [
   ],
   [
     {
+      index: 0,
       title: "Title 1",
       disabled: false,
       badge: 2,
       Component: <Content>Pst ! Title 2 is disabled. You can't see it ...</Content>,
     },
     {
+      index: 1,
       title: "Title 2",
       disabled: true,
       Component: <Content>I'm disabled, you will never see me...</Content>,
     },
     {
+      index: 2,
       title: "Title 3 a little bit longer",
       disabled: false,
       badge: "banana",
@@ -55,16 +63,18 @@ const myTabs = [
   ],
   [
     {
+      index: 0,
       title: "One",
       badge: 1,
-      Component: <Content>One is the first</Content>
+      Component: <Content>One is the first</Content>,
     },
     {
+      index: 1,
       title: "Two",
       badge: 2,
-      Component: <Content>Two is the second</Content>
-    }
-  ]
+      Component: <Content>Two is the second</Content>,
+    },
+  ],
 ];
 
 function Sample(args: Props) {
