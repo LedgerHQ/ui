@@ -3,8 +3,6 @@ import { storiesOf } from "@storybook/react-native";
 import { useTheme } from "styled-components/native";
 import {
   radios,
-  number,
-  select,
   text,
   withKnobs,
   boolean,
@@ -17,13 +15,13 @@ import Badge from "@components/tags/Badge";
 import CenterView from "../CenterView";
 import CircledCheck from "@assets/icons/CircledCheckRegular";
 
-const Icon = ({ size, color = "orange" }) => (
+const Icon = ({ size }) => (
   <View
     style={{
       height: size,
       width: size,
       borderRadius: size,
-      backgroundColor: color,
+      backgroundColor: "orange",
     }}
   />
 );

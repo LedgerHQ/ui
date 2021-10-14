@@ -15,7 +15,7 @@ type IconContainerProps = {
 const DEFAULT_BOX_SIZE = 56;
 const DEFAULT_ICON_SIZE = 24;
 
-export const IconContainer = styled.View`
+const IconContainer = styled.View`
   width: ${(p: IconContainerProps) => (p.size ? p.size : DEFAULT_BOX_SIZE)}px;
   height: ${(p: IconContainerProps) => (p.size ? p.size : DEFAULT_BOX_SIZE)}px;
   display: flex;

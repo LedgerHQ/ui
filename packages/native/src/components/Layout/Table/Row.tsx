@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/native";
 import FlexBox, { FlexBoxProps } from "@components/Layout/Flex";
-import { IconContainer } from "@ui/components/Icon/IconBox";
+import IconBox from "@ui/components/Icon/IconBox";
 
 interface Props extends FlexBoxProps {
   Icon: (props: { size?: number }) => React.ReactElement;
@@ -13,11 +13,7 @@ interface Props extends FlexBoxProps {
 }
 
 const ICON_SIZE = 32;
-
-const IconBoxContainer = styled(IconContainer)`
-  height: ${ICON_SIZE}px;
-  width: ${ICON_SIZE}px;
-`;
+const SMALL_ICON_SIZE = 14;
 
 export default function Row({
   Icon,
@@ -38,11 +34,13 @@ export default function Row({
       <FlexBox flexDirection="row" flexShrink={1} alignItems="center">
         {Icon &&
           (iconBorder ? (
-            <IconBoxContainer>
-              <Icon size={14} />
-            </IconBoxContainer>
+            <IconBox
+              Icon={Icon}
+              iconSize={SMALL_ICON_SIZE}
+              boxSize={ICON_SIZE}
+            />
           ) : (
-            <Icon size={32} />
+            <Icon size={ICON_SIZE} />
           ))}
         <FlexBox
           pl={4}
