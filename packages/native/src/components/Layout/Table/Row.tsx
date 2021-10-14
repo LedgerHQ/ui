@@ -13,6 +13,7 @@ interface Props extends FlexBoxProps {
 }
 
 const ICON_SIZE = 32;
+const BOX_SIZE = 40;
 const SMALL_ICON_SIZE = 14;
 
 export default function Row({
@@ -37,7 +38,7 @@ export default function Row({
             <IconBox
               Icon={Icon}
               iconSize={SMALL_ICON_SIZE}
-              boxSize={ICON_SIZE}
+              boxSize={BOX_SIZE}
             />
           ) : (
             <Icon size={ICON_SIZE} />
