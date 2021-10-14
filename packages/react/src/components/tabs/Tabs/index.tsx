@@ -125,7 +125,7 @@ const MainContent = styled(Flex).attrs({
 
 export default function Tabs(props: Props): JSX.Element {
   const { tabs, onTabChange } = props;
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(tabs[0].index);
   const [bottomBar, updateBottomBar] = useState<HeaderBottomBarProps>({ left: 0, width: 0 });
   const mainTab = activeIndex >= 0 ? tabs[activeIndex] : null;
   const refs = tabs.map(() => createRef<HTMLDivElement>());
@@ -135,8 +135,9 @@ export default function Tabs(props: Props): JSX.Element {
     setActiveIndex(newIndex);
 
     if (refs[0].current) {
-      const refsToHandle = refs.slice(0, activeIndex);
-      const width = refs[newIndex].current?.offsetWidth || 0;
+      const refIndex = tabs.findIndex((t) => t.index === newIndex);
+      const refsToHandle = refs.slice(0, refIndex);
+      const width = refs[refIndex].current?.offsetWidth || 0;
       const left = refsToHandle.reduce((total, ref) => total + (ref.current?.offsetWidth || 0), 0);
       updateBottomBar({
         width,
@@ -146,7 +147,8 @@ export default function Tabs(props: Props): JSX.Element {
   }, [activeIndex]);
 
   const onTabClick = (index: number) => {
-    if (!tabs[index].disabled) {
+    const tab = tabs.find((t) => t.index === index);
+    if (tab && !tab.disabled) {
       setActiveIndex(index);
       onTabChange && onTabChange(index);
     }
@@ -160,10 +162,10 @@ export default function Tabs(props: Props): JSX.Element {
             <HeaderElement
               ref={refs[i]}
               title={tab.title}
-              selected={activeIndex === i}
+              selected={activeIndex === tab.index}
               badge={tab.badge}
               disabled={!!tab.disabled}
-              onClick={() => onTabClick(i)}
+              onClick={() => onTabClick(tab.index)}
             />
           ))}
         </TabHeaderContent>
