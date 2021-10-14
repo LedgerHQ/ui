@@ -1,17 +1,16 @@
 import React from "react";
 import styled from "styled-components/native";
-import FlexBox from "@components/Layout/Flex";
+import FlexBox, { FlexBoxProps } from "@components/Layout/Flex";
 import { IconContainer } from "@ui/components/Icon/IconBox";
 
-type Props = {
+interface Props extends FlexBoxProps {
   Icon: (props: { size?: number }) => React.ReactElement;
   iconBorder?: boolean;
   topLeft?: React.ReactNode;
   bottomLeft?: React.ReactNode;
   topRight?: React.ReactNode;
   bottomRight?: React.ReactNode;
-  withMarginBottom?: boolean;
-};
+}
 
 const ICON_SIZE = 32;
 
@@ -27,14 +26,13 @@ export default function Row({
   bottomLeft,
   topRight,
   bottomRight,
-  withMarginBottom,
+  ...props
 }: Props): React.ReactElement {
   return (
     <FlexBox
+      {...props}
       flexDirection="row"
       justifyContent="space-between"
-      mx={6}
-      mb={withMarginBottom ? 6 : 0}
       p={6}
     >
       <FlexBox flexDirection="row" flexShrink={1} alignItems="center">
