@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef, forwardRef } from "react";
 import styled from "styled-components";
 import Flex from "@components/layout/Flex";
-import Badge from "@components/toasts/Badge";
+import Tag from "@components/toasts/tags/Tag";
 import Text from "@components/asorted/Text";
 
 export interface TabContent {
@@ -80,6 +80,15 @@ const HeaderBottomBarMoving = styled.div<HeaderBottomBarProps>`
   border-bottom-color: ${(p) => p.theme.colors.palette.primary.c70};
 `;
 
+const Badge = styled(Tag).attrs((p) => ({
+  borderRadius: p.theme.radii[3],
+  backgroundColor: p.theme.colors.palette.primary.c70,
+  color: p.theme.colors.palette.neutral.c00,
+}))`
+  padding: 5px;
+  min-width: 24px;
+`;
+
 interface HeaderBottomBarProps {
   left: number;
   width: number;
@@ -105,10 +114,11 @@ interface HeaderElementProps {
 
 const HeaderElement = forwardRef<HTMLDivElement, HeaderElementProps>((props, ref) => {
   const { onClick, badge, disabled, selected, title } = props;
+
   return (
     <TabHeaderBox ref={ref} disabled={disabled} onClick={onClick}>
       <HeaderTitle selected={selected}>{title}</HeaderTitle>
-      {(badge || badge === 0) && <Badge value={badge} />}
+      {(badge || badge === 0) && <Badge>{badge}</Badge>}
     </TabHeaderBox>
   );
 });
