@@ -60,7 +60,7 @@ function Hello() {
 }
 ```
 
-### Fonts
+### Fonts (optional but recommended)
 
 Ledger fonts can be either imported or added manually to your project.
 
@@ -94,21 +94,32 @@ With webpack 5 the rule below will process the font files and save them in the `
 
 #### Manually
 
-The `.woff2` font files are located in the `assets/fonts` folder.
+The `.woff2` font files are located in the `src/assets/fonts` folder.
+You can host them yourself, use a CDN (see below) or process them with a bundler by importing them.
 
-Copy the files (or process them with a bundler) and either :
+The important thing is to register fonts by adding `@font-face` blocks for the `Inter` and `Alpha` font families.
 
-- make them reacheable during the build and add the `fontsPath` prop
-- register the `Inter` and `Alpha` font families yourself
+For instance using the `unpkg.com` CDN:
+
+```css
+@font-face {
+  font-family: "Alpha";
+  src: url("https://unpkg.com/@ledgerhq/react-ui/assets/fonts/HMAlphaMono-Medium.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+}
+```
 
 ## Minimal Working Example
+
+[🌍 Hosted here.](https://codesandbox.io/s/ledger-live-react-ui-forked-1tvm7?file=/src/App.js)
 
 _Assuming dependencies, webpack and babel (or equivalents) are installed and configured._
 
 ```tsx
 import React from "react";
 import ReactDOM from "react-dom";
-import "@ledgerhq/react-ui/assets/fonts";
+import "@ledgerhq/react-ui/assets/fonts"; // all fonts are consumed by the bundler and outputted to /assets
 import { StyleProvider, Text, Logos, Flex, Switch } from "@ledgerhq/react-ui";
 
 function Root() {
@@ -124,13 +135,11 @@ function Root() {
         <Text type="h1" ff="Alpha|Medium">
           Hello, world!
         </Text>
-        <div>
-          <Switch
-            name="select-theme"
-            checked={isLight}
-            onChange={() => setPalette(() => (isLight ? "dark" : "light"))}
-          />
-        </div>
+        <Switch
+          name="select-theme"
+          checked={isLight}
+          onChange={() => setPalette(() => (isLight ? "dark" : "light"))}
+        />
       </Flex>
     </StyleProvider>
   );
@@ -140,3 +149,7 @@ ReactDOM.render(<Root />, document.getElementById("react-root"));
 ```
 
 <img width="300" alt="exapmple" src="https://user-images.githubusercontent.com/86958797/137143696-6dffdb16-83fa-4a4e-9bd0-a76fde4f82be.gif" />
+
+### Contributing
+
+Check the [contributing guide here](https://github.com/LedgerHQ/ui/blob/main/packages/react/CONTRIBUTING.md).
