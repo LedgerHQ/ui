@@ -1,16 +1,18 @@
 import dark from "./dark";
 import light from "./light";
 
-export type Theme = {
+export type ColorPalette = {
   type: string;
   primary: {
     c10: string;
     c20: string;
     c30: string;
     c40: string;
+    c50: string;    
     c60: string;
     c70: string;
     c80: string;
+    c90: string;
     c100: string;
   };
   neutral: {
@@ -24,6 +26,7 @@ export type Theme = {
     c80: string;
     c90: string;
     c100: string;
+    c100a07: string;
   };
   success: {
     c10: string;
@@ -61,9 +64,9 @@ export type Theme = {
   };
 };
 
-const palettes: { dark: Theme; light: Theme } = {
+export const palettes: { dark: ColorPalette; light: ColorPalette } = {
   dark,
   light,
 };
 
-export default palettes;
+export type ThemeNames = keyof typeof palettes;
