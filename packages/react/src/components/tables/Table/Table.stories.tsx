@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { ExpandButton } from "@components/cta/Button";
-import FlexBox from "@components/layout/Flex";
+import { ExpandButton } from "../../cta/Button";
+import FlexBox from "../../layout/Flex";
 import Table, { ExtraRowContainer, Rows, Column, Props } from "./index";
 import { balance, BalanceElement, accounts, Account } from "./stories.helper";
-import Text from "@components/asorted/Text";
+import Text from "../../asorted/Text";
 import { useTheme } from "styled-components";
 
 export default {
