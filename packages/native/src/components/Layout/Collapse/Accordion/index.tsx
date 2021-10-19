@@ -1,10 +1,16 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { Animated, View } from "react-native";
+import React, { useEffect } from "react";
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+  Easing,
+} from "react-native-reanimated";
 import Link, { LinkProps } from "../../../cta/Link";
 import {
   ChevronBottomMedium,
   ChevronTopMedium,
 } from "../../../../assets/icons";
+import { View } from "react-native";
 
 type AccordionProps = {
   collapsed: boolean;
@@ -19,33 +25,26 @@ const Accordion = ({
   title,
   onPress,
 }: AccordionProps): React.ReactElement => {
-  const animationHeight = useRef(new Animated.Value(0)).current;
-  const [display, setDisplay] = useState(!collapsed);
+  const animationHeight = useSharedValue("0%");
 
-  const shrinkView = useCallback(() => {
-    Animated.timing(animationHeight, {
-      toValue: 0,
-      duration: 200,
-      useNativeDriver: false,
-    }).start(({ finished }) => finished && setDisplay(false));
-  }, [animationHeight]);
+  const config = {
+    duration: 500,
+    easing: Easing.bezier(0.5, 0.01, 0, 1),
+  };
 
-  const expandView = useCallback(() => {
-    setDisplay(true);
-    Animated.timing(animationHeight, {
-      toValue: 1,
-      duration: 200,
-      useNativeDriver: false,
-    }).start();
-  }, [animationHeight]);
+  const style = useAnimatedStyle(() => {
+    return {
+      maxHeight: withTiming(animationHeight.value, config),
+    };
+  });
 
   useEffect(() => {
     if (collapsed) {
-      shrinkView();
+      animationHeight.value = "0%";
     } else {
-      expandView();
+      animationHeight.value = "100%";
     }
-  }, [collapsed, expandView, shrinkView]);
+  }, [animationHeight, collapsed]);
 
   return (
     <View>
@@ -55,16 +54,13 @@ const Accordion = ({
       >
         {title}
       </Link>
-
       <Animated.View
-        style={{
-          maxHeight: animationHeight.interpolate({
-            inputRange: [0, 1],
-            outputRange: ["0%", "100%"],
-          }),
-          overflow: "hidden",
-          display: display ? undefined : "none",
-        }}
+        style={[
+          {
+            overflow: "hidden",
+          },
+          style,
+        ]}
       >
         {children}
       </Animated.View>
