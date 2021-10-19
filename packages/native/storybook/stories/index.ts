@@ -23,3 +23,4 @@ import "./message/Alert/Alert.stories";
 import "./Particles/Spacing.stories";
 import "./Form/Checkbox.stories";
 import "./Layout/Collapse/Accordion.stories";
+import "./Form/Slider/Slider.stories";
