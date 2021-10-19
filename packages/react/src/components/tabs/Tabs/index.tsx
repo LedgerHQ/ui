@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createRef, forwardRef } from "react";
 import styled from "styled-components";
-import Flex from "@components/layout/Flex";
-import Tag from "@components/toasts/tags/Tag";
-import Text from "@components/asorted/Text";
+import Flex from "../../layout/Flex";
+import Tag from "../../Tag";
+import Text from "../../asorted/Text";
 
 export interface TabContent {
   index: number;

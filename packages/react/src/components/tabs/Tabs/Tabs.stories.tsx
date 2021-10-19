@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TabsComponent, { Props, TabContent } from "@components/tabs/Tabs";
-import Text from "@components/asorted/Text";
+import TabsComponent, { Props, TabContent } from "../../tabs/Tabs";
+import Text from "../../asorted/Text";
 
 export default {
   title: "Tabs/Tabs",

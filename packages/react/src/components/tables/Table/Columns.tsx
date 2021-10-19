@@ -1,7 +1,7 @@
 import React from "react";
-import Icon, { Props as IconProps } from "@components/asorted/Icon";
-import FlexBox from "@components/layout/Flex";
-import Text, { BaseTextProps } from "@components/asorted/Text";
+import Icon, { Props as IconProps } from "../../asorted/Icon";
+import FlexBox from "../../layout/Flex";
+import Text, { BaseTextProps } from "../../asorted/Text";
 
 export interface CellProps<T> {
   elt: T;
