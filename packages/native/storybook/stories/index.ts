@@ -8,6 +8,7 @@ import "./Layout/ScrollContainer.stories";
 import "./Layout/Flex.stories";
 import "./Layout/Notification.stories";
 import "./Navigation/SlideIndicator/SlideIndicator.stories";
+import "./Navigation/ToggleGroup.stories";
 import "./Icon/IconBox.stories";
 import "./Icon/AssetsIcons.stories";
 import "./Loader/Loader.stories";

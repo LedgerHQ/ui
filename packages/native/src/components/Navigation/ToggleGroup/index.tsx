@@ -1,0 +1,46 @@
+import React from "react";
+import styled from "styled-components/native";
+import Text from "@components/Text";
+import { TouchableOpacity } from "react-native";
+import Button from "@ui/components/cta/Button";
+import FlexBox from "@ui/components/Layout/Flex";
+
+export type ToggleGroupProps = {
+  labels: string[];
+  activeIndex: number;
+  onChange: (newIndex: number) => void;
+};
+
+export const ToggleGroupContainer = styled(FlexBox)`
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  border: ${(p) => `1px solid ${p.theme.colors.palette.neutral.c40}`};
+  border-radius: 35px;
+  padding: 4px;
+`;
+
+export const ToggleBox = styled(TouchableOpacity)`
+  text-align: center;
+  margin: auto;
+  flex: 1;
+`;
+
+const ToggleGroup = (props: ToggleGroupProps): React.ReactElement => {
+  const { labels, activeIndex, onChange } = props;
+  return (
+    <ToggleGroupContainer>
+      {labels.map((l, k) => (
+        <ToggleBox key={k} onPress={() => onChange(k)}>
+          {k === activeIndex ? (
+            <Button type="main">{l}</Button>
+          ) : (
+            <Text lineHeight={36}>{l}</Text>
+          )}
+        </ToggleBox>
+      ))}
+    </ToggleGroupContainer>
+  );
+};
+
+export default ToggleGroup;
