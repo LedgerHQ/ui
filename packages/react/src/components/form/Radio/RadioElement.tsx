@@ -1,8 +1,8 @@
 import React, { InputHTMLAttributes, useContext, useMemo } from "react";
 import styled from "styled-components";
 
-import { rgba } from "@ui/styles/helpers";
-import Text from "@ui/components/asorted/Text";
+import { rgba } from "../../../styles/helpers";
+import Text from "../../asorted/Text";
 import { RadioContext } from "./index";
 
 const Label = styled(Text).attrs({ type: "paragraph" })`
@@ -17,7 +17,7 @@ const Input = styled.input`
   appearance: none;
   width: var(--ledger-ui-checkbox-size);
   height: var(--ledger-ui-checkbox-size);
-  border-radius: 4px;
+  border-radius: ${(p) => `${p.theme.radii[1]}px`};
   border: 1px solid var(--ledger-ui-checkbox-color);
   cursor: pointer;
 

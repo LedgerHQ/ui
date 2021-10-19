@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import { fontSize, color } from "styled-system";
-import fontFamily from "@styles/styled/fontFamily";
-import { fontSizes } from "@styles/theme";
-import ChevronBottom from "@ui/assets/icons/ChevronBottomRegular";
+import fontFamily from "../../../styles/styled/fontFamily";
+import { fontSizes } from "../../../styles/theme";
+import ChevronBottom from "../../../assets/icons/ChevronBottomRegular";
 
 type ButtonTypes = "primary" | "secondary";
 
@@ -164,10 +164,10 @@ export const ExpandButton = function ExpandButton({
   onToggle,
   onClick,
   ...props
-}: {
+}: React.PropsWithChildren<{
   onToggle?: (arg0: boolean) => void;
   onClick?: (arg0: React.SyntheticEvent<HTMLButtonElement>) => void;
-}): React.ReactElement {
+}>): React.ReactElement {
   const [expanded, setExpanded] = useState(false);
   return (
     <StyledExpandButton

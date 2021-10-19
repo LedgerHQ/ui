@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Text from "@ui/components/asorted/Text";
+import Text from "../../../asorted/Text";
 
 const Container = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ const Handler = styled.div`
   transition: all 600ms linear;
   padding: 4px;
   background: ${(p) => p.theme.colors.palette.neutral.c100};
-  border-radius: 4px;
+  border-radius: ${(p) => `${p.theme.radii[1]}px`};
 
   display: flex;
   align-items: center;
