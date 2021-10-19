@@ -3,6 +3,8 @@ import Color from "color";
 export const rgba = (c: string, a: number) =>
   Color(c).alpha(a).rgb().toString();
 
+export const hex = (color: string): string => Color(color).hex().toString();
+
 export const darken = (c: string, a: number) => Color(c).darken(a).toString();
 
 export const lighten = (c: string, a: number) => Color(c).lighten(a).toString();
