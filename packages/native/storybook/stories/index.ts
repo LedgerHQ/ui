@@ -22,4 +22,4 @@ import "./Tag/Badge.stories";
 import "./message/Alert/Alert.stories";
 import "./Particles/Spacing.stories";
 import "./Form/Checkbox.stories";
-import "./Form/Collapse.stories";
+import "./Layout/Collapse/Accordion.stories";

@@ -3,8 +3,8 @@ import { storiesOf } from "@storybook/react-native";
 import { text, withKnobs } from "@storybook/addon-knobs";
 import { Text, View } from "react-native";
 
-import CenterView from "../CenterView";
-import Accordion from "../../../src/components/Layout/Collapse/Accordion";
+import CenterView from "../../CenterView";
+import Accordion from "../../../../src/components/Layout/Collapse/Accordion";
 
 const AccordionStory = () => {
   const [collapsed, setCollapsed] = useState(true);
