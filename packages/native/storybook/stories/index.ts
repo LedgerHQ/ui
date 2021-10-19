@@ -24,3 +24,4 @@ import "./message/Alert/Alert.stories";
 import "./Particles/Spacing.stories";
 import "./Form/Checkbox.stories";
 import "./Form/Slider/Slider.stories";
+import "./Chart/Chart.stories";
