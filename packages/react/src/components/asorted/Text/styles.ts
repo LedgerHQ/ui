@@ -92,13 +92,11 @@ export default css`
     font-family: Inter, Arial;
     font-size: 13px;
     line-height: 20px;
-    font-weight: 500;
   }
   .ll-text_cta {
     font-family: Inter, Arial;
     font-size: 13px;
     line-height: 15.73px;
-    font-weight: 600;
   }
   .ll-text_link {
     font-family: Inter, Arial;
@@ -107,40 +105,39 @@ export default css`
     text-decoration: underline;
     cursor: pointer;
   }
+  .ll-text_small {
+    font-family: Inter, Arial;
+    font-size: 12px;
+    line-height: normal;
+  }
   .ll-text_tiny {
     font-family: Inter, Arial;
     font-size: 12px;
     line-height: 16px;
-    font-weight: 500;
   }
   .ll-text_navigation {
     font-family: Inter, Arial;
     font-size: 12px;
     line-height: 14.52px;
-    font-weight: 600;
   }
   .ll-text_subTitle {
     font-family: Inter, Arial;
     font-size: 11px;
     line-height: 13.31px;
-    font-weight: 600;
   }
   .ll-text_tag {
     font-family: Inter, Arial;
     font-size: 10px;
     line-height: 12.1px;
-    font-weight: 600;
   }
 
   .ll-text_small3 {
     font-family: Inter, Arial;
     font-size: 10px;
     line-height: 12.1px;
-    font-weight: 500;
   }
   .ll-text_paragraph {
     font-family: Inter, Arial;
     font-size: 13px;
-    font-weight: 500;
   }
 `;
