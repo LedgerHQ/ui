@@ -1,14 +1,11 @@
-import { text } from "@storybook/addon-knobs";
-import { storiesOf } from "@storybook/react-native";
-import { withKnobs, select, boolean } from "@storybook/addon-knobs";
 import React from "react";
+import { text } from "@storybook/addon-knobs";
+import { storiesOf } from "../storiesOf";
+import { select, boolean } from "@storybook/addon-knobs";
 import Text from "@components/Text";
-import CenterView from "../CenterView";
 
-storiesOf("Text", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("regular", () => (
+storiesOf((story) =>
+  story("Text", module).add("regular", () => (
     <Text
       type={select(
         "type",
@@ -16,17 +13,20 @@ storiesOf("Text", module)
           "h1",
           "h2",
           "h3",
-          "highlight",
+          "large",
           "emphasis",
           "body",
-          "cta",
           "link",
-          "tiny",
           "subTitle",
-          "navigation",
+          "small",
           "tag",
         ],
         "h1"
+      )}
+      fontWeight={select(
+        "fontWeight",
+        ["medium", "semibold", "bold"],
+        "medium"
       )}
       color={select(
         "color",
@@ -37,4 +37,5 @@ storiesOf("Text", module)
     >
       {text("label", "Ledger")}
     </Text>
-  ));
+  ))
+);
