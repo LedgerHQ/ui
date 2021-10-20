@@ -9,8 +9,10 @@ export default ({
   children: React.ReactNode;
 }) => {
   const [fontsLoaded] = useFonts({
-    Inter: require("../../assets/fonts/inter/Inter-Regular.otf"),
-    Alpha: require("../../assets/fonts/alpha/HMAlphaMono-Medium.otf"),
+    Inter_medium: require("../../assets/fonts/inter/Inter-Medium.otf"),
+    Inter_semibold: require("../../assets/fonts/inter/Inter-SemiBold.otf"),
+    Inter_bold: require("../../assets/fonts/inter/Inter-Bold.otf"),
+    Alpha_medium: require("../../assets/fonts/alpha/HMAlphaMono-Medium.otf"),
   });
 
   if (waitUntilLoaded && !fontsLoaded) {
