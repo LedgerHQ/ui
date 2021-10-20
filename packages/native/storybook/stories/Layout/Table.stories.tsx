@@ -1,17 +1,11 @@
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react-native";
 import { useTheme } from "styled-components/native";
-import {
-  radios,
-  text,
-  withKnobs,
-  boolean,
-} from "@storybook/addon-knobs";
+import { radios, text, withKnobs, boolean } from "@storybook/addon-knobs";
 import React from "react";
 import FlexBox from "@components/Layout/Flex";
 import Row from "@components/Layout/Table/Row";
 import Text from "@components/Text";
-import Badge from "@components/tags/Badge";
 import CenterView from "../CenterView";
 import CircledCheck from "@assets/icons/CircledCheckRegular";
 
@@ -88,7 +82,6 @@ const ARow = () => {
       topRight={hasTopRight && <TopRight />}
       bottomRight={hasBottomRight && <BottomRight />}
       iconBorder={boolean("iconBorder", false, "props")}
-      withMarginBottom={boolean("withMarginBottom", false, "props")}
     />
   );
 };
