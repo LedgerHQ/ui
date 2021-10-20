@@ -5,9 +5,8 @@ export type TextTypes =
   | "emphasis"
   | "body"
   | "link"
-  | "tiny"
   | "subTitle"
-  | "navigation"
+  | "small"
   | "tag"
   | "large"
   | "paragraph";

@@ -20,9 +20,8 @@ storiesOf("Text", module)
           "emphasis",
           "body",
           "link",
-          "tiny",
           "subTitle",
-          "navigation",
+          "small",
           "tag",
         ],
         "h1"
