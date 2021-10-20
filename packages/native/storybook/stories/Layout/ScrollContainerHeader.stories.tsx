@@ -72,5 +72,8 @@ const ScrollContainerHeaderStory = () => {
 };
 
 storiesOf((story) =>
-  story("Layout", module).add("Header", () => <ScrollContainerHeaderStory />)
+  story("Layout", module).add(
+    "ScrollContainerHeader",
+    ScrollContainerHeaderStory
+  )
 );

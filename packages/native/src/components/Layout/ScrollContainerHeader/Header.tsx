@@ -7,7 +7,7 @@ import Animated, {
   Extrapolate,
 } from "react-native-reanimated";
 
-import Flex from "@components/Layout/Flex";
+import Flex from "../Flex";
 
 export type HeaderProps = {
   TopLeftSection?: JSX.Element;
