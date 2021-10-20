@@ -1,19 +1,17 @@
 import React from "react";
 import { View } from "react-native";
-import { storiesOf } from "@storybook/react-native";
-import { withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "../storiesOf";
 import { useTheme } from "styled-components/native";
 import { action } from "@storybook/addon-actions";
 
-import ScrollContainerHeader from "@components/Layout/ScrollContainerHeader";
-import Text from "@components/Text";
-import Flex from "@components/Layout/Flex";
-import Badge from "@components/tags/Badge";
-import BackIcon from "@ui/assets/icons/ArrowLeftMedium";
-import PlusMedium from "@ui/assets/icons/PlusMedium";
-import CrossIcon from "@ui/assets/icons/CloseMedium";
-import ScrollContainer from "@components/Layout/ScrollContainer";
-import CenterView from "../CenterView";
+import ScrollContainerHeader from "../../../src/components/Layout/ScrollContainerHeader";
+import Text from "../../../src/components/Text";
+import Flex from "../../../src/components/Layout/Flex";
+import Badge from "../../../src/components/tags/Badge";
+import BackIcon from "../../../src/assets/icons/ArrowLeftMedium";
+import PlusMedium from "../../../src/assets/icons/PlusMedium";
+import CrossIcon from "../../../src/assets/icons/CloseMedium";
+import ScrollContainer from "../../../src/components/Layout/ScrollContainer";
 
 const TopRightSection = () => {
   const theme = useTheme();
@@ -73,7 +71,9 @@ const ScrollContainerHeaderStory = () => {
   );
 };
 
-storiesOf("Layout", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Header", () => <ScrollContainerHeaderStory />);
+storiesOf((story) =>
+  story("Layout", module).add(
+    "ScrollContainerHeader",
+    ScrollContainerHeaderStory
+  )
+);
