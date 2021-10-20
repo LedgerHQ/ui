@@ -1,8 +1,7 @@
 import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { withKnobs, boolean } from "@storybook/addon-knobs";
+import { storiesOf } from "../storiesOf";
+import { boolean } from "@storybook/addon-knobs";
 import ScrollContainer from "../../../src/components/Layout/ScrollContainer";
-import CenterView from "../CenterView";
 import { View } from "react-native";
 import { action } from "@storybook/addon-actions";
 
@@ -35,7 +34,6 @@ const ScrollContainerStory = () => (
   </ScrollContainer>
 );
 
-storiesOf("Layout", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("ScrollContainer", ScrollContainerStory);
+storiesOf((story) =>
+  story("Layout", module).add("ScrollContainer", ScrollContainerStory)
+);

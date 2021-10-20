@@ -1,9 +1,8 @@
-import { storiesOf } from "@storybook/react-native";
-import { withKnobs, boolean, text } from "@storybook/addon-knobs";
-
 import React, { useState } from "react";
+import { storiesOf } from "../storiesOf";
+import { boolean, text } from "@storybook/addon-knobs";
+
 import Checkbox from "@components/Form/Checkbox";
-import CenterView from "../CenterView";
 
 const CheckboxStory = () => {
   const [checked, setChecked] = useState(false);
@@ -20,7 +19,4 @@ const CheckboxStory = () => {
   );
 };
 
-storiesOf("Form", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Checkbox", () => <CheckboxStory />);
+storiesOf((story) => story("Form", module).add("Checkbox", CheckboxStory));

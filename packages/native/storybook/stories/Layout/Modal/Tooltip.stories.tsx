@@ -1,9 +1,8 @@
 import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { storiesOf } from "../../storiesOf";
+import { text } from "@storybook/addon-knobs";
 import Tooltip from "@components/Layout/Modal/Tooltip";
 import Text from "@components/Text";
-import CenterView from "../../CenterView";
 import WarningLight from "@ui/assets/icons/WarningLight";
 
 const TooltipStory = () => {
@@ -25,7 +24,6 @@ const TooltipStory = () => {
   );
 };
 
-storiesOf("Layout", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Modal/Tooltip", () => <TooltipStory />);
+storiesOf((story) =>
+  story("Layout/Modal", module).add("Tooltip", TooltipStory)
+);
