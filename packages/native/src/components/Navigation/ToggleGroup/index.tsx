@@ -13,7 +13,7 @@ export type ToggleGroupProps = {
 
 export const ToggleGroupContainer = styled(FlexBox).attrs({
   flexDirection: "row",
-  alignItems: "stretch"
+  alignItems: "stretch",
 })`
   width: 100%;
   border: ${(p) => `1px solid ${p.theme.colors.palette.neutral.c40}`};
@@ -31,12 +31,12 @@ const ToggleGroup = (props: ToggleGroupProps): React.ReactElement => {
   const { labels, activeIndex, onChange } = props;
   return (
     <ToggleGroupContainer>
-      {labels.map((l, k) => (
-        <ToggleBox key={k} onPress={() => onChange(k)}>
-          {k === activeIndex ? (
-            <Button type="main">{l}</Button>
+      {labels.map((label, key) => (
+        <ToggleBox key={key} onPress={() => onChange(key)}>
+          {key === activeIndex ? (
+            <Button type="main">{label}</Button>
           ) : (
-            <Text lineHeight={36}>{l}</Text>
+            <Text lineHeight={36}>{label}</Text>
           )}
         </ToggleBox>
       ))}
