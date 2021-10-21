@@ -1,10 +1,9 @@
 import React from "react";
-import { View } from "react-native";
 import { storiesOf } from "../storiesOf";
-import { useTheme } from "styled-components/native";
 import { action } from "@storybook/addon-actions";
 
 import ScrollContainerHeader from "../../../src/components/Layout/ScrollContainerHeader";
+import Button from "../../../src/components/cta/Button";
 import Text from "../../../src/components/Text";
 import Flex from "../../../src/components/Layout/Flex";
 import Badge from "../../../src/components/tags/Badge";
@@ -14,22 +13,17 @@ import CrossIcon from "../../../src/assets/icons/CloseMedium";
 import ScrollContainer from "../../../src/components/Layout/ScrollContainer";
 
 const TopRightSection = () => {
-  const theme = useTheme();
   return (
     <Flex flexDirection="row">
-      <Flex mr={4} onPress={action("plus icon pressed")}>
-        <PlusMedium color={theme.colors.palette.neutral.c100} />
-      </Flex>
-      <Flex onPress={action("cross icon pressed")}>
-        <CrossIcon color={theme.colors.palette.neutral.c100} />
-      </Flex>
+      <Button mx={2} Icon={PlusMedium} onPress={action("plus icon pressed")} />
+      <Button Icon={CrossIcon} onPress={action("cross icon pressed")} />
     </Flex>
   );
 };
 
 const BottomSection = () => {
   return (
-    <ScrollContainer horizontal>
+    <ScrollContainer mt={4} horizontal>
       {Array(12)
         .fill(0)
         .map((_, index) => (
@@ -42,29 +36,20 @@ const BottomSection = () => {
 };
 
 const ScrollContainerHeaderStory = () => {
-  const theme = useTheme();
-
   return (
     <ScrollContainerHeader
-      TopLeftSection={<BackIcon color={theme.colors.palette.neutral.c100} />}
+      TopLeftSection={<Button mr={2} Icon={BackIcon} size="small" />}
       TopRightSection={<TopRightSection />}
-      TopMiddleSection={<Text type="paragraph">TITLE</Text>}
       MiddleSection={<Text type="h2">TITLE</Text>}
       BottomSection={<BottomSection />}
     >
       {Array(20)
         .fill(0)
         .map((_, i) => (
-          <View
+          <Flex
+            height="100px"
             key={i}
-            style={{
-              width: "100%",
-              height: 100,
-              backgroundColor:
-                i % 2
-                  ? theme.colors.palette.primary.c20
-                  : theme.colors.palette.neutral.c20,
-            }}
+            bg={i % 2 ? "palette.primary.c20" : "palette.neutral.c20"}
           />
         ))}
     </ScrollContainerHeader>

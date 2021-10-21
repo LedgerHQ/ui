@@ -1,5 +1,5 @@
-import React from "react";
-import { useWindowDimensions } from "react-native";
+import React, { useCallback, useState } from "react";
+import { View } from "react-native";
 import styled from "styled-components/native";
 import Animated, {
   useAnimatedStyle,
@@ -25,85 +25,105 @@ const Container = styled(Flex).attrs({
   width: 100%;
 `;
 
-const Section = styled(Flex).attrs({
-  paddingVertical: 12,
-})``;
-
 const SCROLL_BREAKPOINT = 80;
 
 const Header = ({
   TopLeftSection,
-  TopMiddleSection,
   TopRightSection,
   MiddleSection,
   BottomSection,
   currentPositionY,
 }: HeaderProps): JSX.Element => {
-  const { width } = useWindowDimensions();
+  const [topSectionHeight, setTopSectionHeight] = useState(0);
+  const [topSectionWidth, setTopSectionWidth] = useState(0);
+  const [topMiddleWidth, setTopMiddleWidth] = useState(0);
+  const [topLeftWidth, setTopLeftWidth] = useState(0);
+  const [middleWidth, setMiddleWidth] = useState(0);
 
-  const topMiddleStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      currentPositionY.value,
-      [0, 40, 100],
-      [0, 0, 1]
-    );
-    return { opacity };
-  });
+  const onLayout = useCallback(({ nativeEvent: { layout } }) => {
+    setTopSectionHeight(layout.height);
+    setTopSectionWidth(layout.width);
+  }, []);
+
+  const onLayoutTopLeft = useCallback(({ nativeEvent: { layout } }) => {
+    setTopLeftWidth(layout.width);
+  }, []);
+
+  const onLayoutTopMiddle = useCallback(({ nativeEvent: { layout } }) => {
+    setTopMiddleWidth(layout.width);
+  }, []);
+
+  const onLayoutMiddle = useCallback(({ nativeEvent: { layout } }) => {
+    setMiddleWidth(layout.width);
+  }, []);
 
   const MiddleStyle = useAnimatedStyle(() => {
-    const opacity = interpolate(
-      currentPositionY.value,
-      [0, SCROLL_BREAKPOINT / 2],
-      [1, 0]
-    );
+    const scaleRatio = middleWidth
+      ? Math.min(topMiddleWidth / middleWidth, 0.9)
+      : 0.7;
+
+    /** scale the animated content to fit in the available space on the top header section */
     const scale = interpolate(
       currentPositionY.value,
       [0, SCROLL_BREAKPOINT],
-      [1, 0.7]
+      [1, scaleRatio],
+      Extrapolate.CLAMP
     );
+    /** translate verticaly to the middle of the top header section */
     const translateY = interpolate(
       currentPositionY.value,
       [0, SCROLL_BREAKPOINT],
-      [0, SCROLL_BREAKPOINT / -2],
+      [0, -topSectionHeight + topSectionHeight / 2],
       Extrapolate.CLAMP
     );
+    /** offset horizontaly given the scale transformation and potential top left header section */
     const translateX = interpolate(
       currentPositionY.value,
       [0, SCROLL_BREAKPOINT],
-      [0, width / 2],
+      [0, -(topSectionWidth - topMiddleWidth) / 2 + topLeftWidth],
       Extrapolate.CLAMP
     );
+    /** allow for content to move upward as animation is taking place */
     const maxHeight = interpolate(
       currentPositionY.value,
-      [0, 20, 100],
-      [70, 50, 0]
+      [0, SCROLL_BREAKPOINT],
+      [70, 0],
+      Extrapolate.CLAMP
     );
 
     return {
       maxHeight,
-      opacity,
       transform: [{ translateY }, { translateX }, { scale }],
+      justifyContent: "center", // needed to ensure vertical centering of animated content
     };
-  });
+  }, [
+    topLeftWidth,
+    topSectionHeight,
+    middleWidth,
+    topMiddleWidth,
+    topSectionWidth,
+  ]);
 
   return (
-    <Animated.View>
-      <Container>
-        <Section
-          flexDirection="row"
-          justifyContent="space-between"
-          alignItems="center"
-        >
-          {TopLeftSection}
-          <Animated.View style={topMiddleStyle}>
-            {TopMiddleSection}
-          </Animated.View>
-          {TopRightSection}
-        </Section>
-        <Animated.View style={MiddleStyle}>{MiddleSection}</Animated.View>
-        {BottomSection ? <Section>{BottomSection}</Section> : null}
-      </Container>
-    </Animated.View>
+    <Container>
+      <Flex
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
+        onLayout={onLayout}
+      >
+        <View onLayout={onLayoutTopLeft}>{TopLeftSection}</View>
+        <Flex flex={1} onLayout={onLayoutTopMiddle} />
+        {TopRightSection}
+      </Flex>
+      <Animated.View
+        onLayout={middleWidth ? () => {} : onLayoutMiddle}
+        style={MiddleStyle}
+      >
+        {MiddleSection}
+      </Animated.View>
+      {BottomSection ? <Flex>{BottomSection}</Flex> : null}
+    </Container>
   );
 };
 
