@@ -11,9 +11,10 @@ export type ToggleGroupProps = {
   onChange: (newIndex: number) => void;
 };
 
-export const ToggleGroupContainer = styled(FlexBox)`
-  flex-direction: row;
-  align-items: stretch;
+export const ToggleGroupContainer = styled(FlexBox).attrs({
+  flexDirection: "row",
+  alignItems: "stretch"
+})`
   width: 100%;
   border: ${(p) => `1px solid ${p.theme.colors.palette.neutral.c40}`};
   border-radius: 35px;
