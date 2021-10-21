@@ -1,8 +1,7 @@
-import { storiesOf } from "@storybook/react-native";
-import { boolean, text, withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "../../storiesOf";
+import { boolean, text } from "@storybook/addon-knobs";
 import React, { useState } from "react";
 import Button from "@components/cta/Button";
-import CenterView from "../../CenterView";
 import Input, {
   InputRenderLeftContainer,
   InputRenderRightContainer,
@@ -62,10 +61,8 @@ const BaseInputRenderSideExempleStory = () => {
   );
 };
 
-storiesOf("Form", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Input/BaseInput", () => <BaseInputStory />)
-  .add("Input/BaseInput/RenderSideExemple", () => (
-    <BaseInputRenderSideExempleStory />
-  ));
+storiesOf((story) =>
+  story("Form/Input/BaseInput", module)
+    .add("BaseInput", BaseInputStory)
+    .add("RenderSideExemple", BaseInputRenderSideExempleStory)
+);

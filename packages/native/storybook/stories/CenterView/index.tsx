@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
-import StyleProvider from "@ui/styles/StyleProvider";
-import FontProvider from "@ui/providers/FontProvider";
+import StyleProvider from "../../../src/styles/StyleProvider";
+import FontProvider from "../../../src/providers/FontProvider";
 
 const Main = styled.View`
   flex: 1;
@@ -32,13 +32,15 @@ const Icon = styled.Text`
 `;
 
 export default function CenterView({
+  waitFonts,
   children,
 }: {
+  waitFonts?: boolean;
   children: React.ReactNode;
 }) {
   const [isLight, setIsLight] = useState(true);
   return (
-    <FontProvider>
+    <FontProvider waitUntilLoaded={waitFonts}>
       <StyleProvider selectedPalette={isLight ? "light" : "dark"}>
         <ThemeButton onPress={() => setIsLight(!isLight)}>
           <Icon>🖌️</Icon>
