@@ -85,7 +85,7 @@ export type CheckboxProps = {
   isDisabled?: boolean;
   isChecked: boolean;
   variant?: "default" | "success" | "error";
-  label?: string;
+  label?: React.ReactNode;
   name: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
