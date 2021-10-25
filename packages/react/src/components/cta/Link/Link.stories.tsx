@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "./index";
+import Link, { LinkProps } from "./index";
 import { PlusMedium } from "../../../assets/icons";
 import { Flex } from "../../layout";
 export default {
@@ -36,7 +36,7 @@ export default {
   },
 };
 
-export const Default = ({ reversed, ...args }: any) => {
+export const Default = ({ reversed, ...args }: LinkProps) => {
   return (
     <Flex
       style={{
@@ -51,7 +51,7 @@ export const Default = ({ reversed, ...args }: any) => {
   );
 };
 
-export const WithIcon = ({ reversed, ...args }: any) => {
+export const WithIcon = ({ reversed, ...args }: LinkProps) => {
   return (
     <Flex
       style={{

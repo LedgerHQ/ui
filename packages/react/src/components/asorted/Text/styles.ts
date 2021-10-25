@@ -78,6 +78,11 @@ export default css`
     font-size: 20px;
     line-height: 24px;
   }
+  .ll-text_large {
+    font-family: Inter, Arial;
+    font-size: 16px;
+    line-height: normal;
+  }
   .ll-text_highlight {
     font-family: Inter, Arial;
     font-size: 16px;
