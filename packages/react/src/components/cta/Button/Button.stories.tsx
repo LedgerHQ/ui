@@ -6,7 +6,7 @@ export default {
   component: Button,
   argTypes: {
     type: {
-      options: [undefined, "primary", "secondary"],
+      options: [undefined, "main", "shade", "color", "error"],
       control: {
         type: "radio",
       },
@@ -27,6 +27,9 @@ export default {
       },
     },
     disabled: {
+      type: "boolean",
+    },
+    outline: {
       type: "boolean",
     },
   },
