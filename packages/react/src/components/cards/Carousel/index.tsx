@@ -41,7 +41,7 @@ const Controllers = styled(Flex)`
 const Bullets = styled.div<{ active?: number }>`
   position: absolute;
   display: flex;
-  left: ${(p) => p.theme.space[8]}px;
+  left: ${(p) => p.theme.space[10]}px;
   bottom: ${(p) => p.theme.space[8]}px;
   column-gap: ${(p) => p.theme.space[2]}px;
   flex-direction: row;
@@ -161,15 +161,15 @@ const Carousel = ({
     <CarouselWrapper id={"carousel"} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {wantToDismiss ? (
         <DismissWrapper>
-          <Text color="palette.neutral.c00" ff="Inter|Medium" fontSize={13}>
-            {"This banner will not show up again until there is a new announcement"}
+          <Text color="palette.neutral.c00" type="cta">
+            This banner will not show up again until there is a new announcement
           </Text>
-          <Flex>
+          <Flex columnGap="12px">
             <Button color="palette.neutral.c00" type="secondary" onClick={onDismiss}>
-              {"Confirm"}
+              Confirm
             </Button>
             <Button color="palette.neutral.c00" type="primary" onClick={onCancelDismiss}>
-              {"Show again"}
+              Show again
             </Button>
           </Flex>
         </DismissWrapper>
