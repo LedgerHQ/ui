@@ -62,10 +62,15 @@ const Onboarding = ({ steps, currentIndex }: OnboardingProps): JSX.Element => {
     <Container>
       <Bar on fill={fill} />
       <Handler key={currentStep.key}>
-        <Text className="index" color="palette.neutral.c00" ff="Inter|Regular" fontSize={1}>
+        <Text className="index" color="palette.neutral.c00" ff="Inter|Medium" fontSize={"micro"}>
           {currentIndex + 1}
         </Text>
-        <Text color="palette.neutral.c00" ff="Inter|Regular" textTransform="uppercase" fontSize={1}>
+        <Text
+          color="palette.neutral.c00"
+          ff="Inter|Medium"
+          textTransform="uppercase"
+          fontSize={"micro"}
+        >
           {currentStep.label}
         </Text>
       </Handler>

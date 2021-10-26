@@ -41,7 +41,7 @@ export default function NumberInput({
               active={!!value && !!max && Number(value) === percent * Number(max)}
               disabled={disabled}
             >
-              <Text type={"tiny"} color={"inherit"}>
+              <Text fontSize={"tiny"} color={"inherit"}>
                 {percent * 100}%
               </Text>
             </MaxButton>

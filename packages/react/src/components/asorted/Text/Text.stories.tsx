@@ -4,21 +4,24 @@ export default {
   title: "Asorted/Typography/Text",
   component: Text,
   argTypes: {
-    type: {
+    fontSize: {
       options: [
         undefined,
         "h1",
         "h2",
         "h3",
-        "highlight",
-        "emphasis",
+        "h4",
+        "h5",
+        "large",
         "body",
-        "cta",
-        "link",
+        "bodyLineHeight",
+        "paragraph",
+        "paragraphLineHeight",
+        "small",
+        "extraSmall",
         "tiny",
-        "subTitle",
-        "navigation",
-        "tag",
+        "micro",
+        "subtitle",
       ],
       control: {
         type: "radio",
@@ -36,12 +39,6 @@ export default {
         "Inter|Bold",
         "Inter|ExtraBold",
       ],
-      control: {
-        type: "radio",
-      },
-    },
-    fontSize: {
-      options: [undefined, 0, 1, 2, 3, 4, 5, 6, 7, 8],
       control: {
         type: "radio",
       },

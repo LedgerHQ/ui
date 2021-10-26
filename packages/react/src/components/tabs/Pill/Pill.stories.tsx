@@ -25,7 +25,7 @@ function Sample({ children, ...args }: Props) {
           {children}
         </PillTabs>
       </div>
-      <Text type="subTitle">Active index: {activeIndex}</Text>
+      <Text fontSize="subtitle">Active index: {activeIndex}</Text>
       <hr />
     </div>
   );

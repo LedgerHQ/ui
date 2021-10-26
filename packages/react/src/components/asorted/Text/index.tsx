@@ -14,6 +14,7 @@ import {
   LayoutProps,
 } from "styled-system";
 import fontFamily from "../../../styles/styled/fontFamily";
+import { TextTypes } from "../../../styles/theme";
 
 const uppercase = system({
   uppercase: {
@@ -31,27 +32,11 @@ type FontFamilies =
   | "Inter|Bold"
   | "Inter|ExtraBold"
   | "Alpha|Medium";
-export type TextTypes =
-  | "h1"
-  | "h2"
-  | "h3"
-  | "highlight"
-  | "emphasis"
-  | "body"
-  | "cta"
-  | "link"
-  | "small"
-  | "tiny"
-  | "subTitle"
-  | "navigation"
-  | "tag"
-  | "large"
-  | "paragraph";
 
 export interface TextProps {
   fontFamily?: string;
   ff?: FontFamilies;
-  fontSize?: number | string;
+  fontSize?: number | string | TextTypes;
   textAlign?: string;
   textTransform?: string;
   color?: string;
@@ -62,26 +47,23 @@ export interface TextProps {
   mr?: number | string;
   lineHeight?: string;
   bracket?: boolean;
-  type?: TextTypes;
   children: React.ReactNode;
 }
 
 export interface BaseTextProps extends SpaceProps, LayoutProps {
   fontFamily?: string;
   ff?: FontFamilies;
-  fontSize?: number | string;
+  fontSize?: number | string | TextTypes;
   textAlign?: string;
   color?: string;
   fontWeight?: string;
   lineHeight?: string;
-  type?: TextTypes;
   textTransform?: string;
   textOverflow?: string;
 }
 
-const Text = styled.span.attrs((p: BaseTextProps) => ({
+const Text = styled.span.attrs<BaseTextProps>((p: BaseTextProps) => ({
   color: p.color || "palette.neutral.c100",
-  className: `${p.type ? `ll-text_${p.type} ` : ""}`,
 }))<BaseTextProps>`
   ${uppercase};
   ${lineHeight};

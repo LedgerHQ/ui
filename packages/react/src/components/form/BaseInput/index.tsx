@@ -59,7 +59,11 @@ export const InputContainer = styled.div<Partial<CommonProps> & { focus?: boolea
     `};
 `;
 
-export const BaseInput = styled.input<Partial<CommonProps> & { focus?: boolean } & TypographyProps>`
+export const BaseInput = styled.input.attrs<
+  Partial<CommonProps> & { focus?: boolean } & TypographyProps
+>({
+  fontSize: "paragraph",
+})<Partial<CommonProps> & { focus?: boolean } & TypographyProps>`
   height: 100%;
   width: 100%;
   border: 0;
@@ -137,7 +141,6 @@ export default function Input(props: InputProps): JSX.Element {
           setFocus(false);
           htmlInputProps.onBlur && htmlInputProps.onBlur(event);
         }}
-        className={"ll-text_body"}
       />
       {typeof renderRight === "function" ? renderRight(props) : renderRight}
     </>

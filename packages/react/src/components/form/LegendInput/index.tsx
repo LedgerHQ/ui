@@ -10,7 +10,7 @@ export default function LegendInput({ legend, ...inputProps }: Props): JSX.Eleme
       {...inputProps}
       renderRight={
         <InputRenderRightContainer>
-          <Text color={"palette.neutral.c70"} type="body">
+          <Text color={"palette.neutral.c70"} fontSize="body">
             {legend}
           </Text>
         </InputRenderRightContainer>

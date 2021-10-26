@@ -8,7 +8,45 @@ export const space = [
   0, 2, 4, 8, 10, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76,
 ];
 
-export const fontSizes = [8, 9, 10, 12, 13, 16, 18, 22, 32];
+export type TextTypes =
+  | "h1"
+  | "h2"
+  | "h3"
+  | "h4"
+  | "h5"
+  | "large"
+  | "body"
+  | "bodyLineHeight"
+  | "paragraph"
+  | "paragraphLineHeight"
+  | "small"
+  | "extraSmall"
+  | "tiny"
+  | "micro"
+  | "subtitle";
+export const fontSizes = [8, 10, 11, 12, 13, 14, 16, 20, 24, 28, 32, 36] as ThemeScale<
+  number,
+  TextTypes
+>;
+
+[
+  fontSizes.micro,
+  fontSizes.tiny,
+  fontSizes.extraSmall,
+  fontSizes.small,
+  fontSizes.paragraph,
+  fontSizes.body,
+  fontSizes.large,
+  fontSizes.h5,
+  fontSizes.h4,
+  fontSizes.h3,
+  fontSizes.h2,
+  fontSizes.h1,
+] = fontSizes;
+fontSizes.bodyLineHeight = fontSizes.body;
+fontSizes.paragraphLineHeight = fontSizes.paragraph;
+fontSizes.subtitle = fontSizes.extraSmall;
+
 export const radii = [0, 4, 8, 12];
 export const shadows = ["0 4px 8px 0 rgba(0, 0, 0, 0.03)"];
 export const zIndexes = [-1, 0, 1, 9, 10, 90, 100, 900, 1000];
@@ -154,6 +192,10 @@ interface Font {
   weight: number;
   style: string;
 }
+
+export type ThemeScale<Type, Aliases extends string> = Array<Type> & Record<Aliases, Type>;
+export type BreakpointAlias = "mobile" | "tablet" | "desktop" | "widescreen";
+
 export interface Theme extends DefaultTheme {
   sizes: {
     topBarHeight: number;

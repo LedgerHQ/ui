@@ -1,4 +1,4 @@
-import { TextTypes } from "../asorted/Text";
+import { TextTypes } from "../../styles/theme";
 
 export const ctaTextType: { [index: string]: TextTypes } = {
   small: "small",
