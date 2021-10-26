@@ -16,6 +16,7 @@ interface BaseProps {
   iconPosition?: "right" | "left";
   iconButton?: boolean;
   disabled?: boolean;
+  reverseBackground?: boolean;
 }
 
 export interface ButtonProps<I = any> extends BaseProps {
@@ -31,6 +32,152 @@ const IconContainer = styled.div<{
   margin-${(p) => (p.iconPosition === "left" ? "right" : "left")}: ${(p) => p.theme.space[4]}px;
   padding-top: 0.2em;
 `;
+
+const getVariantColors = (p: any) => ({
+  main: {
+    outline: {
+      reverseBackground: `
+        border-color: ${p.theme.colors.palette.neutral.c00};
+        color: ${p.theme.colors.palette.neutral.c00};
+        background-color: ${p.theme.colors.palette.neutral.c100};
+        &:focus {
+          border-color: ${p.theme.colors.palette.primary.c40};
+        }
+        &:hover {
+          background-color: ${p.theme.colors.palette.neutral.c80};
+        }
+        &:active {
+          background-color: ${p.theme.colors.palette.neutral.c70};
+        }          
+      `,
+      normalBackground: `
+        border-color: ${p.theme.colors.palette.neutral.c100};
+        color: ${p.theme.colors.palette.neutral.c100};
+        background-color: ${p.theme.colors.palette.neutral.c00};          
+        &:hover {
+          background-color: ${p.theme.colors.palette.neutral.c20};
+        }
+        &:active {
+          background-color: ${p.theme.colors.palette.neutral.c30};
+        }
+      `,
+    },
+    filled: {
+      reverseBackground: `
+        color: ${p.theme.colors.palette.neutral.c100};
+        background-color: ${p.theme.colors.palette.neutral.c00};
+        &:hover {
+          background-color: ${p.theme.colors.palette.neutral.c50};
+        }
+      `,
+      normalBackground: `
+        color: ${p.theme.colors.palette.neutral.c00};
+        background-color: ${p.theme.colors.palette.neutral.c100};
+        &:hover {
+          background-color: ${p.theme.colors.palette.neutral.c90};
+        }
+      `,
+    },
+  },
+  shade: {
+    reverseBackground: `
+      border-color: ${p.theme.colors.palette.neutral.c80};
+      color: ${p.theme.colors.palette.neutral.c00};
+      background-color: ${p.theme.colors.palette.neutral.c100};
+      &:focus {
+        border-color: ${p.theme.colors.palette.primary.c40};
+      }
+
+      &:hover {
+        background-color: ${p.theme.colors.palette.neutral.c80};
+      }
+
+      &:active {
+        background-color: ${p.theme.colors.palette.neutral.c70};
+      }          
+    `,
+    normalBackground: `
+      border-color: ${p.theme.colors.palette.neutral.c40};
+      color: ${p.theme.colors.palette.neutral.c100};
+      background-color: ${p.theme.colors.palette.neutral.c00};
+      &:focus {
+        border-color: ${p.theme.colors.palette.primary.c80};
+      }
+
+      &:hover {
+        background-color: ${p.theme.colors.palette.neutral.c20};
+      }
+
+      &:active {
+        background-color: ${p.theme.colors.palette.neutral.c30};
+      }          
+    `,
+  },
+  error: {
+    outline: `
+      border-color: ${p.theme.colors.palette.error.c100};
+      color: ${p.theme.colors.palette.error.c100};
+      background-color: ${p.theme.colors.palette.neutral.c00};
+      &:hover {
+        background-color: ${p.theme.colors.palette.error.c10};
+      }
+      &:active {
+        background-color: ${p.theme.colors.palette.error.c30};
+      }
+    `,
+    filled: `
+      color: ${p.theme.colors.palette.neutral.c00};
+      background-color: ${p.theme.colors.palette.error.c100};
+      &:hover {
+        background-color: ${p.theme.colors.palette.error.c80};
+      }
+    `,
+  },
+  color: {
+    outline: `
+      border-color: ${p.theme.colors.palette.primary.c80};
+      color: ${p.theme.colors.palette.primary.c80};
+      background-color: ${p.theme.colors.palette.neutral.c00};
+      &:hover {
+        background-color: ${p.theme.colors.palette.primary.c10};
+      }
+      &:active {
+        background-color: ${p.theme.colors.palette.primary.c20};
+      }
+    `,
+    filled: `
+      color: ${p.theme.colors.palette.neutral.c00};
+      background-color: ${p.theme.colors.palette.primary.c80};
+      &:hover {
+        background-color: ${p.theme.colors.palette.primary.c70};
+      }
+    `,
+  },
+  disabled: {
+    outline: {
+      reverseBackground: `
+        border-color: ${p.theme.colors.palette.neutral.c90};
+        color: ${p.theme.colors.palette.neutral.c90};
+        background-color: ${p.theme.colors.palette.neutral.c100};          
+      `,
+      normalBackground: `
+        border-color: ${p.theme.colors.palette.neutral.c50};
+        color: ${p.theme.colors.palette.neutral.c50};
+        background-color: ${p.theme.colors.palette.neutral.c00};          
+      `,
+    },
+    filled: {
+      reverseBackground: `
+        color: ${p.theme.colors.palette.neutral.c80};
+        background-color: ${p.theme.colors.palette.neutral.c90};
+      `,
+      normalBackground: `
+        color: ${p.theme.colors.palette.neutral.c50};
+        background-color: ${p.theme.colors.palette.neutral.c30};
+      `,
+    },
+  },
+});
 
 export const Base = styled.button.attrs((p: BaseProps) => ({
   ff: "Inter|SemiBold",
@@ -59,99 +206,45 @@ export const Base = styled.button.attrs((p: BaseProps) => ({
   position: relative;
   cursor: ${(p) => (p.disabled ? "default" : "pointer")};
   &:focus {
-    outline: 4px solid ${(p) => p.theme.colors.palette.primary.c50};
+    outline: 4px solid ${(p) => p.theme.colors.palette.primary.c60};
   }
 
   ${(p) => {
+    const variants = getVariantColors(p);
     if (p.disabled) {
       return p.outline || p.type === "shade"
-        ? `
-          border-color: ${p.theme.colors.palette.neutral.c50};
-          color: ${p.theme.colors.palette.neutral.c50};
-          background-color: ${p.theme.colors.palette.neutral.c00};          
-        `
-        : `
-          color: ${p.theme.colors.palette.neutral.c50};
-          background-color: ${p.theme.colors.palette.neutral.c30};
-        `;
+        ? p.reverseBackground
+          ? variants.disabled.outline.reverseBackground
+          : variants.disabled.outline.normalBackground
+        : p.reverseBackground
+        ? variants.disabled.filled.reverseBackground
+        : variants.disabled.filled.normalBackground;
     }
 
     const type: ButtonTypes | "default" = p.type ?? ("default" as ButtonTypes | "default");
     switch (type) {
-      case "shade":
-        return `
-          border-color: ${p.theme.colors.palette.neutral.c40};
-          color: ${p.theme.colors.palette.neutral.c100};
-          background-color: ${p.theme.colors.palette.neutral.c00};
-          &:focus {
-            border-color: ${p.theme.colors.palette.primary.c80};
-          }
-
-          &:hover {
-            background-color: ${p.theme.colors.palette.neutral.c20};
-          }
-        `;
-
-      case "error":
-        return p.outline
-          ? `
-          border-color: ${p.theme.colors.palette.error.c100};
-          color: ${p.theme.colors.palette.error.c100};
-          background-color: ${p.theme.colors.palette.neutral.c00};
-          &:hover {
-            background-color: ${p.theme.colors.palette.error.c10};
-          }
-        `
-          : `
-          color: ${p.theme.colors.palette.neutral.c00};
-          background-color: ${p.theme.colors.palette.error.c100};
-          &:hover {
-            background-color: ${p.theme.colors.palette.error.c80};
-          }
-        `;
-
-      case "color":
-        return p.outline
-          ? `
-        border-color: ${p.theme.colors.palette.primary.c80};
-        color: ${p.theme.colors.palette.primary.c80};
-        background-color: ${p.theme.colors.palette.neutral.c00};
-        &:hover {
-          background-color: ${p.theme.colors.palette.primary.c10};
-        }
-      `
-          : `
-        color: ${p.theme.colors.palette.neutral.c00};
-        background-color: ${p.theme.colors.palette.primary.c80};
-        &:hover {
-          background-color: ${p.theme.colors.palette.primary.c70};
-        }
-      `;
-
       case "main":
         return p.outline
-          ? `
-          border-color: ${p.theme.colors.palette.neutral.c100};
-          color: ${p.theme.colors.palette.neutral.c100};
-          background-color: ${p.theme.colors.palette.neutral.c00};          
-          &:hover {
-            background-color: ${p.theme.colors.palette.neutral.c20};
-          }
-        `
-          : `
-          color: ${p.theme.colors.palette.neutral.c00};
-          background-color: ${p.theme.colors.palette.neutral.c100};
-          &:hover {
-            background-color: ${p.theme.colors.palette.neutral.c90};
-          }
-        `;
+          ? p.reverseBackground
+            ? variants.main.outline.reverseBackground
+            : variants.main.outline.normalBackground
+          : p.reverseBackground
+          ? variants.main.filled.reverseBackground
+          : variants.main.filled.normalBackground;
+      case "shade":
+        return p.reverseBackground
+          ? variants.shade.reverseBackground
+          : variants.shade.normalBackground;
+
+      case "error":
+        return p.outline ? variants.error.outline : variants.error.filled;
+
+      case "color":
+        return p.outline ? variants.color.outline : variants.color.filled;
+
       case "default":
       default:
-        return p.disabled
-          ? `
-              color: ${p.theme.colors.palette.neutral.c70};
-            `
-          : `
+        return `
               &:hover {
                 text-decoration: underline;
               }

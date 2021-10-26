@@ -1,6 +1,7 @@
 import React from "react";
 import Button, { ExpandButton } from "./index";
 import WalletAdd from "../../../assets/icons/WalletAddRegular";
+import { useTheme } from "styled-components";
 export default {
   title: "cta/Button",
   component: Button,
@@ -32,11 +33,28 @@ export default {
     outline: {
       type: "boolean",
     },
+    reverseBackground: {
+      type: "boolean",
+    },
   },
 };
 
 // @ts-expect-error FIXME
-const Template = (args) => <Button {...args}>{args.children}</Button>;
+const Template = (args) => {
+  const { colors } = useTheme();
+  return (
+    <div
+      style={{
+        backgroundColor: args.reverseBackground
+          ? colors.palette.neutral.c100
+          : colors.palette.neutral.c00,
+        height: "50vh",
+      }}
+    >
+      <Button {...args}>{args.children}</Button>
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 // @ts-expect-error FIXME
