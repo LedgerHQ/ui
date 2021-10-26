@@ -1,7 +1,9 @@
-import { Theme } from "@ui/styles/theme";
-import { ButtonProps } from "@components/cta/Button/index";
+import { Theme } from "../../../styles/theme";
+import { ButtonProps } from "./index";
 
-export function getButtonColors(colors: Theme["colors"]): {
+export function getButtonColors(
+  colors: Theme["colors"]
+): {
   [index: string]: {
     primaryColor: string;
     secondaryColor: string;
@@ -9,6 +11,10 @@ export function getButtonColors(colors: Theme["colors"]): {
   };
 } {
   return {
+    default: {
+      primaryColor: colors.palette.neutral.c100,
+      secondaryColor: "rgba(0,0,0,0)",
+    },
     disabled: {
       primaryColor: colors.palette.neutral.c50,
       secondaryColor: colors.palette.neutral.c30,
@@ -48,8 +54,9 @@ export function getButtonColorStyle(
 } {
   const { outline, type = "main", disabled } = props;
 
-  const { primaryColor, secondaryColor, tertiaryColor } =
-    getButtonColors(colors)[disabled ? "disabled" : type];
+  const { primaryColor, secondaryColor, tertiaryColor } = getButtonColors(
+    colors
+  )[disabled ? "disabled" : type];
 
   if (outline) {
     return {
