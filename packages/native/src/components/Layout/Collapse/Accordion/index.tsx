@@ -13,7 +13,7 @@ import {
 import { View } from "react-native";
 
 type AccordionProps = {
-  collapsed: boolean;
+  collapsed?: boolean;
   children: React.ReactNode;
   title: string;
   onPress: LinkProps["onPress"];
@@ -25,7 +25,7 @@ const Accordion = ({
   title,
   onPress,
 }: AccordionProps): React.ReactElement => {
-  const animationHeight = useSharedValue("0%");
+  const animationHeight = useSharedValue(collapsed ? "0%" : "100%");
 
   const config = {
     duration: 500,
