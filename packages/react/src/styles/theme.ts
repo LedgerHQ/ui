@@ -24,6 +24,9 @@ export type TextTypes =
   | "tiny"
   | "micro"
   | "subtitle";
+
+export type ThemeScale<Type, Aliases extends string> = Array<Type> & Record<Aliases, Type>;
+
 export const fontSizes = [8, 10, 11, 12, 13, 14, 16, 20, 24, 28, 32, 36] as ThemeScale<
   number,
   TextTypes
@@ -192,9 +195,6 @@ interface Font {
   weight: number;
   style: string;
 }
-
-export type ThemeScale<Type, Aliases extends string> = Array<Type> & Record<Aliases, Type>;
-export type BreakpointAlias = "mobile" | "tablet" | "desktop" | "widescreen";
 
 export interface Theme extends DefaultTheme {
   sizes: {
