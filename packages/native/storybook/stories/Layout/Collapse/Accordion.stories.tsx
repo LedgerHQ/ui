@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { storiesOf } from "@storybook/react-native";
-import { text, withKnobs } from "@storybook/addon-knobs";
+import { storiesOf } from "../../storiesOf";
+import { text } from "@storybook/addon-knobs";
 import { Text, View } from "react-native";
 
-import CenterView from "../../CenterView";
 import Accordion from "../../../../src/components/Layout/Collapse/Accordion";
 
 const AccordionStory = () => {
@@ -42,7 +41,6 @@ const AccordionStory = () => {
   );
 };
 
-storiesOf("Layout", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Collapse/Accordion", () => <AccordionStory />);
+storiesOf((story) =>
+  story("Layout", module).add("Collapse/Accordion", () => <AccordionStory />)
+);
