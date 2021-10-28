@@ -1,7 +1,9 @@
 import React from "react";
 import Button, { ExpandButton } from "./index";
 import WalletAdd from "../../../assets/icons/WalletAddRegular";
-import { useTheme } from "styled-components";
+import { InvertTheme } from "../../../styles/InvertTheme";
+import Flex from "../../layout/Flex";
+
 export default {
   title: "cta/Button",
   component: Button,
@@ -33,34 +35,34 @@ export default {
     outline: {
       type: "boolean",
     },
-    reverseBackground: {
-      type: "boolean",
-    },
   },
 };
 
 // @ts-expect-error FIXME
 const Template = (args) => {
-  const { colors } = useTheme();
+  return <Button {...args}>{args.children || "Regular button"}</Button>;
+};
+
+// @ts-expect-error FIXME
+const TemplateInverted = (args) => {
   return (
-    <div
-      style={{
-        backgroundColor: args.reverseBackground
-          ? colors.palette.neutral.c100
-          : colors.palette.neutral.c00,
-        height: "50vh",
-      }}
-    >
-      <Button {...args}>{args.children}</Button>
-    </div>
+    <Flex flexDirection="column">
+      <Flex flex="0 0 1" p={4} alignItems="center" bg="palette.background.main">
+        <Button {...args}>{args.children || "Regular button"}</Button>
+      </Flex>
+      <InvertTheme>
+        <Flex flex="0 0 1" p={4} alignItems="center" bg="palette.background.main">
+          <Button {...args}>{args.children || "Inverted button"}</Button>
+        </Flex>
+      </InvertTheme>
+    </Flex>
   );
 };
 
 export const Default = Template.bind({});
-// @ts-expect-error FIXME
-Default.args = {
-  children: "Label",
-};
+
+export const Inverted = TemplateInverted.bind({});
+
 export const IconButton = Template.bind({});
 // @ts-expect-error FIXME
 IconButton.args = {

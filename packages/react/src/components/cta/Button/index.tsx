@@ -16,7 +16,6 @@ interface BaseProps {
   iconPosition?: "right" | "left";
   iconButton?: boolean;
   disabled?: boolean;
-  reverseBackground?: boolean;
 }
 
 export interface ButtonProps<I = any> extends BaseProps {
@@ -35,22 +34,7 @@ const IconContainer = styled.div<{
 
 const getVariantColors = (p: any) => ({
   main: {
-    outline: {
-      reverseBackground: `
-        border-color: ${p.theme.colors.palette.neutral.c00};
-        color: ${p.theme.colors.palette.neutral.c00};
-        background-color: ${p.theme.colors.palette.neutral.c100};
-        &:focus {
-          border-color: ${p.theme.colors.palette.primary.c40};
-        }
-        &:hover {
-          background-color: ${p.theme.colors.palette.neutral.c80};
-        }
-        &:active {
-          background-color: ${p.theme.colors.palette.neutral.c70};
-        }          
-      `,
-      normalBackground: `
+    outline: `
         border-color: ${p.theme.colors.palette.neutral.c100};
         color: ${p.theme.colors.palette.neutral.c100};
         background-color: ${p.theme.colors.palette.neutral.c00};          
@@ -61,42 +45,15 @@ const getVariantColors = (p: any) => ({
           background-color: ${p.theme.colors.palette.neutral.c30};
         }
       `,
-    },
-    filled: {
-      reverseBackground: `
-        color: ${p.theme.colors.palette.neutral.c100};
-        background-color: ${p.theme.colors.palette.neutral.c00};
-        &:hover {
-          background-color: ${p.theme.colors.palette.neutral.c50};
-        }
-      `,
-      normalBackground: `
+    filled: `
         color: ${p.theme.colors.palette.neutral.c00};
         background-color: ${p.theme.colors.palette.neutral.c100};
         &:hover {
           background-color: ${p.theme.colors.palette.neutral.c90};
         }
       `,
-    },
   },
-  shade: {
-    reverseBackground: `
-      border-color: ${p.theme.colors.palette.neutral.c80};
-      color: ${p.theme.colors.palette.neutral.c00};
-      background-color: ${p.theme.colors.palette.neutral.c100};
-      &:focus {
-        border-color: ${p.theme.colors.palette.primary.c40};
-      }
-
-      &:hover {
-        background-color: ${p.theme.colors.palette.neutral.c80};
-      }
-
-      &:active {
-        background-color: ${p.theme.colors.palette.neutral.c70};
-      }          
-    `,
-    normalBackground: `
+  shade: `
       border-color: ${p.theme.colors.palette.neutral.c40};
       color: ${p.theme.colors.palette.neutral.c100};
       background-color: ${p.theme.colors.palette.neutral.c00};
@@ -112,7 +69,6 @@ const getVariantColors = (p: any) => ({
         background-color: ${p.theme.colors.palette.neutral.c30};
       }          
     `,
-  },
   error: {
     outline: `
       border-color: ${p.theme.colors.palette.error.c100};
@@ -154,28 +110,15 @@ const getVariantColors = (p: any) => ({
     `,
   },
   disabled: {
-    outline: {
-      reverseBackground: `
-        border-color: ${p.theme.colors.palette.neutral.c90};
-        color: ${p.theme.colors.palette.neutral.c90};
-        background-color: ${p.theme.colors.palette.neutral.c100};          
-      `,
-      normalBackground: `
+    outline: `
         border-color: ${p.theme.colors.palette.neutral.c50};
         color: ${p.theme.colors.palette.neutral.c50};
         background-color: ${p.theme.colors.palette.neutral.c00};          
       `,
-    },
-    filled: {
-      reverseBackground: `
-        color: ${p.theme.colors.palette.neutral.c80};
-        background-color: ${p.theme.colors.palette.neutral.c90};
-      `,
-      normalBackground: `
+    filled: `
         color: ${p.theme.colors.palette.neutral.c50};
         background-color: ${p.theme.colors.palette.neutral.c30};
       `,
-    },
   },
 });
 
@@ -206,35 +149,21 @@ export const Base = styled.button.attrs((p: BaseProps) => ({
   position: relative;
   cursor: ${(p) => (p.disabled ? "default" : "pointer")};
   &:focus {
-    outline: 4px solid ${(p) => p.theme.colors.palette.primary.c60};
+    box-shadow: 0 0 0 4px ${(p) => p.theme.colors.palette.primary.c60};
   }
 
   ${(p) => {
     const variants = getVariantColors(p);
     if (p.disabled) {
-      return p.outline || p.type === "shade"
-        ? p.reverseBackground
-          ? variants.disabled.outline.reverseBackground
-          : variants.disabled.outline.normalBackground
-        : p.reverseBackground
-        ? variants.disabled.filled.reverseBackground
-        : variants.disabled.filled.normalBackground;
+      return p.outline || p.type === "shade" ? variants.disabled.outline : variants.disabled.filled;
     }
 
     const type: ButtonTypes | "default" = p.type ?? ("default" as ButtonTypes | "default");
     switch (type) {
       case "main":
-        return p.outline
-          ? p.reverseBackground
-            ? variants.main.outline.reverseBackground
-            : variants.main.outline.normalBackground
-          : p.reverseBackground
-          ? variants.main.filled.reverseBackground
-          : variants.main.filled.normalBackground;
+        return p.outline ? variants.main.outline : variants.main.filled;
       case "shade":
-        return p.reverseBackground
-          ? variants.shade.reverseBackground
-          : variants.shade.normalBackground;
+        return variants.shade;
 
       case "error":
         return p.outline ? variants.error.outline : variants.error.filled;
@@ -261,7 +190,7 @@ export const Base = styled.button.attrs((p: BaseProps) => ({
           }
         `
       : ""}
-  ${(p) => p.theme.transition()}
+  ${(p) => p.theme.transition(["background-color", "color", "border-color"])}
 `;
 
 const ContentContainer = styled.div``;
