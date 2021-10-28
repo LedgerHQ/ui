@@ -1,12 +1,11 @@
 import React from "react";
-import { storiesOf } from "@storybook/react-native";
-import { withKnobs, color, text } from "@storybook/addon-knobs";
+import { storiesOf } from "../storiesOf";
+import { color, text } from "@storybook/addon-knobs";
 import { useTheme } from "styled-components/native";
 
-import Chart from "@components/chart";
-import Flex from "@components/Layout/Flex";
-import type { Item } from "@components/chart";
-import CenterView from "../CenterView";
+import Chart from "../../../src/components/chart";
+import Flex from "../../../src/components/Layout/Flex";
+import type { Item } from "../../../src/components/chart/types";
 
 function getRandomChartDate() {
   const fromTime = new Date("2020-09-01T01:57:45.271Z");
@@ -46,7 +45,6 @@ const ChartDefault = (): JSX.Element => {
   );
 };
 
-storiesOf("Chart", module)
-  .addDecorator(withKnobs)
-  .addDecorator((getStory) => <CenterView>{getStory()}</CenterView>)
-  .add("Default", () => <ChartDefault />);
+storiesOf((story) =>
+  story("Chart", module).add("Default", () => <ChartDefault />)
+);

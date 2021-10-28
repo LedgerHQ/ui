@@ -1,8 +1,8 @@
 import React from "react";
 import { View, TextInputProps } from "react-native";
 import styled, { css } from "styled-components/native";
-import Text from "@components/Text";
-import FlexBox from "@components/Layout/Flex";
+import Text from "../../../Text";
+import FlexBox from "../../../Layout/Flex";
 
 type CommonProps = TextInputProps & {
   disabled?: boolean;
@@ -84,8 +84,14 @@ export const InputRenderRightContainer = styled(FlexBox).attrs(() => ({
 }))``;
 
 export default function Input(props: InputProps): JSX.Element {
-  const { value, disabled, error, renderLeft, renderRight, ...textInputProps } =
-    props;
+  const {
+    value,
+    disabled,
+    error,
+    renderLeft,
+    renderRight,
+    ...textInputProps
+  } = props;
 
   const [focus, setFocus] = React.useState(false);
 

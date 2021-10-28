@@ -10,8 +10,8 @@ import {
   VictoryScatter,
 } from "victory-native";
 
-import { hex } from "@ui/styles/helpers";
-import Flex from "@components/Layout/Flex";
+import { hex } from "../../styles/helpers";
+import Flex from "../Layout/Flex";
 import type { Item } from "./types";
 
 const Container = styled(Flex)`

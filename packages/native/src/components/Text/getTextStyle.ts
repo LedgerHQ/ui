@@ -13,7 +13,11 @@ export type TextTypes =
 
 export type FontWeightTypes = "medium" | "semibold" | "bold";
 
-export function getTextTypeStyle({ bracket }: { bracket?: boolean }): {
+export function getTextTypeStyle({
+  bracket,
+}: {
+  bracket?: boolean;
+}): {
   [index: string]: {
     fontFamily: string;
     fontSize: number;
@@ -92,18 +96,18 @@ const getConcatenedFontWeightFontFamily: {
 } = {
   Alpha: {
     medium: {
-      fontFamily: "Alpha_medium",
+      fontFamily: "HMAlphaMono-Medium",
     },
   },
   Inter: {
     medium: {
-      fontFamily: "Inter_medium",
+      fontFamily: "Inter-Medium",
     },
     semibold: {
-      fontFamily: "Inter_semibold",
+      fontFamily: "Inter-SemiBold",
     },
     bold: {
-      fontFamily: "Inter_bold",
+      fontFamily: "Inter-Bold",
     },
   },
 };

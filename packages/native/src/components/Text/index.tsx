@@ -1,44 +1,59 @@
 import React from "react";
+import { TextProps } from "react-native";
 import styled, { useTheme } from "styled-components/native";
-
 import {
   fontSize,
+  FontSizeProps,
   textAlign,
+  TextAlignProps,
   color,
+  ColorProps,
   space,
+  SpaceProps,
   lineHeight,
+  LineHeightProps,
   border,
+  BorderProps,
 } from "styled-system";
-import BracketRight from "@ui/icons/BracketLeft";
-import BracketLeft from "@ui/icons/BracketRight";
-import { getColor } from "@ui/styles";
-import { FontWeightTypes, getTextStyle, TextTypes } from "./getTextStyle";
-import { TextProps } from "react-native";
 
-type Props = {
+import BracketRight from "../../icons/BracketLeft";
+import BracketLeft from "../../icons/BracketRight";
+import { getColor } from "../../styles";
+import { FontWeightTypes, getTextStyle, TextTypes } from "./getTextStyle";
+
+interface Props
+  extends TextProps,
+    FontSizeProps,
+    TextAlignProps,
+    ColorProps,
+    SpaceProps,
+    LineHeightProps,
+    BorderProps {
   type?: TextTypes;
   fontWeight?: FontWeightTypes;
   fontFamily?: string;
-  fontSize?: number | string;
-  textAlign?: string;
+  fontSize?: number;
   color?: string;
   mt?: number | string;
   mb?: number | string;
   ml?: number | string;
   mr?: number | string;
-  lineHeight?: string;
+  paddingTop?: number;
+  lineHeight?: number;
   bracket?: boolean;
   children: React.ReactNode;
-} & TextProps;
+}
 
-const Base = styled.Text<Props>`
+const Base = styled.Text.attrs((p: Props) => ({
+  ...getTextStyle(p),
+  color: p.color || "palette.neutral.c100",
+}))<Props>`
   ${lineHeight};
   ${fontSize};
   ${textAlign};
   ${color};
   ${space};
   ${border};
-  ${(p) => getTextStyle(p)}
   justify-content: center;
   align-items: center;
 `;
@@ -52,9 +67,10 @@ const T = styled.View`
 const BracketText = ({
   children,
   color = "palette.neutral.c100",
+  lineHeight,
   ...props
 }: Props) => {
-  const { lineHeight: size } = getTextStyle(props);
+  const size = lineHeight || getTextStyle(props).lineHeight;
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
   const c: string = theme ? (getColor(theme, color) as string) : "transparent";
