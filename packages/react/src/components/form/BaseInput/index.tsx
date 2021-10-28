@@ -20,7 +20,6 @@ export type InputProps = CommonProps & {
 
 export const InputContainer = styled.div<Partial<CommonProps> & { focus?: boolean }>`
   display: flex;
-  background: ${(p) => p.theme.colors.palette.neutral.c00};
   height: 48px;
   border: ${(p) => `1px solid ${p.theme.colors.palette.neutral.c40}`};
   border-radius: 24px;
@@ -55,7 +54,7 @@ export const InputContainer = styled.div<Partial<CommonProps> & { focus?: boolea
     p.disabled &&
     css`
       color: ${p.theme.colors.palette.neutral.c60};
-      background: ${(p) => p.theme.colors.palette.neutral.c30};
+      background: ${(p) => p.theme.colors.palette.neutral.c20};
     `};
 `;
 
@@ -79,7 +78,8 @@ export const BaseInput = styled.input.attrs<
   padding-left: 20px;
   padding-right: 20px;
   &::placeholder {
-    color: ${(p) => p.theme.colors.palette.neutral.c70};
+    color: ${(p) =>
+      p.disabled ? p.theme.colors.palette.neutral.c50 : p.theme.colors.palette.neutral.c70};
   }
 
   /* Hide type=number arrow for Chrome, Safari, Edge, Opera */
@@ -97,7 +97,7 @@ export const BaseInput = styled.input.attrs<
   ${typography}
 `;
 
-export const InputErrorContainer = styled(Text).attrs(() => ({ type: "small3" }))`
+export const InputErrorContainer = styled(Text)`
   color: ${(p) => p.theme.colors.palette.error.c100};
   margin-left: 12px;
 `;
@@ -160,7 +160,7 @@ export default function Input(props: InputProps): JSX.Element {
       <InputContainer disabled={disabled} focus={focus} error={error}>
         {inner}
       </InputContainer>
-      {error && !disabled && <InputErrorContainer>{error}</InputErrorContainer>}
+      {error && !disabled && <InputErrorContainer variant="small">{error}</InputErrorContainer>}
     </div>
   );
 }

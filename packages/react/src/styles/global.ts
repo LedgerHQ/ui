@@ -2,8 +2,8 @@ import { createGlobalStyle } from "styled-components";
 
 import { rgba } from "./helpers";
 import reset from "./reset";
+import tippyStyles from "../components/message/Tooltip/styles";
 import { fontStyles } from "../components/asorted/Text/styles";
-import TippyStyles from "../components/message/Tooltip/styles";
 
 export type GlobalStyleProps = { fontsPath?: string };
 
@@ -59,5 +59,5 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
     opacity: 0;
   }
 
-  ${TippyStyles}
+  ${tippyStyles}
 `;

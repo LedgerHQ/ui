@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 import { border, BorderProps, color, ColorProps, space, SpaceProps } from "styled-system";
-import CheckAlone from "../../../../assets/icons/CheckAloneMedium";
-import CloseMedium from "../../../../assets/icons/CloseMedium";
+import CheckAlone from "@ledgerhq/icons-ui/react/CheckAloneMedium";
+import CloseMedium from "@ledgerhq/icons-ui/react/CloseMedium";
 import Text from "../../../asorted/Text";
 import Flex from "../../../layout/Flex";
 
@@ -100,34 +100,11 @@ const BaseSeparator = styled.div<{ inactive?: boolean }>`
   background-color: ${(p) => p.theme.colors.palette.neutral.c40};
   height: 1px;
   top: ${(p) => p.theme.space[5]}px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: ${(p) => (p.inactive ? "translateX(calc(-100% - 1px))" : "translateX(0)")};
-    transition: 0.25s transform;
-    transition-timing-function: linear;
-    border-top: 1px solid;
-    border-color: ${(p) => p.theme.colors.palette.neutral.c100};
-  }
 `;
 
 const Separator = {
-  Step: styled(BaseSeparator)`
-    &::after {
-      transition-delay: 0.1s;
-    }
-  `,
-  Item: styled(BaseSeparator)<{ position: string }>`
-    &::after {
-      transition-duration: 0.1s;
-      transition-delay: ${(p) =>
-        (p.position === "left" && !p.inactive) || (p.position === "right" && p.inactive)
-          ? "0.35s"
-          : "0s"};
-    }
-  `,
+  Step: styled(BaseSeparator)``,
+  Item: styled(BaseSeparator)<{ position: string }>``,
 };
 
 const stepContentsByState = {

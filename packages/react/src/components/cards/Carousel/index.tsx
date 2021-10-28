@@ -8,9 +8,9 @@ import Text from "../../asorted/Text";
 import Flex from "../../layout/Flex";
 import Slide, { Props as SlideProps } from "./Slide";
 
-import IconLeft from "../../../assets/icons/ArrowLeftMedium";
-import IconRight from "../../../assets/icons/ArrowRightMedium";
-import IconClose from "../../../assets/icons/CloseMedium";
+import IconLeft from "@ledgerhq/icons-ui/react/ArrowLeftMedium";
+import IconRight from "@ledgerhq/icons-ui/react/ArrowRightMedium";
+import IconClose from "@ledgerhq/icons-ui/react/CloseMedium";
 
 const CarouselWrapper = styled.div`
   width: 100%;
@@ -41,7 +41,7 @@ const Controllers = styled(Flex)`
 const Bullets = styled.div<{ active?: number }>`
   position: absolute;
   display: flex;
-  left: ${(p) => p.theme.space[8]}px;
+  left: ${(p) => p.theme.space[10]}px;
   bottom: ${(p) => p.theme.space[8]}px;
   column-gap: ${(p) => p.theme.space[2]}px;
   flex-direction: row;
@@ -98,6 +98,9 @@ export type Props = {
   queue: SlideProps[];
   isDismissed: boolean;
   onDismiss: () => void;
+  dismissText?: React.ReactNode;
+  dismissConfirmText?: React.ReactNode;
+  dismissCancelText?: React.ReactNode;
 };
 
 const DEFAULT_TIMEOUT = 7000;
@@ -106,6 +109,9 @@ const Carousel = ({
   queue,
   isDismissed,
   onDismiss,
+  dismissText = "This banner will not show up again until there is a new announcement",
+  dismissConfirmText = "Confirm",
+  dismissCancelText = "Show again",
 }: Props): React.ReactElement | null => {
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
@@ -162,14 +168,14 @@ const Carousel = ({
       {wantToDismiss ? (
         <DismissWrapper>
           <Text color="palette.neutral.c00" fontWeight="medium" variant={"paragraph"}>
-            {"This banner will not show up again until there is a new announcement"}
+            {dismissText}
           </Text>
           <Flex>
-            <Button color="palette.neutral.c00" type="secondary" onClick={onDismiss}>
-              {"Confirm"}
+            <Button color="palette.neutral.c00" type="color" onClick={onDismiss}>
+              {dismissConfirmText}
             </Button>
-            <Button color="palette.neutral.c00" type="primary" onClick={onCancelDismiss}>
-              {"Show again"}
+            <Button color="palette.neutral.c00" type="main" outline onClick={onCancelDismiss}>
+              {dismissCancelText}
             </Button>
           </Flex>
         </DismissWrapper>
