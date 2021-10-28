@@ -10,6 +10,8 @@ to follow to get your code merged.
 ```sh
 # Clone the repo
 git clone https://github.com/LedgerHQ/ui
+# Install dependencies
+yarn
 ```
 
 ## Guidelines

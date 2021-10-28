@@ -1,16 +1,29 @@
 import React from "react";
 import styled from "styled-components/native";
-import { SpacingProps } from "@components/Layout/types";
-import { background, color, flexbox, layout, space } from "styled-system";
+import {
+  background,
+  BackgroundProps,
+  color,
+  ColorProps,
+  flexbox,
+  FlexboxProps,
+  layout,
+  LayoutProps,
+  space,
+  SpaceProps,
+} from "styled-system";
 
 // Nb Expose style props as you need them instead of allowing for all to be passed directly.
 // ref: https://styled-system.com/table
-export interface FlexBoxProps extends SpacingProps {
+export interface Props
+  extends ColorProps,
+    BackgroundProps,
+    LayoutProps,
+    FlexboxProps,
+    SpaceProps {
   alignItems?: "flex-start" | "flex-end" | "center" | "baseline" | "stretch";
   flexBasis?: string;
   flexDirection?: "row" | "row-reverse" | "column" | "column-reverse";
-  flexGrow?: string | number;
-  flexShrink?: string | number;
   justifyContent?:
     | "flex-start"
     | "flex-end"
@@ -22,7 +35,7 @@ export interface FlexBoxProps extends SpacingProps {
   style?: Record<string, unknown>;
 }
 
-const FlexBox = styled.View<FlexBoxProps>`
+const FlexBox = styled.View<Props>`
   display: flex;
   ${flexbox};
   ${space};
