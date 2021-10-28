@@ -19,9 +19,10 @@ import {
 import BracketRight from "../../icons/BracketLeft";
 import BracketLeft from "../../icons/BracketRight";
 import { getColor } from "../../styles";
-import { FontWeightTypes, getTextStyle, TextTypes } from "./getTextStyle";
+import { FontWeightTypes, getTextStyle } from "./getTextStyle";
+import { TextTypes } from "../../styles/theme";
 
-interface Props
+export interface BaseTextProps
   extends TextProps,
     FontSizeProps,
     TextAlignProps,
@@ -44,10 +45,10 @@ interface Props
   children: React.ReactNode;
 }
 
-const Base = styled.Text.attrs((p: Props) => ({
+const Base = styled.Text.attrs((p: BaseTextProps) => ({
   ...getTextStyle(p),
   color: p.color || "palette.neutral.c100",
-}))<Props>`
+}))<BaseTextProps>`
   ${lineHeight};
   ${fontSize};
   ${textAlign};
@@ -69,7 +70,7 @@ const BracketText = ({
   color = "palette.neutral.c100",
   lineHeight,
   ...props
-}: Props) => {
+}: BaseTextProps) => {
   const size = lineHeight || getTextStyle(props).lineHeight;
   const theme = useTheme();
   // eslint-disable-next-line @typescript-eslint/no-unsafe-call
@@ -85,7 +86,7 @@ const BracketText = ({
   );
 };
 
-const Text = ({ children, bracket, ...props }: Props) => {
+const Text = ({ children, bracket, ...props }: BaseTextProps) => {
   if (bracket) return <BracketText {...props}>{children}</BracketText>;
 
   return <Base {...props}>{children}</Base>;
