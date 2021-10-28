@@ -98,6 +98,9 @@ export type Props = {
   queue: SlideProps[];
   isDismissed: boolean;
   onDismiss: () => void;
+  dismissText?: React.ReactNode;
+  dismissConfirmText?: React.ReactNode;
+  dismissCancelText?: React.ReactNode;
 };
 
 const DEFAULT_TIMEOUT = 7000;
@@ -106,6 +109,9 @@ const Carousel = ({
   queue,
   isDismissed,
   onDismiss,
+  dismissText = "This banner will not show up again until there is a new announcement",
+  dismissConfirmText = "Confirm",
+  dismissCancelText = "Show again",
 }: Props): React.ReactElement | null => {
   const intervalRef = useRef<ReturnType<typeof setInterval>>();
 
@@ -162,14 +168,14 @@ const Carousel = ({
       {wantToDismiss ? (
         <DismissWrapper>
           <Text color="palette.neutral.c00" type="cta">
-            This banner will not show up again until there is a new announcement
+            {dismissText}
           </Text>
-          <Flex columnGap="12px">
-            <Button color="palette.neutral.c00" type="secondary" onClick={onDismiss}>
-              Confirm
+          <Flex>
+            <Button color="palette.neutral.c00" type="color" onClick={onDismiss}>
+              {dismissConfirmText}
             </Button>
-            <Button color="palette.neutral.c00" type="primary" onClick={onCancelDismiss}>
-              Show again
+            <Button color="palette.neutral.c00" type="main" outline onClick={onCancelDismiss}>
+              {dismissCancelText}
             </Button>
           </Flex>
         </DismissWrapper>
