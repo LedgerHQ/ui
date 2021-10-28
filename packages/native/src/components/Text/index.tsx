@@ -32,12 +32,13 @@ interface Props
   type?: TextTypes;
   fontWeight?: FontWeightTypes;
   fontFamily?: string;
-  fontSize?: number | string;
+  fontSize?: number;
   color?: string;
   mt?: number | string;
   mb?: number | string;
   ml?: number | string;
   mr?: number | string;
+  paddingTop?: number;
   lineHeight?: number;
   bracket?: boolean;
   children: React.ReactNode;

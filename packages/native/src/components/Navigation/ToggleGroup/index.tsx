@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
-import Text from "@components/Text";
+import Text from "../../Text";
 import { TouchableOpacity } from "react-native";
-import Button from "@ui/components/cta/Button";
-import FlexBox from "@ui/components/Layout/Flex";
+import Button from "../../cta/Button";
+import FlexBox from "../../Layout/Flex";
 
 export type ToggleGroupProps = {
   labels: string[];
