@@ -63,6 +63,7 @@ export const BaseInput = styled.input.attrs<
   Partial<CommonProps> & { focus?: boolean } & TypographyProps
 >({
   fontSize: "paragraph",
+  fontWeight: "medium",
 })<Partial<CommonProps> & { focus?: boolean } & TypographyProps>`
   height: 100%;
   width: 100%;

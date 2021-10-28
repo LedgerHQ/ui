@@ -57,7 +57,7 @@ export default function Alert({ type = "info", title, showIcon = true }: AlertPr
   return (
     <StyledAlertContainer type={type}>
       {showIcon && !!icons[type] && <StyledIconContainer>{icons[type]}</StyledIconContainer>}
-      <Text fontSize={"body"} color={"inherit"}>
+      <Text variant={"body"} color={"inherit"}>
         {title}
       </Text>
     </StyledAlertContainer>

@@ -1,5 +1,6 @@
 import { GlobalStyleProps } from "../../../styles/global";
 import { css } from "styled-components";
+import { TextVariants } from "../../../styles/theme";
 
 const getFontSource = (name: string) => (props: GlobalStyleProps) => {
   const fontsPath = props.fontsPath || "assets/fonts";
@@ -56,3 +57,66 @@ export const fontStyles = css`
     font-style: normal;
   }
 `;
+
+export const textVariantStyle: Record<
+  TextVariants,
+  {
+    fontFamily: string;
+    lineHeight?: string;
+    fontWeight?: number;
+  }
+> = {
+  h1: {
+    fontFamily: "Alpha",
+    fontWeight: 500,
+  },
+  h2: {
+    fontFamily: "Alpha",
+    fontWeight: 500,
+  },
+  h3: {
+    fontFamily: "Alpha",
+    fontWeight: 500,
+  },
+  h4: {
+    fontFamily: "Inter",
+    fontWeight: 500,
+  },
+  h5: {
+    fontFamily: "Alpha",
+    fontWeight: 500,
+  },
+  large: {
+    fontFamily: "Inter",
+  },
+  body: {
+    fontFamily: "Inter",
+  },
+  bodyLineHeight: {
+    fontFamily: "Inter",
+    lineHeight: "20px",
+  },
+  paragraph: {
+    fontFamily: "Inter",
+  },
+  paragraphLineHeight: {
+    fontFamily: "Inter",
+    lineHeight: "18px",
+  },
+  small: {
+    fontFamily: "Inter",
+  },
+  extraSmall: {
+    fontFamily: "Inter",
+  },
+  subtitle: {
+    fontFamily: "Inter",
+    fontWeight: 600,
+  },
+  tiny: {
+    fontFamily: "Inter",
+  },
+  micro: {
+    fontFamily: "Inter",
+  },
+};

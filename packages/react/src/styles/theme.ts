@@ -8,7 +8,7 @@ export const space = [
   0, 2, 4, 8, 10, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76,
 ];
 
-export type TextTypes =
+export type TextVariants =
   | "h1"
   | "h2"
   | "h3"
@@ -29,7 +29,7 @@ export type ThemeScale<Type, Aliases extends string> = Array<Type> & Record<Alia
 
 export const fontSizes = [8, 10, 11, 12, 13, 14, 16, 20, 24, 28, 32, 36] as ThemeScale<
   number,
-  TextTypes
+  TextVariants
 >;
 
 [
@@ -49,6 +49,16 @@ export const fontSizes = [8, 10, 11, 12, 13, 14, 16, 20, 24, 28, 32, 36] as Them
 fontSizes.bodyLineHeight = fontSizes.body;
 fontSizes.paragraphLineHeight = fontSizes.paragraph;
 fontSizes.subtitle = fontSizes.extraSmall;
+
+const fontWeights = {
+  extraLight: "100",
+  light: "300",
+  regular: "400",
+  medium: "500",
+  semiBold: "600",
+  bold: "700",
+  extraBold: "800",
+};
 
 export const radii = [0, 4, 8, 12];
 export const shadows = ["0 4px 8px 0 rgba(0, 0, 0, 0.03)"];
@@ -224,6 +234,7 @@ export interface Theme extends DefaultTheme {
   radii: number[];
   fontFamilies: Record<string, Record<string, Font>>;
   fontSizes: number[];
+  fontWeights: Record<string, string>;
   space: number[];
   shadows: string[];
   colors: {
@@ -262,6 +273,7 @@ const theme: Theme = {
   radii,
   fontFamilies,
   fontSizes,
+  fontWeights,
   space,
   shadows,
   colors: {

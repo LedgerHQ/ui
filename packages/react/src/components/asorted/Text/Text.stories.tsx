@@ -4,7 +4,7 @@ export default {
   title: "Asorted/Typography/Text",
   component: Text,
   argTypes: {
-    fontSize: {
+    variant: {
       options: [
         undefined,
         "h1",
@@ -27,17 +27,16 @@ export default {
         type: "radio",
       },
     },
-    ff: {
+    fontWeight: {
       options: [
         undefined,
-        "Alpha|Medium",
-        "Inter|ExtraLight",
-        "Inter|Light",
-        "Inter|Regular",
-        "Inter|Medium",
-        "Inter|SemiBold",
-        "Inter|Bold",
-        "Inter|ExtraBold",
+        "medium",
+        "extraLight",
+        "light",
+        "regular",
+        "semiBold",
+        "bold",
+        "extraBold",
       ],
       control: {
         type: "radio",

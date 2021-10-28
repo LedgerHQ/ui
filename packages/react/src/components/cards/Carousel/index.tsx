@@ -161,7 +161,7 @@ const Carousel = ({
     <CarouselWrapper id={"carousel"} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       {wantToDismiss ? (
         <DismissWrapper>
-          <Text color="palette.neutral.c00" ff="Inter|Medium" fontSize={13}>
+          <Text color="palette.neutral.c00" fontWeight="medium" variant={"paragraph"}>
             {"This banner will not show up again until there is a new announcement"}
           </Text>
           <Flex>

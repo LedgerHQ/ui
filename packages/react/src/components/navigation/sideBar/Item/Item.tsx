@@ -93,7 +93,7 @@ const Item = ({ label, children, onClick, isActive, isDisabled }: ItemType): JSX
         mountOnEnter
         style={{ transitionDelay: isExpanded ? "300ms" : 0 }}
       >
-        <ItemLabel fontSize="paragraph">{label}</ItemLabel>
+        <ItemLabel variant="paragraph">{label}</ItemLabel>
       </TransitionInOut>
     </ItemWrapper>
   );
