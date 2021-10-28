@@ -1,7 +1,7 @@
 import React from "react";
 import Link, { LinkProps } from "./index";
 import { PlusMedium } from "../../../assets/icons";
-import { Flex } from "../../layout";
+
 export default {
   title: "cta/Link",
   component: Link,
@@ -30,38 +30,16 @@ export default {
     disabled: {
       type: "boolean",
     },
-    reversed: {
-      type: "boolean",
-    },
   },
 };
 
-export const Default = ({ reversed, ...args }: LinkProps) => {
-  return (
-    <Flex
-      style={{
-        padding: 20,
-        backgroundColor: reversed ? "black" : "white",
-      }}
-    >
-      <Link {...args} reversed={reversed} href={"https://www.ledger.com"}>
-        Hello world
-      </Link>
-    </Flex>
-  );
+export const Default = ({ ...args }: LinkProps) => {
+  return <Link {...args} href={"https://www.ledger.com"} />;
 };
 
-export const WithIcon = ({ reversed, ...args }: LinkProps) => {
-  return (
-    <Flex
-      style={{
-        padding: 20,
-        backgroundColor: reversed ? "black" : "white",
-      }}
-    >
-      <Link {...args} reversed={reversed} href={"https://www.ledger.com"} Icon={PlusMedium}>
-        Hello world
-      </Link>
-    </Flex>
-  );
+export const WithIcon = ({ ...args }: LinkProps) => {
+  return <Link {...args} href={"https://www.ledger.com"} Icon={PlusMedium} />;
 };
+
+Default.args = { children: "Hello world" };
+WithIcon.args = { children: "Hello world" };

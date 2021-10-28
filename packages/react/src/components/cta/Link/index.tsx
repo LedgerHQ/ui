@@ -10,7 +10,6 @@ export type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   size?: "small" | "medium" | "large";
   iconPosition?: "right" | "left";
   disabled?: boolean;
-  reversed?: boolean;
   children?: React.ReactNode;
 };
 
@@ -26,10 +25,8 @@ const IconContainer = styled.div<{
 `;
 
 export const Base = styled.a<LinkProps>`
-  color: ${({ theme, reversed, disabled, type = "main" }) =>
-    getLinkColors(theme.colors)[reversed ? "reversed" : "default"][disabled ? "disabled" : type][
-      "default"
-    ]};
+  color: ${({ theme, disabled, type = "main" }) =>
+    getLinkColors(theme.colors)[disabled ? "disabled" : type]["default"]};
   cursor: pointer;
   display: inline-flex;
   flex-direction: row;
@@ -43,10 +40,7 @@ export const Base = styled.a<LinkProps>`
     text-decoration: underline;
   }
   :active {
-    color: ${({ theme, reversed, disabled, type = "main" }) =>
-      getLinkColors(theme.colors)[reversed ? "reversed" : "default"][disabled ? "disabled" : type][
-        "pressed"
-      ]};
+    color: ${({ theme, type = "main" }) => getLinkColors(theme.colors)[type]["pressed"]};
     text-decoration: underline;
   }
 `;
