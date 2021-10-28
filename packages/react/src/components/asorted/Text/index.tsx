@@ -67,7 +67,6 @@ export interface BaseTextProps extends SpaceProps, LayoutProps {
 
 const Text = styled.span.attrs<BaseTextProps>(
   ({ variant = "body", fontSize, color }: BaseTextProps) => ({
-    //...textVariantStyle[variant],
     fontSize: fontSize ? fontSize : variant,
     color: color || "palette.neutral.c100",
   }),
