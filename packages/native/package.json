@@ -52,7 +52,7 @@
     "react-native-reanimated": "~2.2.3",
     "react-native-svg": "12.1.1",
     "rn-range-slider": "^2.1.1",
-    "styled-components": "^5.3.0",
+    "styled-components": "^5.3.3",
     "styled-system": "^5.1.5",
     "victory-native": "^35.5.5"
   },
