@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { useTheme } from "styled-components/native";
 import Text from "../../Text";
-import ArrowsHMedium from "../../../assets/icons/ArrowsHMedium";
+import { ArrowsHMedium } from "@ledgerhq/icons-ui/native";
 
 export const MinMaxTextContainer = styled.View`
   flex-direction: row;
@@ -65,7 +65,7 @@ export const Label = ({ children }: { children: React.ReactNode }) => {
     <LabelContainer>
       <Text
         variant={"body"}
-        fontWeight={"semibold"}
+        fontWeight={"semiBold"}
         color={"palette.primary.c90"}
       >
         {children}

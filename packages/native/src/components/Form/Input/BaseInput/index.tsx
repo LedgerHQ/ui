@@ -66,7 +66,7 @@ const BaseInput = styled.TextInput.attrs((p) => ({
   padding-right: 20px;
 `;
 
-const InputErrorContainer = styled(Text).attrs(() => ({ type: "small3" }))`
+const InputErrorContainer = styled(Text)`
   color: ${(p) => p.theme.colors.palette.error.c100};
   margin-left: 12px;
 `;
@@ -84,14 +84,8 @@ export const InputRenderRightContainer = styled(FlexBox).attrs(() => ({
 }))``;
 
 export default function Input(props: InputProps): JSX.Element {
-  const {
-    value,
-    disabled,
-    error,
-    renderLeft,
-    renderRight,
-    ...textInputProps
-  } = props;
+  const { value, disabled, error, renderLeft, renderRight, ...textInputProps } =
+    props;
 
   const [focus, setFocus] = React.useState(false);
 

@@ -1,12 +1,12 @@
+import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "../storiesOf";
 import { useTheme } from "styled-components/native";
 import { radios, text, boolean } from "@storybook/addon-knobs";
-import React from "react";
 import FlexBox from "../../../src/components/Layout/Flex";
 import Row from "../../../src/components/Layout/Table/Row";
 import Text from "../../../src/components/Text";
-import CircledCheck from "../../../src/assets/icons/CircledCheckRegular";
+import { Icons } from "../../../src/assets";
 
 const Icon = (props: { size?: number }): React.ReactElement => (
   <View
@@ -27,10 +27,10 @@ const TopLeft = () => {
   } = useTheme();
   return (
     <FlexBox flexDirection="row" flexShrink={1} alignItems="center">
-      <Text color={neutral.c100} variant="body" fontWeight="semibold" mr={2}>
+      <Text color={neutral.c100} variant="body" fontWeight="semiBold" mr={2}>
         {text("topLeftText", "Bitcoin 1", "content")}
       </Text>
-      <CircledCheck size={12.5} color={success.c100} />
+      <Icons.CircledCheckRegular size={12.5} color={success.c100} />
     </FlexBox>
   );
 };
@@ -49,7 +49,7 @@ const TopRight = () => {
     <Text
       color={colors.palette.neutral.c100}
       variant="body"
-      fontWeight="semibold"
+      fontWeight="semiBold"
     >
       {text("topRightText", "1.23456 BTC", "content")}
     </Text>

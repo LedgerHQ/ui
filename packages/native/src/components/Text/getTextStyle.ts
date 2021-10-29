@@ -1,13 +1,9 @@
 import { TextVariants } from "../../styles/theme";
 import { BaseTextProps } from "./index";
 
-export type FontWeightTypes = "medium" | "semibold" | "bold";
+export type FontWeightTypes = "medium" | "semiBold" | "bold";
 
-export function getTextTypeStyle({
-  bracket,
-}: {
-  bracket?: boolean;
-}): Record<
+export function getTextTypeStyle({ bracket }: { bracket?: boolean }): Record<
   TextVariants,
   {
     fontFamily: string;
@@ -74,12 +70,18 @@ const getConcatenedFontWeightFontFamily: {
     medium: {
       fontFamily: "HMAlphaMono-Medium",
     },
+    semiBold: {
+      fontFamily: "HMAlphaMono-Medium",
+    },
+    bold: {
+      fontFamily: "HMAlphaMono-Medium",
+    },
   },
   Inter: {
     medium: {
       fontFamily: "Inter-Medium",
     },
-    semibold: {
+    semiBold: {
       fontFamily: "Inter-SemiBold",
     },
     bold: {
@@ -100,7 +102,7 @@ export function getTextStyle({
   const style = getTextTypeStyle({ bracket })[variant];
   return {
     ...style,
-    ...getConcatenedFontWeightFontFamily[style.fontFamily || "Inter"][
+    ...getConcatenedFontWeightFontFamily[style?.fontFamily ?? "Inter"][
       fontWeight
     ],
   };

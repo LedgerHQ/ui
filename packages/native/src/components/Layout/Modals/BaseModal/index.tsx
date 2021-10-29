@@ -5,7 +5,7 @@ import { StyleProp, ViewStyle } from "react-native";
 
 import sizes from "../../../../helpers/getDeviceSize";
 import Link from "../../../cta/Link";
-import CloseMedium from "../../../../assets/icons/CloseMedium";
+import CloseMedium from "@ledgerhq/icons-ui/native/CloseMedium";
 import FlexBox from "../../../Layout/Flex";
 import Text from "../../../Text";
 
@@ -51,12 +51,12 @@ const CloseContainer = styled.View`
   margin-bottom: ${(p) => p.theme.space[7]}px;
 `;
 
-const StyledTitle = styled(Text).attrs({ type: "h3" })`
+const StyledTitle = styled(Text).attrs({ variant: "h3" })`
   text-transform: uppercase;
 `;
 
 const StyledDescription = styled(Text).attrs({
-  type: "body",
+  variant: "body",
   color: "palette.neutral.c80",
 })`
   text-transform: capitalize;
@@ -64,7 +64,7 @@ const StyledDescription = styled(Text).attrs({
 `;
 
 const StyledSubtitle = styled(Text).attrs({
-  type: "subtitle",
+  variant: "subtitle",
   color: "palette.neutral.c80",
 })`
   text-transform: uppercase;

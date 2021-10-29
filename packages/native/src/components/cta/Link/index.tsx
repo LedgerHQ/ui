@@ -45,16 +45,17 @@ const LinkContainer = (props: LinkProps): React.ReactElement => {
     disabled,
   } = props;
   const { colors } = useTheme();
-  const colorValue = getLinkColors(colors)[reversed ? "reversed" : "default"][
-    disabled ? "disabled" : type
-  ];
+  const colorValue =
+    getLinkColors(colors)[reversed ? "reversed" : "default"][
+      disabled ? "disabled" : type
+    ];
 
   return (
     <>
       {iconPosition === "right" && children ? (
         <Text
           variant={ctaTextType[size]}
-          fontWeight={"semibold"}
+          fontWeight={"semiBold"}
           color={colorValue}
         >
           {children}
@@ -68,7 +69,7 @@ const LinkContainer = (props: LinkProps): React.ReactElement => {
       {iconPosition === "left" && children ? (
         <Text
           variant={ctaTextType[size]}
-          fontWeight={"semibold"}
+          fontWeight={"semiBold"}
           color={colorValue}
         >
           {children}

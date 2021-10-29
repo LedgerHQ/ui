@@ -7,7 +7,7 @@ import {
   TouchableOpacityProps,
 } from "react-native";
 import Text from "../../Text";
-import CloseMedium from "../../../assets/icons/CloseMedium";
+import CloseMedium from "@ledgerhq/icons-ui/native/CloseMedium";
 
 type Props = {
   Icon: React.ComponentType<{ size: number; color?: string }>;
@@ -83,7 +83,7 @@ export default function Notification({
           <TouchableOpacity onPress={onLearnMore}>
             <Text
               variant={"body"}
-              fontWeight={"semibold"}
+              fontWeight={"semiBold"}
               color={color || textColor}
             >
               Learn more
