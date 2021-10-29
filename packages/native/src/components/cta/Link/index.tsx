@@ -53,7 +53,7 @@ const LinkContainer = (props: LinkProps): React.ReactElement => {
     <>
       {iconPosition === "right" && children ? (
         <Text
-          type={ctaTextType[size]}
+          variant={ctaTextType[size]}
           fontWeight={"semibold"}
           color={colorValue}
         >
@@ -67,7 +67,7 @@ const LinkContainer = (props: LinkProps): React.ReactElement => {
       ) : null}
       {iconPosition === "left" && children ? (
         <Text
-          type={ctaTextType[size]}
+          variant={ctaTextType[size]}
           fontWeight={"semibold"}
           color={colorValue}
         >

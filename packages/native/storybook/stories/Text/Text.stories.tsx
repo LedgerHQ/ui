@@ -7,19 +7,21 @@ import Text from "@components/Text";
 storiesOf((story) =>
   story("Text", module).add("regular", () => (
     <Text
-      type={select(
+      variant={select(
         "type",
         [
           "h1",
           "h2",
           "h3",
+          "h4",
           "large",
-          "emphasis",
           "body",
-          "link",
-          "subTitle",
+          "bodyLineHeight",
+          "paragraph",
+          "paragraphLineHeight",
           "small",
-          "tag",
+          "subtitle",
+          "tiny",
         ],
         "h1"
       )}

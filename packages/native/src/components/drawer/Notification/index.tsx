@@ -56,7 +56,7 @@ export default function Notification({
       </FlexBox>
       <FlexBox ml={16} flexShrink={1}>
         <Text
-          type={"body"}
+          variant={"body"}
           fontWeight={"medium"}
           color={color || textColor}
           numberOfLines={numberOfLines}
@@ -65,7 +65,7 @@ export default function Notification({
         </Text>
         {!!subtitle && (
           <Text
-            type={"body"}
+            variant={"body"}
             fontWeight={"medium"}
             color={
               color ||
@@ -82,7 +82,7 @@ export default function Notification({
         {onLearnMore && (
           <TouchableOpacity onPress={onLearnMore}>
             <Text
-              type={"body"}
+              variant={"body"}
               fontWeight={"semibold"}
               color={color || textColor}
             >

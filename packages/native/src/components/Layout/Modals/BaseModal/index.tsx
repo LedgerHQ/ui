@@ -64,7 +64,7 @@ const StyledDescription = styled(Text).attrs({
 `;
 
 const StyledSubtitle = styled(Text).attrs({
-  type: "subTitle",
+  type: "subtitle",
   color: "palette.neutral.c80",
 })`
   text-transform: uppercase;

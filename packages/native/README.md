@@ -62,7 +62,7 @@ import { Flex, Text } from "@ledgerhq/native-ui";
 function Hello() {
   return (
     <Flex flexDirection="column" alignItems="center">
-      <Text type="h1" color="palette.neutral.c100">
+      <Text variant="h1" color="palette.neutral.c100">
         Hello, world!
       </Text>
     </Flex>
@@ -166,7 +166,7 @@ export default function App() {
           backgroundColor="palette.neutral.c00"
         >
           <Logo />
-          <Text type="h2" color="palette.neutral.c100" my={10}>
+          <Text variant="h2" color="palette.neutral.c100" my={10}>
             Hello, world!
           </Text>
           <Switch
@@ -208,7 +208,7 @@ export default function App() {
         backgroundColor="palette.neutral.c00"
       >
         <Logo />
-        <Text type="h2" color="palette.neutral.c100" my={10}>
+        <Text variant="h2" color="palette.neutral.c100" my={10}>
           Hello, world!
         </Text>
         <Switch

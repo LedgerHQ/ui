@@ -1,6 +1,6 @@
 export const space = [0, 2, 4, 8, 12, 14, 16, 24, 32, 40, 48, 64, 80, 96, 120];
 
-export type TextTypes =
+export type TextVariants =
   | "h1"
   | "h2"
   | "h3"
@@ -19,7 +19,7 @@ export type ThemeScale<Type, Aliases extends string> = Array<Type> &
 
 export const fontSizes = [10, 11, 12, 13, 14, 16, 18, 24, 28] as ThemeScale<
   number,
-  TextTypes
+  TextVariants
 >;
 
 [

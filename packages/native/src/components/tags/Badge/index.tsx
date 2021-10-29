@@ -5,7 +5,7 @@ import Text from "../../Text";
 type BadgeType = "main" | "primary";
 
 export interface BadgeProps {
-  variant?: BadgeType;
+  badgeVariant?: BadgeType;
   active?: boolean;
   children: React.ReactNode;
 }
@@ -43,22 +43,22 @@ const badgesStyle: {
 };
 
 const StyledBadgeText = styled(Text).attrs<BadgeProps>((p) => ({
-  ...badgesStyle[p.variant || "main"][p.active ? "active" : "default"],
+  ...badgesStyle[p.badgeVariant || "main"][p.active ? "active" : "default"],
 }))<BadgeProps>`
   border-radius: 32px;
   padding: 8px;
 `;
 
 export default function Badge({
-  variant = "main",
+  badgeVariant = "main",
   active = false,
   children,
 }: BadgeProps): JSX.Element {
   return (
     <StyledBadgeText
-      variant={variant}
+      badgeVariant={badgeVariant}
       active={active}
-      type={"subTitle"}
+      variant={"subtitle"}
       fontWeight={"semibold"}
     >
       {children}

@@ -1,4 +1,4 @@
-import { TextTypes } from "../../styles/theme";
+import { TextVariants } from "../../styles/theme";
 import { BaseTextProps } from "./index";
 
 export type FontWeightTypes = "medium" | "semibold" | "bold";
@@ -8,7 +8,7 @@ export function getTextTypeStyle({
 }: {
   bracket?: boolean;
 }): Record<
-  TextTypes,
+  TextVariants,
   {
     fontFamily: string;
     lineHeight?: number;
@@ -89,15 +89,15 @@ const getConcatenedFontWeightFontFamily: {
 };
 
 export function getTextStyle({
-  type = "body",
-  bracket,
+  variant = "body",
+  bracket = false,
   fontWeight = "medium",
-}: BaseTextProps): {
+}: Partial<BaseTextProps>): {
   fontFamily: string;
   lineHeight?: number;
   paddingTop?: number;
 } {
-  const style = getTextTypeStyle({ bracket })[type];
+  const style = getTextTypeStyle({ bracket })[variant];
   return {
     ...style,
     ...getConcatenedFontWeightFontFamily[style.fontFamily || "Inter"][

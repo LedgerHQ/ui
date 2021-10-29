@@ -20,7 +20,7 @@ import BracketRight from "../../icons/BracketLeft";
 import BracketLeft from "../../icons/BracketRight";
 import { getColor } from "../../styles";
 import { FontWeightTypes, getTextStyle } from "./getTextStyle";
-import { TextTypes } from "../../styles/theme";
+import { TextVariants } from "../../styles/theme";
 
 export interface BaseTextProps
   extends TextProps,
@@ -30,10 +30,10 @@ export interface BaseTextProps
     SpaceProps,
     LineHeightProps,
     BorderProps {
-  type?: TextTypes;
+  variant?: TextVariants;
   fontWeight?: FontWeightTypes;
   fontFamily?: string;
-  fontSize?: number;
+  fontSize?: number | string | TextVariants;
   color?: string;
   mt?: number | string;
   mb?: number | string;
@@ -47,6 +47,7 @@ export interface BaseTextProps
 
 const Base = styled.Text.attrs((p: BaseTextProps) => ({
   ...getTextStyle(p),
+  fontSize: p.fontSize ? p.fontSize : p.variant,
   color: p.color || "palette.neutral.c100",
 }))<BaseTextProps>`
   ${lineHeight};

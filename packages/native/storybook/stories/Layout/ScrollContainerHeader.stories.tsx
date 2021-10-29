@@ -40,7 +40,7 @@ const ScrollContainerHeaderStory = () => {
     <ScrollContainerHeader
       TopLeftSection={<Button mr={2} Icon={BackIcon} size="small" />}
       TopRightSection={<TopRightSection />}
-      MiddleSection={<Text type="h2">TITLE</Text>}
+      MiddleSection={<Text variant="h2">TITLE</Text>}
       BottomSection={<BottomSection />}
     >
       {Array(20)
