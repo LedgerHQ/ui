@@ -59,7 +59,7 @@ export default function Badge({
       badgeVariant={badgeVariant}
       active={active}
       variant={"subtitle"}
-      fontWeight={"semibold"}
+      fontWeight={"semiBold"}
     >
       {children}
     </StyledBadgeText>

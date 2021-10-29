@@ -8,7 +8,7 @@ storiesOf((story) =>
   story("Text", module).add("regular", () => (
     <Text
       variant={select(
-        "type",
+        "variant",
         [
           "h1",
           "h2",
@@ -27,7 +27,7 @@ storiesOf((story) =>
       )}
       fontWeight={select(
         "fontWeight",
-        ["medium", "semibold", "bold"],
+        ["medium", "semiBold", "bold"],
         "medium"
       )}
       color={select(

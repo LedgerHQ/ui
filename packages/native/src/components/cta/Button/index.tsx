@@ -102,7 +102,7 @@ const ButtonContainer = (
       {iconPosition === "right" && children ? (
         <Text
           variant={ctaTextType[size]}
-          fontWeight={"semibold"}
+          fontWeight={"semiBold"}
           color={text.color}
         >
           {children}
@@ -116,7 +116,7 @@ const ButtonContainer = (
       {iconPosition === "left" && children ? (
         <Text
           variant={ctaTextType[size]}
-          fontWeight={"semibold"}
+          fontWeight={"semiBold"}
           color={text.color}
         >
           {children}

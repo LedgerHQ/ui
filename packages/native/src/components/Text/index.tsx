@@ -46,10 +46,10 @@ export interface BaseTextProps
 }
 
 const Base = styled.Text.attrs((p: BaseTextProps) => ({
-  ...getTextStyle(p),
-  fontSize: p.fontSize ? p.fontSize : p.variant,
+  fontSize: p.fontSize ? p.fontSize : p.variant ?? "paragraph",
   color: p.color || "palette.neutral.c100",
 }))<BaseTextProps>`
+  ${(p) => getTextStyle(p)}
   ${lineHeight};
   ${fontSize};
   ${textAlign};

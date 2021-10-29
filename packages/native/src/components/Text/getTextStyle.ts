@@ -91,7 +91,7 @@ const getConcatenedFontWeightFontFamily: {
 };
 
 export function getTextStyle({
-  variant = "body",
+  variant = "paragraph",
   bracket = false,
   fontWeight = "medium",
 }: Partial<BaseTextProps>): {
