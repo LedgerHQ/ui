@@ -78,7 +78,7 @@ export function TextColumn<T>({
         {title && (
           <Text
             fontWeight="medium"
-            type={"body"}
+            variant={"body"}
             textOverflow="ellipsis"
             overflow="hidden"
             color="palette.neutral.c100"
@@ -90,7 +90,7 @@ export function TextColumn<T>({
         {subtitle && (
           <Text
             fontWeight="medium"
-            type={"paragraph"}
+            variant={"paragraph"}
             textOverflow="ellipsis"
             overflow="hidden"
             color="palette.neutral.c80"
