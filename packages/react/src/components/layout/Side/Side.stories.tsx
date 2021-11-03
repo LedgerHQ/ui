@@ -5,6 +5,9 @@ import Button from "../../cta/Button";
 import { lipsum } from "../../helpers";
 import Side, { SideProps } from "./index";
 import SideProvider, { setSide } from "./Provider";
+import { Flex } from "../index";
+import { Text } from "../../asorted";
+import { Tip } from "../../message";
 
 const DummyContentWrapper = styled.div`
   width: 100%;
@@ -61,6 +64,40 @@ const DummySubContentLvl2 = () => (
   </DummyContentWrapper>
 );
 
+const OnboardContent = ({test}) => (
+  <div>
+    {[{
+      title: "How does a recovery phrase work?",
+      descriptions: ["Your recovery phrase works like a unique master key. Your Ledger device uses it to calculate private keys for every crypto asset you own."],
+    }, {
+      descriptions: ["To restore access to your crypto, any wallet can calculate the same private keys from your recovery phrase."],
+      tips: [{type: 'warning', label: 'test1'}, {type: 'success', label: 'test121'}],
+      link: { label: "More about the Recovery phrase", href: "somelinktothesupport.com" }
+    }, {
+      title: "What happens if I lose access to my Nano?",
+      descriptions: ["Don’t worry and follow these steps:"]
+    }].map(({ title, descriptions, link, tips}) => (
+      <Flex flexDirection={'column'} mb={12}>
+        { title && <Text as={'div'} variant={'h5'} textTransform={'uppercase'} mb={5}>{title}</Text> }
+        { descriptions && <>{descriptions.map((description) => (<Text as={'p'} variant={'paragraph'} color={'palette.neutral.c80'} mb={5} >{description}</Text>))}</> }
+        { tips && <>{tips.map(({ type, label }) => (<Flex mb={5}><Tip type={type} label={label}>{title}</Tip></Flex>))}</> }
+
+        <Text>{test}</Text>
+      </Flex>
+    ))}
+
+    <Flex><Button
+      type={"main"}
+      onClick={() =>
+        setSide(null)
+      }
+      style={{flex: 1}}
+    >
+      {"Continue"}
+    </Button></Flex>
+  </div>
+);
+
 const components = {
   DummyContent,
   DummySubContentLvl1,
@@ -104,6 +141,22 @@ export default {
 const Template = (args: SideProps & { isOpen: boolean }) => {
   const onClose = useCallback(() => setSide(null), []);
   const onOpen = useCallback(() => setSide(components.DummyContent), []);
+
+  useEffect(() => {
+    if (args.isOpen) onOpen();
+    if (!args.isOpen) onClose();
+  }, [args.isOpen, onClose, onOpen]);
+
+  return (
+    <SideProvider>
+      <Side {...args} />
+    </SideProvider>
+  );
+};
+
+export const TemplateTmp = (args: SideProps & { isOpen: boolean }) => {
+  const onClose = useCallback(() => setSide(null), []);
+  const onOpen = useCallback(() => setSide(OnboardContent, {test: "bengabenga"}), []);
 
   useEffect(() => {
     if (args.isOpen) onOpen();
