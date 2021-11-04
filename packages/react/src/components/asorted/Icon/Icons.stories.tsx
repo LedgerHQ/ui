@@ -1,6 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 import Icon, { iconNames, Props as IconProps } from "./Icon";
 import { useTheme } from "styled-components";
+import { Text, SearchInput, Flex, Grid } from "../../..";
+
+const ScrollArea = styled(Grid)`
+  flex: 1;
+  height: auto;
+  ${(p) => p.theme.overflow.y};
+`;
+
+const Container = styled(Flex).attrs({
+  flex: 1,
+  flexDirection: "column",
+  p: 4,
+})`
+  overflow: hidden;
+  height: calc(100vh - 2em);
+`;
 
 const Story = {
   title: "Asorted/Icons",
@@ -44,15 +61,32 @@ export default Story;
 const ListTemplate = (args: IconProps) => {
   const theme = useTheme();
   const color = args.color || theme.colors.palette.neutral.c100;
+  const [search, setSearch] = useState("");
+  const s = search.toLowerCase();
 
   return (
-    <div>
-      {iconNames.map((name) => (
-        <span title={name}>
-          <Icon key={name} name={name} weight={args.weight} size={args.size} color={color} />
-        </span>
-      ))}
-    </div>
+    <Container>
+      <SearchInput value={search} onChange={setSearch} />
+      <ScrollArea
+        gridTemplateColumns="repeat(auto-fill, minmax(100px, 1fr));"
+        gridTemplateRows="repeat(150px);"
+        gridGap={4}
+        mt={4}
+      >
+        {iconNames
+          .sort((a: string, b: string) => {
+            return b.toLowerCase().indexOf(s) - a.toLowerCase().indexOf(s);
+          })
+          .map((name) => (
+            <Flex flexDirection="column" justifyContent="flex-end" alignItems="center">
+              <Icon key={name} name={name} weight={args.weight} size={args.size} color={color} />
+              <Text mt={2} variant="micro">
+                {name}
+              </Text>
+            </Flex>
+          ))}
+      </ScrollArea>
+    </Container>
   );
 };
 const IconTemplate = (args: IconProps) => {
