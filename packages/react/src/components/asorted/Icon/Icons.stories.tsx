@@ -25,7 +25,7 @@ const Story = {
     weight: {
       type: "enum",
       description: "Weight",
-      defaultValue: "Regular",
+      defaultValue: "Medium",
       control: {
         options: ["Light", "Medium", "Regular", "Thin", "UltraLight"],
         control: {
