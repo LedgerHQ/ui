@@ -19,6 +19,21 @@ const Container = styled(Flex).attrs({
   height: calc(100vh - 2em);
 `;
 
+const IconContainer = styled(Flex).attrs<{ active?: boolean }>({
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  p: 4,
+})<{ active?: boolean }>`
+  ${(p) => (p.active ? `background-color: ${p.theme.colors.palette.neutral.c20};` : ``)}
+  border-radius: 4px;
+  height: 100px;
+`;
+
+const Bold = styled.b`
+  color: ${(p) => p.theme.colors.palette.primary.c80};
+`;
+
 const Story = {
   title: "Asorted/Icons",
   argTypes: {
@@ -63,28 +78,50 @@ const ListTemplate = (args: IconProps) => {
   const color = args.color || theme.colors.palette.neutral.c100;
   const [search, setSearch] = useState("");
   const s = search.toLowerCase();
+  const regexp = new RegExp(s, "i");
 
   return (
     <Container>
       <SearchInput value={search} onChange={setSearch} />
       <ScrollArea
-        gridTemplateColumns="repeat(auto-fill, minmax(100px, 1fr));"
-        gridTemplateRows="repeat(150px);"
+        gridTemplateColumns="repeat(auto-fill, 100px);"
+        gridTemplateRows="repeat(auto-fill, 100px);"
         gridGap={4}
         mt={4}
       >
         {iconNames
           .sort((a: string, b: string) => {
-            return b.toLowerCase().indexOf(s) - a.toLowerCase().indexOf(s);
+            return s ? b.toLowerCase().indexOf(s) - a.toLowerCase().indexOf(s) : a.localeCompare(b);
           })
-          .map((name) => (
-            <Flex flexDirection="column" justifyContent="flex-end" alignItems="center">
-              <Icon key={name} name={name} weight={args.weight} size={args.size} color={color} />
-              <Text mt={2} variant="micro">
-                {name}
-              </Text>
-            </Flex>
-          ))}
+          .map((name) => {
+            const match = name.match(regexp);
+            const active = s && match;
+            const index = match?.index ?? 0;
+            return (
+              <IconContainer active={!!active}>
+                <Flex flex={1} justifyContent="center" alignItems="center">
+                  <Icon
+                    key={name}
+                    name={name}
+                    weight={args.weight}
+                    size={args.size}
+                    color={color}
+                  />
+                </Flex>
+                <Text variant="extraSmall">
+                  {active ? (
+                    <>
+                      {name.substr(0, index)}
+                      <Bold>{name.substr(index, s.length)}</Bold>
+                      {name.substr(index + s.length)}
+                    </>
+                  ) : (
+                    name
+                  )}
+                </Text>
+              </IconContainer>
+            );
+          })}
       </ScrollArea>
     </Container>
   );
