@@ -16,7 +16,13 @@ export type Props = React.PropsWithChildren<
      * Tag style.
      */
     type?: "plain" | "opacity" | "outlined";
+    /**
+     * Size of the tag, affects the padding and the casing (uppercase for small and medium)
+     */
     size?: Size;
+    /**
+     * Props passed to the text component, overriding props set internally by Tag component
+     */
     textProps?: TextProps;
   } & BorderProps &
     ColorProps
