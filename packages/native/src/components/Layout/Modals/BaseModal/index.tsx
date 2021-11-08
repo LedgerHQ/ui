@@ -25,7 +25,7 @@ export type BaseModalProps = {
   description?: string;
   subtitle?: string;
   children: React.ReactNode;
-} & ModalProps;
+} & Partial<ModalProps>;
 
 const Container = styled.View`
   background-color: ${(p) => p.theme.colors.palette.background.main};
@@ -51,12 +51,12 @@ const CloseContainer = styled.View`
   margin-bottom: ${(p) => p.theme.space[7]}px;
 `;
 
-const StyledTitle = styled(Text).attrs({ type: "h3" })`
+const StyledTitle = styled(Text).attrs({ variant: "h3" })`
   text-transform: uppercase;
 `;
 
 const StyledDescription = styled(Text).attrs({
-  type: "body",
+  variant: "body",
   color: "palette.neutral.c80",
 })`
   text-transform: capitalize;
@@ -64,7 +64,7 @@ const StyledDescription = styled(Text).attrs({
 `;
 
 const StyledSubtitle = styled(Text).attrs({
-  type: "subTitle",
+  variant: "subtitle",
   color: "palette.neutral.c80",
 })`
   text-transform: uppercase;
@@ -89,7 +89,7 @@ export default function BaseModal({
   subtitle,
   children,
   ...rest
-}: Partial<BaseModalProps>): React.ReactElement {
+}: BaseModalProps): React.ReactElement {
   const { colors } = useTheme();
 
   const backDropProps = preventBackdropClick

@@ -15,7 +15,7 @@ import Text from "../../Text";
 
 export type ButtonProps = TouchableOpacityProps &
   SpaceProps & {
-    Icon?: React.ComponentType<{ size: number; color: string }>;
+    Icon?: React.ComponentType<{ size: number; color: string }> | null;
     type?: "main" | "shade" | "error" | "color" | "default";
     size?: "small" | "medium" | "large";
     iconPosition?: "right" | "left";
@@ -101,8 +101,8 @@ const ButtonContainer = (
     <Container hide={hide}>
       {iconPosition === "right" && children ? (
         <Text
-          type={ctaTextType[size]}
-          fontWeight={"semibold"}
+          variant={ctaTextType[size]}
+          fontWeight={"semiBold"}
           color={text.color}
         >
           {children}
@@ -115,8 +115,8 @@ const ButtonContainer = (
       ) : null}
       {iconPosition === "left" && children ? (
         <Text
-          type={ctaTextType[size]}
-          fontWeight={"semibold"}
+          variant={ctaTextType[size]}
+          fontWeight={"semiBold"}
           color={text.color}
         >
           {children}
@@ -133,7 +133,7 @@ const Button = (props: ButtonProps): React.ReactElement => {
       {...props}
       type={type}
       size={size}
-      iconButton={Icon && !children}
+      iconButton={!!Icon && !children}
       activeOpacity={0.5}
     >
       <ButtonContainer {...props} type={type} size={size} />
@@ -172,7 +172,7 @@ export const PromisableButton = (props: ButtonProps): React.ReactElement => {
       {...props}
       type={type}
       size={size}
-      iconButton={Icon && !children}
+      iconButton={!!Icon && !children}
       disabled={disabled || spinnerOn}
       onPress={onPressHandler}
     >

@@ -1,10 +1,12 @@
 # `@ledgerhq/native-ui`
 
-![build](https://github.com/LedgerHQ/ui/actions/workflows/native.yml/badge.svg)
+[![build](https://github.com/LedgerHQ/ui/actions/workflows/native.yml/badge.svg)](https://github.com/LedgerHQ/ui/actions/workflows/native.yml)
+[![npm](https://img.shields.io/npm/v/@ledgerhq/native-ui)](https://www.npmjs.com/package/@ledgerhq/native-ui)
+[![storybook](https://img.shields.io/badge/Storybook-📚-61DBFB)](https://ledger-live-ui-native.vercel.app)
 
-#### Design and interface resources
+### Design and interface resources for React Native
 
-This package contains [React Native](https://reactnative.dev/) components and styles built on top of our design system and used internally at [Ledger](https://www.ledger.com/).
+#### This package contains [React Native](https://reactnative.dev/) components and styles built on top of our design system and used internally at [Ledger](https://www.ledger.com/).
 
 ## Reference
 
@@ -62,7 +64,7 @@ import { Flex, Text } from "@ledgerhq/native-ui";
 function Hello() {
   return (
     <Flex flexDirection="column" alignItems="center">
-      <Text type="h1" color="palette.neutral.c100">
+      <Text variant="h1" color="palette.neutral.c100">
         Hello, world!
       </Text>
     </Flex>
@@ -166,7 +168,7 @@ export default function App() {
           backgroundColor="palette.neutral.c00"
         >
           <Logo />
-          <Text type="h2" color="palette.neutral.c100" my={10}>
+          <Text variant="h2" color="palette.neutral.c100" my={10}>
             Hello, world!
           </Text>
           <Switch
@@ -208,7 +210,7 @@ export default function App() {
         backgroundColor="palette.neutral.c00"
       >
         <Logo />
-        <Text type="h2" color="palette.neutral.c100" my={10}>
+        <Text variant="h2" color="palette.neutral.c100" my={10}>
           Hello, world!
         </Text>
         <Switch

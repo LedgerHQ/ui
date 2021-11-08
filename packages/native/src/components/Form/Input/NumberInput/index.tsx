@@ -32,7 +32,8 @@ export default function NumberInput({
   ...inputProps
 }: InputProps & {
   onPercentClick: (percent: number) => void;
-  max: number;
+  min?: number;
+  max?: number;
 }): JSX.Element {
   return (
     <Input
@@ -59,7 +60,7 @@ export default function NumberInput({
                 disabled={disabled}
               >
                 <Text
-                  type={"small"}
+                  variant={"small"}
                   color={active ? "palette.neutral.c00" : "palette.neutral.c70"}
                 >
                   {percent * 100}%

@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { storiesOf } from "../../storiesOf";
 import { boolean, number } from "@storybook/addon-knobs";
-import Slider from "@components/Form/Slider";
-import FlexBox from "@components/Layout/Flex";
+import Slider from "../../../../src/components/Form/Slider";
+import FlexBox from "../../../../src/components/Layout/Flex";
 
 const SliderStory = () => {
   const [value, setValue] = useState(35);
 
-  const onChange = (value) => setValue(value);
+  const onChange = (value: number) => setValue(value);
 
   return (
     <FlexBox p={20} width={1}>

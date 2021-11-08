@@ -16,7 +16,7 @@ const DummyContentWrapper = styled.div`
 `;
 
 const onBackLvl1 = () =>
-  setSide(DummyContent, {
+  setSide<SideProps & { left: boolean }>(DummyContent, {
     left: true,
   });
 

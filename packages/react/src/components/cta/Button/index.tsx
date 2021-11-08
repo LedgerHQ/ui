@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import styled, { css, StyledProps } from "styled-components";
 import { fontSize, color } from "styled-system";
 import fontFamily from "../../../styles/styled/fontFamily";
 import { fontSizes } from "../../../styles/theme";
@@ -19,8 +19,8 @@ interface BaseProps {
   disabled?: boolean;
 }
 
-export interface ButtonProps<I = any> extends BaseProps {
-  Icon?: React.ComponentType<I>;
+export interface ButtonProps extends BaseProps {
+  Icon?: React.ComponentType<{ size: number; color?: string }>;
   children?: React.ReactNode;
   onClick: (event?: React.SyntheticEvent<HTMLButtonElement>) => void;
   iconSize?: number;
@@ -34,12 +34,12 @@ const IconContainer = styled.div<{
   padding-top: 0.2em;
 `;
 
-const getVariantColors = (p: any) => ({
+const getVariantColors = (p: StyledProps<BaseProps>) => ({
   main: {
     outline: `
         border-color: ${p.theme.colors.palette.neutral.c100};
         color: ${p.theme.colors.palette.neutral.c100};
-        background-color: ${p.theme.colors.palette.neutral.c00};          
+        background-color: ${p.theme.colors.palette.neutral.c00};
         &:hover {
           background-color: ${p.theme.colors.palette.neutral.c20};
         }
@@ -69,7 +69,7 @@ const getVariantColors = (p: any) => ({
 
       &:active {
         background-color: ${p.theme.colors.palette.neutral.c30};
-      }          
+      }
     `,
   error: {
     outline: `
@@ -115,7 +115,7 @@ const getVariantColors = (p: any) => ({
     outline: `
         border-color: ${p.theme.colors.palette.neutral.c50};
         color: ${p.theme.colors.palette.neutral.c50};
-        background-color: ${p.theme.colors.palette.neutral.c00};          
+        background-color: ${p.theme.colors.palette.neutral.c00};
       `,
     filled: `
         color: ${p.theme.colors.palette.neutral.c50};
@@ -219,6 +219,11 @@ const Button = ({
   );
 };
 
+export type ExpandButtonProps = React.PropsWithChildren<{
+  onToggle?: (arg0: boolean) => void;
+  onClick?: (arg0: React.SyntheticEvent<HTMLButtonElement>) => void;
+}>;
+
 const StyledExpandButton = styled(Button).attrs((props) => ({
   Icon: props.Icon != null || ChevronBottom,
   iconPosition: props.iconPosition || "right",
@@ -232,10 +237,7 @@ export const ExpandButton = function ExpandButton({
   onToggle,
   onClick,
   ...props
-}: React.PropsWithChildren<{
-  onToggle?: (arg0: boolean) => void;
-  onClick?: (arg0: React.SyntheticEvent<HTMLButtonElement>) => void;
-}>): React.ReactElement {
+}: ExpandButtonProps): React.ReactElement {
   const [expanded, setExpanded] = useState(false);
   return (
     <StyledExpandButton

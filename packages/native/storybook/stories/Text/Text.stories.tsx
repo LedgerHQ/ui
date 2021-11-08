@@ -2,30 +2,32 @@ import React from "react";
 import { text } from "@storybook/addon-knobs";
 import { storiesOf } from "../storiesOf";
 import { select, boolean } from "@storybook/addon-knobs";
-import Text from "@components/Text";
+import Text from "../../../src/components/Text";
 
 storiesOf((story) =>
   story("Text", module).add("regular", () => (
     <Text
-      type={select(
-        "type",
+      variant={select(
+        "variant",
         [
           "h1",
           "h2",
           "h3",
+          "h4",
           "large",
-          "emphasis",
           "body",
-          "link",
-          "subTitle",
+          "bodyLineHeight",
+          "paragraph",
+          "paragraphLineHeight",
           "small",
-          "tag",
+          "subtitle",
+          "tiny",
         ],
         "h1"
       )}
       fontWeight={select(
         "fontWeight",
-        ["medium", "semibold", "bold"],
+        ["medium", "semiBold", "bold"],
         "medium"
       )}
       color={select(

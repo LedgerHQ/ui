@@ -1,10 +1,10 @@
 import React from "react";
-import { View, TextInputProps } from "react-native";
+import { View, TextInputProps, ColorValue } from "react-native";
 import styled, { css } from "styled-components/native";
 import Text from "../../../Text";
 import FlexBox from "../../../Layout/Flex";
 
-type CommonProps = TextInputProps & {
+export type CommonProps = TextInputProps & {
   disabled?: boolean;
   error?: string;
 };
@@ -54,7 +54,7 @@ const InputContainer = styled.View<Partial<CommonProps> & { focus?: boolean }>`
 `;
 
 const BaseInput = styled.TextInput.attrs((p) => ({
-  selectionColor: p.theme.colors.palette.primary.c80,
+  selectionColor: p.theme.colors.palette.primary.c80 as ColorValue,
 }))<Partial<CommonProps> & { focus?: boolean }>`
   height: 100%;
   width: 100%;
