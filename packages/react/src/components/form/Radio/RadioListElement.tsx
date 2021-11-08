@@ -17,8 +17,7 @@ const Container = styled(Flex)<{ checked: boolean; disabled: boolean | undefined
   cursor: ${(p) => (p.disabled ? "" : "pointer")};
   justify-content: center;
   align-items: center;
-  background-color: ${(p) =>
-    p.checked ? p.theme.colors.palette.primary.c20 : p.theme.colors.palette.neutral.c00};
+  background-color: ${(p) => (p.checked ? p.theme.colors.palette.primary.c20 : "")};
   border: 1px solid
     ${(p) => (p.checked ? p.theme.colors.palette.primary.c50 : p.theme.colors.palette.neutral.c40)};
   border-radius: ${(p) => `${p.theme.radii[2]}px`};
