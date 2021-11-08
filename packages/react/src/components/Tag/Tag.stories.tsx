@@ -15,6 +15,9 @@ export default {
     type: {
       options: ["plain", "opacity", "outlined"],
     },
+    size: {
+      options: ["small", "medium", "large"],
+    },
     children: {
       type: "string",
     },
