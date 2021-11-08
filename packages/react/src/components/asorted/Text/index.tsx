@@ -12,6 +12,8 @@ import {
   SpaceProps,
   layout,
   LayoutProps,
+  flexbox,
+  FlexboxProps,
 } from "styled-system";
 import fontFamily from "../../../styles/styled/fontFamily";
 import { TextVariants } from "../../../styles/theme";
@@ -52,7 +54,7 @@ export interface TextProps {
   children: React.ReactNode;
 }
 
-export interface BaseTextProps extends SpaceProps, LayoutProps {
+export interface BaseTextProps extends SpaceProps, LayoutProps, FlexboxProps {
   fontFamily?: string;
   ff?: FontFamilies;
   fontSize?: number | string | TextVariants;
@@ -83,6 +85,7 @@ const Text = styled.span.attrs<BaseTextProps>(
   ${space};
   ${letterSpacing};
   ${layout}
+  ${flexbox}
   ${system({
     textOverflow: true,
   })}

@@ -46,11 +46,16 @@ const StyledIconContainer = styled.div<{ type?: TipType }>`
   align-items: center;
 `;
 
-export default function Tip({ type, label}: TipProps): JSX.Element {
+export default function Tip({ type, label }: TipProps): JSX.Element {
   return (
-    <Flex alignItems={'center'}>
+    <Flex alignItems={"center"}>
       {type && <StyledIconContainer type={type}>{icons[type]}</StyledIconContainer>}
-      <Text variant={"paragraph"} fontWeight={'medium'} color={"palette.neutral.c100"}>
+      <Text
+        variant={"paragraph"}
+        fontWeight={"medium"}
+        color={"palette.neutral.c100"}
+        flexShrink={1}
+      >
         {label}
       </Text>
     </Flex>

@@ -5,9 +5,8 @@ import Button from "../../cta/Button";
 import { lipsum } from "../../helpers";
 import Side, { SideProps } from "./index";
 import SideProvider, { setSide } from "./Provider";
+import SideDrawer, { SideDrawerProps } from "./Side";
 import { Flex } from "../index";
-import { Text } from "../../asorted";
-import { Tip } from "../../message";
 
 const DummyContentWrapper = styled.div`
   width: 100%;
@@ -62,40 +61,6 @@ const DummySubContentLvl2 = () => (
   <DummyContentWrapper color={"#FEC8D8"}>
     <div>{lipsum}</div>
   </DummyContentWrapper>
-);
-
-const OnboardContent = ({test}) => (
-  <div>
-    {[{
-      title: "How does a recovery phrase work?",
-      descriptions: ["Your recovery phrase works like a unique master key. Your Ledger device uses it to calculate private keys for every crypto asset you own."],
-    }, {
-      descriptions: ["To restore access to your crypto, any wallet can calculate the same private keys from your recovery phrase."],
-      tips: [{type: 'warning', label: 'test1'}, {type: 'success', label: 'test121'}],
-      link: { label: "More about the Recovery phrase", href: "somelinktothesupport.com" }
-    }, {
-      title: "What happens if I lose access to my Nano?",
-      descriptions: ["Don’t worry and follow these steps:"]
-    }].map(({ title, descriptions, link, tips}) => (
-      <Flex flexDirection={'column'} mb={12}>
-        { title && <Text as={'div'} variant={'h5'} textTransform={'uppercase'} mb={5}>{title}</Text> }
-        { descriptions && <>{descriptions.map((description) => (<Text as={'p'} variant={'paragraph'} color={'palette.neutral.c80'} mb={5} >{description}</Text>))}</> }
-        { tips && <>{tips.map(({ type, label }) => (<Flex mb={5}><Tip type={type} label={label}>{title}</Tip></Flex>))}</> }
-
-        <Text>{test}</Text>
-      </Flex>
-    ))}
-
-    <Flex><Button
-      type={"main"}
-      onClick={() =>
-        setSide(null)
-      }
-      style={{flex: 1}}
-    >
-      {"Continue"}
-    </Button></Flex>
-  </div>
 );
 
 const components = {
@@ -154,19 +119,55 @@ const Template = (args: SideProps & { isOpen: boolean }) => {
   );
 };
 
-export const TemplateTmp = (args: SideProps & { isOpen: boolean }) => {
-  const onClose = useCallback(() => setSide(null), []);
-  const onOpen = useCallback(() => setSide(OnboardContent, {test: "bengabenga"}), []);
-
-  useEffect(() => {
-    if (args.isOpen) onOpen();
-    if (!args.isOpen) onClose();
-  }, [args.isOpen, onClose, onOpen]);
+export const SideSimple = ({ title, big }: SideDrawerProps) => {
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <SideProvider>
-      <Side {...args} />
-    </SideProvider>
+    <div>
+      <Button type={"main"} onClick={() => setIsOpen(true)} style={{ flex: 1 }}>
+        Open
+      </Button>
+      <SideDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} title={title} big={big}>
+        <Flex flexDirection={"column"}>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elit mi, tempus sed justo
+            et, viverra mattis lorem. Praesent odio ligula, facilisis id porttitor tempor, cursus at
+            metus. Etiam consequat ante efficitur sodales iaculis. Aliquam at justo vel erat
+            eleifend semper eu non lorem. Cras porta, dolor a porttitor varius, augue lectus congue
+            lorem, nec lobortis urna ipsum quis lorem. Nam quis auctor lacus. Aenean sit amet dictum
+            purus, at convallis neque. Etiam ac augue non risus luctus laoreet eget a est. Curabitur
+            magna purus, fermentum at eros a, faucibus sollicitudin erat. Proin purus sem, lacinia
+            tincidunt ornare et, sollicitudin nec libero. Quisque lobortis dui ac lacus mollis
+            posuere. Morbi vitae ligula commodo, scelerisque sapien quis, vulputate justo. Cras
+            sagittis, ligula quis mollis porttitor, massa neque faucibus mauris, quis consectetur
+            eros nibh a ante. Quisque ac porttitor ante. Curabitur in neque a nisl aliquet finibus.
+            Mauris in sapien nec odio molestie vulputate. Suspendisse vitae lorem non quam dapibus
+            cursus sit amet a mauris.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elit mi, tempus sed justo
+            et, viverra mattis lorem. Praesent odio ligula, facilisis id porttitor tempor, cursus at
+            metus. Etiam consequat ante efficitur sodales iaculis. Aliquam at justo vel erat
+            eleifend semper eu non lorem. Cras porta, dolor a porttitor varius, augue lectus congue
+            lorem, nec lobortis urna ipsum quis lorem. Nam quis auctor lacus. Aenean sit amet dictum
+            purus, at convallis neque. Etiam ac augue non risus luctus laoreet eget a est. Curabitur
+            magna purus, fermentum at eros a, faucibus sollicitudin erat. Proin purus sem, lacinia
+            tincidunt ornare et, sollicitudin nec libero. Quisque lobortis dui ac lacus mollis
+            posuere. Morbi vitae ligula commodo, scelerisque sapien quis, vulputate justo. Cras
+            sagittis, ligula quis mollis porttitor, massa neque faucibus mauris, quis consectetur
+            eros nibh a ante. Quisque ac porttitor ante. Curabitur in neque a nisl aliquet finibus.
+            Mauris in sapien nec odio molestie vulputate. Suspendisse vitae lorem non quam dapibus
+            cursus sit amet a mauris.
+          </p>
+
+          <Flex>
+            <Button type={"main"} onClick={() => setIsOpen(false)} style={{ flex: 1 }}>
+              {"Continue"}
+            </Button>
+          </Flex>
+        </Flex>
+      </SideDrawer>
+    </div>
   );
 };
 

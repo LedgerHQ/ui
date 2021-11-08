@@ -56,6 +56,7 @@ export const SideWrapper = (props: SideProps): JSX.Element => {
       onClose={onClose}
       onBack={state?.props?.onBack ? wrappedOnBack : undefined}
       setTransitionsEnabled={setTransitionsEnabled}
+      hideNavigation={false}
     >
       <TransitionGroup enter={transitionsEnabled} exit={transitionsEnabled} component={null}>
         {queue.map(({ Component, props, key }) => (

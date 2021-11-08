@@ -11,6 +11,7 @@ interface BaseProps {
   ff?: string;
   color?: string;
   fontSize?: number;
+  // TODO: We need to change "type" to "variant" to ensure there is no conflict with native button type (ex: <button type=submit>)
   type?: ButtonTypes;
   outline?: boolean;
   iconPosition?: "right" | "left";
@@ -23,6 +24,7 @@ export interface ButtonProps<I = any> extends BaseProps {
   children?: React.ReactNode;
   onClick: (event?: React.SyntheticEvent<HTMLButtonElement>) => void;
   iconSize?: number;
+  style?: React.CSSProperties;
 }
 const IconContainer = styled.div<{
   iconPosition: "right" | "left";

@@ -1,5 +1,5 @@
 import React from "react";
-import Tip , { TipProps } from "./index";
+import Tip, { TipProps } from "./index";
 export default {
   title: "Messages/Tips",
   argTypes: {
