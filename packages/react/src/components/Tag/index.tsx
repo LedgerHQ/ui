@@ -47,12 +47,12 @@ const TagContainer = styled.div.attrs((props: Props) => ({
   backgroundColor: props.bg || props.backgroundColor || getBgColor(props),
   color: props.color || getColor(props),
   borderColor: getBorderColor(props),
-  p: "7px", // TODO: use spacing from the theme when it gets updated
 }))<Props & BorderProps & SpaceProps & ColorProps>`
   display: inline-flex;
   justify-content: center;
   border: 1px solid transparent;
   border-radius: ${(p) => `${p.theme.radii[1]}px`};
+  padding: 9px 10px 10px;
   ${border}
   ${space}
   ${color}
@@ -62,7 +62,7 @@ export default function Tag({ children, ...props }: Props): JSX.Element {
   const textColor = getColor(props);
   return (
     <TagContainer {...props}>
-      <Text variant="tiny" color={textColor}>
+      <Text variant="extraSmall" fontWeight="semiBold" color={textColor}>
         {children}
       </Text>
     </TagContainer>
