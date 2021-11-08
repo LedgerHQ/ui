@@ -39,12 +39,22 @@ const Template = (args: RadioProps) => {
   };
 
   return (
-    <Radio {...args} onChange={handleChange}>
-      <Radio.Element label="Blue squad" value="blue" variant="default" />
+    <Radio
+      {...args}
+      onChange={handleChange}
+      containerProps={{ flexDirection: "column", rowGap: "1rem" }}
+    >
+      <Radio.Element label="Blue squad, using Radio.Element" value="blue" variant="default" />
       <Radio.Element label="Yellow squad" value="yellow" variant="success" />
       <Radio.Element label="Core squad" value="core" variant="error" />
       <Radio.Element label="Orange squad" value="orange" variant="default" disabled />
       <Radio.Element label="Purple squad" value="purple" variant="default" disabled />
+      <Radio.ListElement
+        label="Ledgerverse, using Radio.ListElement"
+        value="another1"
+        containerProps={{ flex: 1 }}
+      />
+      <Radio.ListElement label="Live Monad" value="another2" containerProps={{ flex: 1 }} />
     </Radio>
   );
 };
