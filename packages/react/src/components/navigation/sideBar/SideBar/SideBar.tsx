@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo } from "react";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import SideBarContext from "../../../navigation/sideBar";
@@ -14,9 +14,9 @@ const Nav = styled(Flex)`
   height: 100vh;
   max-width: 14.875rem;
   color: ${(props) => props.theme.colors.palette.neutral.c100};
-  border-right: 1px solid ${(props) => props.theme.colors.palette.neutral.c90};
-  background-color: ${(props) => props.theme.colors.palette.neutral.c00};
-  transition: max-width 300ms;
+  border-right: 1px solid ${(props) => props.theme.colors.palette.neutral.c40};
+  background-color: ${(props) => props.theme.colors.palette.background.main};
+  transition: max-width 200ms;
   will-change: max-width;
 
   &.nav-enter {
@@ -40,22 +40,19 @@ export type SideBarProps = {
 };
 
 const SideBar = ({ children, onToggle, isExpanded = true }: SideBarProps): JSX.Element => {
-  const [isToggleDisplayed, setToggleDisplayed] = useState(false);
   const providerValue = useMemo(() => ({ isExpanded, onToggle }), [isExpanded, onToggle]);
 
   return (
     <SideBarContext.Provider value={providerValue}>
-      <CSSTransition in={isExpanded} timeout={300} classNames="nav">
+      <CSSTransition in={isExpanded} timeout={200} classNames="nav">
         <Nav
           flexDirection="column"
           justifyContent="flex-start"
           alignContent="stretch"
           role="navigation"
           aria-label="Main"
-          onMouseEnter={() => setToggleDisplayed(true)}
-          onMouseLeave={() => setToggleDisplayed(false)}
         >
-          <Toggle isDisplayed={isToggleDisplayed} />
+          <Toggle isDisplayed={true} />
           <Logo />
           <Flex flexDirection="column" justifyContent="flex-start" alignContent="stretch">
             {children}
