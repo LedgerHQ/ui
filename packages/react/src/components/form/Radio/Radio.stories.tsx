@@ -55,6 +55,7 @@ const Template = (args: RadioProps) => {
         containerProps={{ flex: 1 }}
       />
       <Radio.ListElement label="Live Monad" value="another2" containerProps={{ flex: 1 }} />
+      <Radio.ListElement label="Live Hub" value="another3" disabled containerProps={{ flex: 1 }} />
     </Radio>
   );
 };

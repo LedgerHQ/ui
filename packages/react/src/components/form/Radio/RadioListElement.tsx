@@ -4,13 +4,17 @@ import Text from "../../asorted/Text";
 import Flex, { FlexBoxProps } from "../../layout/Flex";
 import { RadioContext } from "./index";
 
-const Label = styled(Text)<{ checked: boolean }>`
+const Label = styled(Text)<{ checked: boolean; disabled: boolean | undefined }>`
   color: ${(p) =>
-    p.checked ? p.theme.colors.palette.primary.c90 : p.theme.colors.palette.neutral.c100};
+    p.disabled
+      ? p.theme.colors.palette.neutral.c50
+      : p.checked
+      ? p.theme.colors.palette.primary.c90
+      : p.theme.colors.palette.neutral.c100};
 `;
 
-const Container = styled(Flex)<{ checked: boolean }>`
-  cursor: pointer;
+const Container = styled(Flex)<{ checked: boolean; disabled: boolean | undefined }>`
+  cursor: ${(p) => (p.disabled ? "" : "pointer")};
   justify-content: center;
   align-items: center;
   background-color: ${(p) =>
@@ -21,14 +25,13 @@ const Container = styled(Flex)<{ checked: boolean }>`
   padding: ${(p) => p.theme.space[6]}px;
 
   :hover {
-    border-color: ${(p) => p.theme.colors.palette.primary.c80};
+    border-color: ${(p) => (p.disabled || p.checked ? "" : p.theme.colors.palette.primary.c80)};
   }
 `;
 
 const Input = styled.input`
   position: relative;
   appearance: none;
-  cursor: pointer;
 `;
 
 const RadioListElement = styled.label.attrs({ tabIndex: -1 })`
@@ -65,7 +68,7 @@ const ListElement = ({
 
   return (
     <RadioListElement>
-      <Container checked={isChecked} {...containerProps}>
+      <Container checked={isChecked} disabled={disabled} {...containerProps}>
         <Input
           type="radio"
           checked={isChecked}
@@ -76,7 +79,7 @@ const ListElement = ({
           {...props}
         />
         {label && (
-          <Label checked={isChecked} variant="paragraph">
+          <Label checked={isChecked} disabled={disabled} variant="paragraph">
             {label}
           </Label>
         )}

@@ -11,6 +11,7 @@ const Template = () => {
     <Radio currentValue="first" name="radioListElement" onChange={() => {}}>
       <Radio.ListElement label="Selected" value="first" />
       <Radio.ListElement label="Unselected" value="second" />
+      <Radio.ListElement label="Disabled" value="third" disabled />
     </Radio>
   );
 };
