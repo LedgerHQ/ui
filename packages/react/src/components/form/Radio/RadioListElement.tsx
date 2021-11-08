@@ -42,9 +42,11 @@ const RadioListElement = styled.label.attrs({ tabIndex: -1 })`
 type InputAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "name">;
 
 export type RadioListElementProps = InputAttributes & {
+  /** The string that will be rendered as label of this radio element, styled according to the input state */
   label?: string;
+  /** A component to render inside, it will be rendered with these props: { checked:boolean; disabled:boolean } */
   LabelComponent?: React.ComponentType<{ checked: boolean; disabled: boolean | undefined }>;
-  inputHidden?: boolean;
+  /** Flex props to pass to the container */
   containerProps?: FlexBoxProps;
 };
 
