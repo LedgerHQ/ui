@@ -33,11 +33,17 @@ export default {
 export const AllCombinations = ((): JSX.Element => (
   <Flex flexDirection="column">
     {sizes.map((size) => (
-      <Flex flexDirection="column">
-        <Text variant="h2">size="{size}"</Text>
+      <Flex flexDirection="column" marginBottom={5}>
+        <Text variant="h5" marginBottom={5}>
+          size="{size}"
+        </Text>
         {types.map((type) => (
-          <Flex flexDirection="column" ml={10} mb={10}>
-            <Text variant="h5">type="{type}"</Text>
+          <Flex flexDirection="row" alignItems="center" mb={5}>
+            <div style={{ width: "150px" }}>
+              <Text variant="small" color="palette.neutral.c70">
+                type="{type}"
+              </Text>
+            </div>
             <Flex flexDirection="row" mt="5px" columnGap="16px">
               {states.map((state) =>
                 [true, false].map((active: boolean) => (
