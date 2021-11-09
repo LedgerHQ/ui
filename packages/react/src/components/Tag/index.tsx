@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { border, BorderProps, space, SpaceProps, color, ColorProps } from "styled-system";
 import Text, { TextProps } from "../asorted/Text";
 
-type Size = "large" | "medium" | "small";
+export type Size = "large" | "medium" | "small";
+export type Type = "plain" | "opacity" | "outlined" | "outlinedOpacity";
 
 export type Props = React.PropsWithChildren<
   {
@@ -15,7 +16,7 @@ export type Props = React.PropsWithChildren<
     /**
      * Tag style.
      */
-    type?: "plain" | "opacity" | "outlined";
+    type?: Type;
     /**
      * Size of the tag, affects the padding and the casing (uppercase for small and medium)
      */
@@ -24,34 +25,40 @@ export type Props = React.PropsWithChildren<
      * Props passed to the text component, overriding props set internally by Tag component
      */
     textProps?: TextProps;
+
+    disabled?: boolean;
   } & BorderProps &
     ColorProps
 >;
 
-function getColor({ type, active }: Props) {
+function getColor({ type, active, disabled }: Props) {
   switch (type) {
-    case "opacity":
-    case "outlined":
-      return "palette.primary.c90";
-    default:
+    case "plain":
+      if (disabled) return active ? "palette.neutral.c00" : "palette.neutral.c70";
       return active ? "palette.neutral.c00" : "palette.primary.c90";
-  }
-}
-
-function getBgColor({ type, active }: Props) {
-  switch (type) {
-    case "opacity":
-      return active ? "palette.primary.c20" : undefined;
-    case "outlined":
-      return;
     default:
-      return active ? "palette.primary.c90" : undefined;
+      return disabled ? "palette.neutral.c70" : "palette.primary.c90";
   }
 }
 
-function getBorderColor({ type, active }: Props) {
-  if (type === "outlined" && active) {
-    return "palette.primary.c90";
+function getBgColor({ type, active, disabled }: Props) {
+  switch (type) {
+    case "plain":
+      return active ? (disabled ? "palette.neutral.c70" : "palette.primary.c90") : undefined;
+    case "opacity":
+      return active ? (disabled ? "palette.neutral.c30" : "palette.primary.c20") : undefined;
+    default:
+      return;
+  }
+}
+
+function getBorderColor({ type, active, disabled }: Props) {
+  if (!active) return;
+  switch (type) {
+    case "outlined":
+      return disabled ? "palette.neutral.c70" : "palette.primary.c90";
+    case "outlinedOpacity":
+      return disabled ? "palette.neutral.c40" : "palette.primary.c40";
   }
 }
 
