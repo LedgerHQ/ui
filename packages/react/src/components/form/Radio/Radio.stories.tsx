@@ -27,13 +27,11 @@ export default {
   },
 };
 
-const Template = (args: RadioProps) => {
+const TemplateElement = (args: RadioProps) => {
   const [currentArgs, updateArgs] = useArgs();
-
   const handleChange: RadioProps["onChange"] = (value) => {
     // toggle the checked value on click to simulate onChange
     updateArgs({ currentValue: value });
-
     // trigger the storybook action
     currentArgs.onChange(value);
   };
@@ -44,25 +42,48 @@ const Template = (args: RadioProps) => {
       onChange={handleChange}
       containerProps={{ flexDirection: "column", rowGap: "1rem" }}
     >
-      <Radio.Element label="Blue squad, using Radio.Element" value="blue" variant="default" />
+      <Radio.Element label="Blue squad" value="blue" variant="default" />
       <Radio.Element label="Yellow squad" value="yellow" variant="success" />
       <Radio.Element label="Core squad" value="core" variant="error" />
       <Radio.Element label="Orange squad" value="orange" variant="default" disabled />
       <Radio.Element label="Purple squad" value="purple" variant="default" disabled />
-      <Radio.ListElement
-        label="Ledgerverse, using Radio.ListElement"
-        value="another1"
-        containerProps={{ flex: 1 }}
-      />
-      <Radio.ListElement label="Live Monad" value="another2" containerProps={{ flex: 1 }} />
-      <Radio.ListElement label="Live Hub" value="another3" disabled containerProps={{ flex: 1 }} />
     </Radio>
   );
 };
 
-export const RadioGroup: StoryTemplate<RadioProps> = Template.bind({
+export const RadioGroup: StoryTemplate<RadioProps> = TemplateElement.bind({
   currentValue: "purple",
 });
 
+const TemplateListElement = (args: RadioProps) => {
+  const [currentArgs, updateArgs] = useArgs();
+  const handleChange: RadioProps["onChange"] = (value) => {
+    // toggle the checked value on click to simulate onChange
+    updateArgs({ currentValue: value });
+    // trigger the storybook action
+    currentArgs.onChange(value);
+  };
+  return (
+    <Radio
+      {...args}
+      onChange={handleChange}
+      containerProps={{ flexDirection: "column", rowGap: "1rem" }}
+    >
+      <Radio.ListElement
+        label="Ledger Verse"
+        value="ledgerVerse"
+        disabled
+        containerProps={{ flex: 1 }}
+      />
+      <Radio.ListElement label="Live Monad" value="liveMonad" containerProps={{ flex: 1 }} />
+      <Radio.ListElement label="Live Hub" value="liveHub" containerProps={{ flex: 1 }} />
+      <Radio.ListElement label="Live Meta" value="liveMeta" containerProps={{ flex: 1 }} />
+    </Radio>
+  );
+};
+
+export const RadioGroupList: StoryTemplate<RadioProps> = TemplateListElement.bind({});
+
 // Set the disabled item to be checked on mount
 RadioGroup.args = { currentValue: "purple" };
+RadioGroupList.args = { currentValue: "liveHub" };
