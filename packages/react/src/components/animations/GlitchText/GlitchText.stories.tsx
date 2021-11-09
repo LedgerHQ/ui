@@ -3,7 +3,7 @@ import Log from "../../message/Log";
 import GlitchText, { GlitchTextProps } from "./";
 
 export default {
-  title: "Asorted/Typography/GlitchText",
+  title: "Animations/GlitchText",
   component: GlitchText,
   parameters: { actions: { argTypesRegex: false } },
   argTypes: {
