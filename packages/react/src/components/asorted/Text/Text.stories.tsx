@@ -22,10 +22,8 @@ const subtitleVariants: TextVariants[] = ["subtitle"];
 
 const variants: TextVariants[] = [...headerVariants, ...mainVariants, ...subtitleVariants];
 
-const isInCategory = (variant: TextVariants, variantsArray: TextVariants[]): boolean =>
-  variantsArray.includes(variant);
 const makeIsInCategory = (variantsArray: TextVariants[]) => (variant: TextVariants) =>
-  isInCategory(variant, variantsArray);
+  variantsArray.includes(variant);
 const isHeader = makeIsInCategory(headerVariants);
 const isSubtitle = makeIsInCategory(subtitleVariants);
 
