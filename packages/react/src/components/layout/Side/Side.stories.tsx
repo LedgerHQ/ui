@@ -162,7 +162,7 @@ export const SideSimple = ({ title, big }: SideDrawerProps) => {
 
           <Flex>
             <Button type={"main"} onClick={() => setIsOpen(false)} style={{ flex: 1 }}>
-              {"Continue"}
+              {"Fermer"}
             </Button>
           </Flex>
         </Flex>
