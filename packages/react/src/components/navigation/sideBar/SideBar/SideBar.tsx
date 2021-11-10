@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import SideBarContext from "../../../navigation/sideBar";
@@ -33,6 +33,14 @@ const Nav = styled(Flex)`
   }
 `;
 
+const TransparentMouseZone = styled.div`
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: ${(p) => `${p.theme.space[8]}px`};
+  height: 100%;
+`;
+
 export type SideBarProps = {
   children: Array<JSX.Element>;
   onToggle: () => void;
@@ -40,6 +48,7 @@ export type SideBarProps = {
 };
 
 const SideBar = ({ children, onToggle, isExpanded = true }: SideBarProps): JSX.Element => {
+  const [isToggleDisplayed, setToggleDisplayed] = useState(false);
   const providerValue = useMemo(() => ({ isExpanded, onToggle }), [isExpanded, onToggle]);
 
   return (
@@ -51,8 +60,11 @@ const SideBar = ({ children, onToggle, isExpanded = true }: SideBarProps): JSX.E
           alignContent="stretch"
           role="navigation"
           aria-label="Main"
+          onMouseEnter={() => setToggleDisplayed(true)}
+          onMouseLeave={() => setToggleDisplayed(false)}
         >
-          <Toggle isDisplayed={true} />
+          <TransparentMouseZone />
+          <Toggle isDisplayed={isToggleDisplayed} />
           <Logo />
           <Flex flexDirection="column" justifyContent="flex-start" alignContent="stretch">
             {children}
