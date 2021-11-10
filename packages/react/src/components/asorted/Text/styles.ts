@@ -84,7 +84,7 @@ export const textVariantStyle: Record<
     "text-transform": "uppercase",
   },
   h4: {
-    fontFamily: "Inter",
+    fontFamily: "Alpha",
     fontWeight: 500,
     "text-transform": "uppercase",
   },
