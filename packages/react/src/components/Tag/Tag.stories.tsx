@@ -30,7 +30,7 @@ export default {
   },
 };
 
-export const AllCombinations = ((): JSX.Element => (
+export const Overview = ((): JSX.Element => (
   <Flex flexDirection="column">
     {sizes.map((size) => (
       <Flex flexDirection="column" marginBottom={5}>
