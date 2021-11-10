@@ -25,10 +25,10 @@ export interface ButtonProps extends BaseProps {
   iconSize?: number;
 }
 const IconContainer = styled.div<{
-  iconPosition: "right" | "left";
+  iconPosition: IconPosition;
 }>`
   display: inline-block;
-  ${(p) => `${p.iconPosition === "left" ? "margin-right" : "margin-left"}: ${p.theme.space[4]}px`}
+  ${(p) => `${p.iconPosition === "left" ? "margin-right" : "margin-left"}: ${p.theme.space[4]}px;`}
   padding-top: 0.2em;
 `;
 
