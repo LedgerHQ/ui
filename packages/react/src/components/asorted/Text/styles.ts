@@ -63,7 +63,7 @@ export const textVariantStyle: Record<
   TextVariants,
   {
     fontFamily: string;
-    lineHeight?: string;
+    lineHeight?: string | number;
     fontWeight?: number;
     "text-transform"?: string;
   }
@@ -98,21 +98,21 @@ export const textVariantStyle: Record<
   },
   largeLineHeight: {
     fontFamily: "Inter",
-    lineHeight: "170%",
+    lineHeight: 1.7,
   },
   body: {
     fontFamily: "Inter",
   },
   bodyLineHeight: {
     fontFamily: "Inter",
-    lineHeight: "170%",
+    lineHeight: 1.7,
   },
   paragraph: {
     fontFamily: "Inter",
   },
   paragraphLineHeight: {
     fontFamily: "Inter",
-    lineHeight: "170%",
+    lineHeight: 1.7,
   },
   small: {
     fontFamily: "Inter",
