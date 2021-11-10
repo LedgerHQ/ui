@@ -1,8 +1,32 @@
 import React from "react";
-import Box from "./index";
+import Box, { BoxProps } from "./index";
 export default {
   title: "Layout/Box",
   component: Box,
+  argTypes: {
+    backgroundColor: {
+      type: "text",
+      control: "color",
+      defaultValue: "#0EBDCD",
+      description:
+        "This property defines the backgroundColor of the box. This property any color format.",
+    },
+    width: {
+      type: "text",
+      defaultValue: "200px",
+      description: "Width of the box.",
+    },
+    py: {
+      type: "text",
+      defaultValue: "20px",
+      description: "Padding top and bottom.",
+    },
+    mx: {
+      type: "text",
+      defaultValue: "20px",
+      description: "Margin left and right.",
+    },
+  },
   parameters: {
     docs: {
       description: {
@@ -16,8 +40,8 @@ It include all the style props exported by the color, layout, position, shadow u
   },
 };
 
-const Template = () => (
-  <Box width={"200px"} backgroundColor="darkslategray" py={4} mx={4}>
+const Template = (args: BoxProps) => (
+  <Box {...args}>
     A plain good ol'box with fixed width, backgroundColor, padding and margin, all by using inline
     props
   </Box>
