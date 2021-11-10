@@ -12,8 +12,8 @@ export default {
   title: "cta/Button",
   component: Button,
   argTypes: {
-    type: {
-      options: [undefined, ...buttonTypes],
+    variant: {
+      options: [undefined, "main", "shade", "color", "error"],
       control: {
         type: "radio",
       },
@@ -83,7 +83,11 @@ export const Overview = (() => {
 
 // @ts-expect-error FIXME
 const Template = (args) => {
-  return <Button {...args}>{args.children || "Regular button"}</Button>;
+  return (
+    <Button {...args} type={"submit"}>
+      {args.children || "Regular button"}
+    </Button>
+  );
 };
 
 // @ts-expect-error FIXME
