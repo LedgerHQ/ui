@@ -1,7 +1,7 @@
 import React from "react";
 import Flex, { FlexBoxProps } from "./index";
-import styled from "styled-components";
-import { backgroundColor, BackgroundColorProps } from "styled-system";
+import { Box } from "../index";
+import { Text } from "../../asorted";
 export default {
   title: "Layout/Flex",
   component: Flex,
@@ -287,33 +287,39 @@ export default {
 };
 /*
  ** Template component creates a sandbox to play with Flexbox properties.
- ** Children Flexbox props are passed to the first Square child, that allow
+ ** Children Flexbox props are passed to the first Box child, that allow
  ** you to play with the flexbox properties for children.
  */
 
-const Square = styled.div<FlexBoxProps & BackgroundColorProps>`
-  width: 25vw;
-  height: 25vw;
-  padding: 1rem;
-  color: white;
-  font-weight: 700;
-  ${backgroundColor}
-`;
-
 const Template = (args: FlexBoxProps) => (
-  <Flex
-    {...args}
-    style={{
-      width: "100vw",
-      height: "100vh",
-    }}
-  >
-    <Square {...args} backgroundColor="darkslategray">
-      Control me with flex children props
-    </Square>
-    <Square backgroundColor="lightslategray" />
-    <Square backgroundColor="darkgray" />
-  </Flex>
+  <div>
+    <Text as={"div"} variant={"h3"}>
+      Flex
+    </Text>
+    <Text as="p" variant={"paragraph"} mb={3}>
+      The Flex component is a flexbox helper component that lets you write these common css
+      properties more succinctly and inline.
+    </Text>
+    <Text as="p" variant={"paragraph"} mb={3}>
+      Like the Box component, it includes all the style props exported by the color, layout,
+      position, and shadow utilities from the{" "}
+      <a href={"https://styled-system.com"}>styled-system</a> library, but also fully includes the
+      flexbox ones.
+    </Text>
+    <a href={"https://styled-system.com/api"}>See more about styled-system utilities</a>
+
+    <Text as={"div"} variant={"h3"} my={3}>
+      Exemple:
+    </Text>
+
+    <Flex {...args} width={"100vw"} height={"100vh"}>
+      <Box {...args} backgroundColor="darkslategray">
+        Control me with flex children props
+      </Box>
+      <Box backgroundColor="palette.primary.c100" />
+      <Box backgroundColor="darkgray" />
+    </Flex>
+  </div>
 );
 
 export const Default = Template.bind({});
