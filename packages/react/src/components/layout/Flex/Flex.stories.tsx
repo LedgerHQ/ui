@@ -1,7 +1,6 @@
 import React from "react";
 import Flex, { FlexBoxProps } from "./index";
 import { Box } from "../index";
-import { Text } from "../../asorted";
 export default {
   title: "Layout/Flex",
   component: Flex,
@@ -284,6 +283,17 @@ export default {
       table: { category: "Parent" },
     },
   },
+  parameters: {
+    docs: {
+      description: {
+        component: `The Flex component is a flexbox helper component that lets you write these common css properties more succinctly and inline.
+      
+Like the Box component, it includes all the style props exported by the color, layout, position, and shadow utilities from the [styled-system](https://styled-system.com) library, but also fully includes the flexbox ones.
+      
+[See more about styled-system utilities](https://styled-system.com/api)`,
+      },
+    },
+  },
 };
 /*
  ** Template component creates a sandbox to play with Flexbox properties.
@@ -292,34 +302,13 @@ export default {
  */
 
 const Template = (args: FlexBoxProps) => (
-  <div>
-    <Text as={"div"} variant={"h3"}>
-      Flex
-    </Text>
-    <Text as="p" variant={"paragraph"} mb={3}>
-      The Flex component is a flexbox helper component that lets you write these common css
-      properties more succinctly and inline.
-    </Text>
-    <Text as="p" variant={"paragraph"} mb={3}>
-      Like the Box component, it includes all the style props exported by the color, layout,
-      position, and shadow utilities from the{" "}
-      <a href={"https://styled-system.com"}>styled-system</a> library, but also fully includes the
-      flexbox ones.
-    </Text>
-    <a href={"https://styled-system.com/api"}>See more about styled-system utilities</a>
-
-    <Text as={"div"} variant={"h3"} my={3}>
-      Exemple:
-    </Text>
-
-    <Flex {...args} width={"100vw"} height={"100vh"}>
-      <Box {...args} backgroundColor="darkslategray">
-        Control me with flex children props
-      </Box>
-      <Box backgroundColor="palette.primary.c100" />
-      <Box backgroundColor="darkgray" />
-    </Flex>
-  </div>
+  <Flex {...args} width={"100vw"} height={"100vh"}>
+    <Box {...args} width={"25vw"} height={"25vh"} backgroundColor="darkslategray">
+      Control me with flex children props
+    </Box>
+    <Box width={"25vw"} height={"25vh"} backgroundColor="palette.primary.c100" />
+    <Box width={"25vw"} height={"25vh"} backgroundColor="darkgray" />
+  </Flex>
 );
 
 export const Default = Template.bind({});
