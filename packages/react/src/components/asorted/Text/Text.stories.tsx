@@ -54,7 +54,7 @@ export default {
   },
 };
 
-export const MainCombinations = (() => {
+export const Overview = (() => {
   return (
     <Flex flexDirection="column">
       {variants.map((variant) => {
