@@ -11,11 +11,11 @@ const Template = () => (
     <Text as={"div"} variant={"h3"}>
       Box
     </Text>
-    <Text as="p" variant={"body"} mb={3}>
+    <Text as="p" variant={"paragraph"} mb={3}>
       The Box component is a helper component that lets you write these common css properties more
-      succinctly inline.
+      succinctly and inline.
     </Text>
-    <Text as="p" variant={"body"} mb={3}>
+    <Text as="p" variant={"paragraph"} mb={3}>
       It include all the style props exported by the color, layout, position, shadow utilities, and
       some of the flexbox utility, from the <a href={"https://styled-system.com"}>styled-system</a>{" "}
       library.
