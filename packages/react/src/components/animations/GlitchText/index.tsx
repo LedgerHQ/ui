@@ -43,5 +43,5 @@ export default function GlitchText({ text, duration = 800, delay = 500 }: Glitch
     return () => interval && clearInterval(interval);
   }, [delay, duration, text]);
 
-  return <span>{shownText}</span>;
+  return <>{shownText}</>;
 }
