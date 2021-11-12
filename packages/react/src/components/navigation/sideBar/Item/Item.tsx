@@ -129,13 +129,11 @@ const Item = ({
           in={isExpanded}
           unmountOnExit
           mountOnEnter
-          style={{ transitionDelay: isExpanded ? "200ms" : 0, display: "flex" }}
+          style={{ transitionDelay: isExpanded ? "200ms" : 0, display: "flex", flex: "1" }}
         >
-          <Flex>
-            <ItemLabel variant="paragraph">{label}</ItemLabel>
-            <Flex alignItems="center" justifyContent="flex-end" flexGrow={1}>
-              {displayNotificationBadge && badge}
-            </Flex>
+          <ItemLabel variant="paragraph">{label}</ItemLabel>
+          <Flex alignItems="center" justifyContent="flex-end" ml={2} flexGrow={1}>
+            {displayNotificationBadge && badge}
           </Flex>
         </TransitionInOut>
       </ItemWrapper>
