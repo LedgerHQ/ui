@@ -6,7 +6,8 @@ import { fontSizes } from "../../../styles/theme";
 import ChevronBottom from "@ledgerhq/icons-ui/react/ChevronBottomRegular";
 import { sharedStyle, SharedStyleProps } from "../../../styles/system/shared";
 
-type ButtonVariants = "main" | "shade" | "error" | "color";
+export type IconPosition = "right" | "left";
+export type ButtonVariants = "main" | "shade" | "error" | "color";
 
 type BaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
   SharedStyleProps & {
@@ -14,7 +15,7 @@ type BaseProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
     fontSize?: number;
     variant?: ButtonVariants;
     outline?: boolean;
-    iconPosition?: "right" | "left";
+    iconPosition?: IconPosition;
     iconButton?: boolean;
     disabled?: boolean;
   };
