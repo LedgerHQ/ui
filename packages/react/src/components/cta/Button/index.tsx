@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import styled, { css, StyledProps } from "styled-components";
-import { fontSize, color, border, BordersProps } from "styled-system";
+import { fontSize, border, BordersProps, compose } from "styled-system";
+import baseStyles, { BaseStyleProps } from "../../baseStyled";
 import fontFamily from "../../../styles/styled/fontFamily";
 import { fontSizes } from "../../../styles/theme";
 import ChevronBottom from "@ledgerhq/icons-ui/react/ChevronBottomRegular";
 
 export type ButtonTypes = "main" | "shade" | "error" | "color";
 export type IconPosition = "right" | "left";
-interface BaseProps extends BordersProps {
+interface BaseProps extends BaseStyleProps, BordersProps {
   ff?: string;
   color?: string;
   backgroundColor?: string;
@@ -133,10 +134,7 @@ export const Base = styled.button.attrs((p: BaseProps) => ({
   border-radius: ${(p) => p.theme.space[13]}px;
   border-style: solid;
   border-width: ${(p) => (p.outline || p.type === "shade" ? 1 : 0)}px;
-  ${fontFamily};
-  ${fontSize};
-  ${color};
-  ${border};
+  ${compose(baseStyles, fontFamily, fontSize, border)};
   height: ${(p) => p.theme.space[13]}px;
   line-height: ${(p) => p.theme.fontSizes[p.fontSize]}px;
   text-align: center;

@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
+import baseStyles, { BaseStyleProps } from "../../baseStyled";
 import Button from "../../cta/Button";
 import Close from "@ledgerhq/icons-ui/react/CloseRegular";
 import TransitionInOut from "../../transitions/TransitionInOut";
@@ -10,34 +11,32 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: ${(p) => p.theme.colors.palette.neutral.c00};
-  padding: ${(p) => p.theme.space[6]}px;
 `;
 
-export interface WrapperProps {
-  width?: number;
-  height?: number;
-}
-
-export type PopinProps = WrapperProps & {
+export type PopinProps = {
   isOpen: boolean;
   children: React.ReactNode;
   onClose?: () => void;
-};
+} & Omit<BaseStyleProps, "color">;
 
-const Wrapper = styled.div<WrapperProps>`
-  height: ${(p) => p.height || p.theme.sizes.drawer.popin.min.height}px;
-  width: ${(p) => p.width || p.theme.sizes.drawer.popin.min.width}px;
-  min-height: ${(p) => p.theme.sizes.drawer.popin.min.height}px;
-  min-width: ${(p) => p.theme.sizes.drawer.popin.min.width}px;
-  max-height: ${(p) => p.theme.sizes.drawer.popin.max.height}px;
-  max-width: ${(p) => p.theme.sizes.drawer.popin.max.width}px;
+const Wrapper = styled.div.attrs<BaseStyleProps>((p) => ({
+  height: p.height || p.theme.sizes.drawer.popin.min.height,
+  width: p.width || p.theme.sizes.drawer.popin.min.width,
+  minHeight: p.theme.sizes.drawer.popin.min.height,
+  minWidth: p.theme.sizes.drawer.popin.min.width,
+  maxHeight: Math.max(Number(p.height) || 0, p.theme.sizes.drawer.popin.max.height),
+  maxWidth: Math.max(Number(p.width) || 0, p.theme.sizes.drawer.popin.max.width),
+  padding: p.padding === undefined ? 6 : p.padding,
+}))<BaseStyleProps>`
+  ${baseStyles};
   display: flex;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
   z-index: ${(p) => p.theme.zIndexes[8]};
+  background-color: ${(p) => p.theme.colors.palette.neutral.c50};
 `;
+
 const Overlay = styled.div`
   position: fixed;
   display: flex;
@@ -56,11 +55,11 @@ const CloseButton = styled(Button)`
   right: ${(p) => p.theme.space[6]}px;
 `;
 
-const Popin = ({ isOpen, children, width, height, onClose = () => {} }: PopinProps) => (
+const Popin = ({ isOpen, children, onClose = () => {}, ...props }: PopinProps) => (
   <TransitionInOut in={isOpen} appear mountOnEnter unmountOnExit>
     <Overlay>
       <TransitionScale in={isOpen} appear>
-        <Wrapper width={width} height={height}>
+        <Wrapper {...props}>
           <Container>
             <CloseButton Icon={Close} onClick={onClose} />
             {children}
