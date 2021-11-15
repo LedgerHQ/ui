@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import baseStyles, { BaseStyleProps } from "../../baseStyled";
+import baseStyled, { BaseStyledProps } from "../../styled";
 import Button from "../../cta/Button";
 import Close from "@ledgerhq/icons-ui/react/CloseRegular";
 import TransitionInOut from "../../transitions/TransitionInOut";
@@ -17,9 +17,9 @@ export type PopinProps = {
   isOpen: boolean;
   children: React.ReactNode;
   onClose?: () => void;
-} & Omit<BaseStyleProps, "color">;
+} & Omit<BaseStyledProps, "color">;
 
-const Wrapper = styled.div.attrs<BaseStyleProps>((p) => ({
+const Wrapper = baseStyled.div.attrs<BaseStyledProps>((p) => ({
   height: p.height || p.theme.sizes.drawer.popin.min.height,
   width: p.width || p.theme.sizes.drawer.popin.min.width,
   minHeight: p.theme.sizes.drawer.popin.min.height,
@@ -27,8 +27,7 @@ const Wrapper = styled.div.attrs<BaseStyleProps>((p) => ({
   maxHeight: Math.max(Number(p.height) || 0, p.theme.sizes.drawer.popin.max.height),
   maxWidth: Math.max(Number(p.width) || 0, p.theme.sizes.drawer.popin.max.width),
   padding: p.padding === undefined ? 6 : p.padding,
-}))<BaseStyleProps>`
-  ${baseStyles};
+}))<BaseStyledProps>`
   display: flex;
   flex-direction: column;
   align-items: stretch;

@@ -1,8 +1,7 @@
-import styled from "styled-components";
-import baseStyles, { BaseStyleProps } from "../../baseStyled";
+import baseStyled, { BaseStyledProps } from "../../styled";
 
-export type FlexBoxProps = BaseStyleProps;
+export type FlexBoxProps = BaseStyledProps;
 
-const FlexBox = styled.div.attrs({ display: "flex" })<FlexBoxProps>(baseStyles);
+const FlexBox = baseStyled.div.attrs<FlexBoxProps>({ display: "flex" })<FlexBoxProps>``;
 
 export default FlexBox;

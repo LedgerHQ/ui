@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import styled, { css, StyledProps } from "styled-components";
+import baseStyled, { BaseStyledProps } from "../../styled";
 import { fontSize, border, BordersProps, compose } from "styled-system";
-import baseStyles, { BaseStyleProps } from "../../baseStyled";
 import fontFamily from "../../../styles/styled/fontFamily";
 import { fontSizes } from "../../../styles/theme";
 import ChevronBottom from "@ledgerhq/icons-ui/react/ChevronBottomRegular";
 
 export type ButtonTypes = "main" | "shade" | "error" | "color";
 export type IconPosition = "right" | "left";
-interface BaseProps extends BaseStyleProps, BordersProps {
+interface BaseProps extends BaseStyledProps, BordersProps {
   ff?: string;
   color?: string;
   backgroundColor?: string;
@@ -124,9 +124,8 @@ const getVariantColors = (p: StyledProps<BaseProps>) => ({
   },
 });
 
-export const Base = styled.button.attrs((p: BaseProps) => ({
+export const Base = baseStyled.button.attrs((p: BaseProps) => ({
   ff: "Inter|SemiBold",
-  color: p.color ?? "palette.neutral.c100",
   fontSize: p.fontSize ?? 4,
 }))<BaseProps>`
   background-color: transparent;
@@ -134,7 +133,7 @@ export const Base = styled.button.attrs((p: BaseProps) => ({
   border-radius: ${(p) => p.theme.space[13]}px;
   border-style: solid;
   border-width: ${(p) => (p.outline || p.type === "shade" ? 1 : 0)}px;
-  ${compose(baseStyles, fontFamily, fontSize, border)};
+  ${compose(fontFamily, fontSize, border)};
   height: ${(p) => p.theme.space[13]}px;
   line-height: ${(p) => p.theme.fontSizes[p.fontSize]}px;
   text-align: center;

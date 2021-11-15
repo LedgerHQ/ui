@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "styled-components";
-import baseStyles, { BaseStyleProps } from "../../baseStyled";
+import baseStyled, { BaseStyledProps } from "../../styled";
 import {
   compose,
   fontSize,
@@ -48,7 +47,7 @@ export interface TextProps {
   children: React.ReactNode;
 }
 
-export interface BaseTextProps extends BaseStyleProps {
+export interface BaseTextProps extends BaseStyledProps {
   fontFamily?: string;
   ff?: FontFamilies;
   fontSize?: number | string | TextVariants;
@@ -61,7 +60,7 @@ export interface BaseTextProps extends BaseStyleProps {
   textOverflow?: string;
 }
 
-const Text = styled.span.attrs<BaseTextProps>(
+const Text = baseStyled.span.attrs<BaseTextProps>(
   ({ variant = "body", fontSize, color }: BaseTextProps) => ({
     fontSize: fontSize ? fontSize : variant,
     color: color || "palette.neutral.c100",
@@ -70,7 +69,6 @@ const Text = styled.span.attrs<BaseTextProps>(
   font-weight: 500;
   ${(p) => textVariantStyle[p.variant || "body"]}
   ${compose(
-    baseStyles,
     uppercase,
     lineHeight,
     fontFamily,
