@@ -7,12 +7,6 @@ import Close from "@ledgerhq/icons-ui/react/CloseRegular";
 import TransitionInOut from "../../transitions/TransitionInOut";
 import TransitionScale from "../../transitions/TransitionScale";
 
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-`;
-
 export type PopinProps = {
   isOpen: boolean;
   children: React.ReactNode;
@@ -27,6 +21,7 @@ const Wrapper = baseStyled.div.attrs<BaseStyledProps>((p) => ({
   maxHeight: Math.max(Number(p.height) || 0, p.theme.sizes.drawer.popin.max.height),
   maxWidth: Math.max(Number(p.width) || 0, p.theme.sizes.drawer.popin.max.width),
   padding: p.padding === undefined ? 6 : p.padding,
+  position: "relative",
 }))<BaseStyledProps>`
   display: flex;
   flex-direction: column;
@@ -59,10 +54,8 @@ const Popin = ({ isOpen, children, onClose = () => {}, ...props }: PopinProps) =
     <Overlay>
       <TransitionScale in={isOpen} appear>
         <Wrapper {...props}>
-          <Container>
-            <CloseButton Icon={Close} onClick={onClose} />
-            {children}
-          </Container>
+          <CloseButton Icon={Close} onClick={onClose} />
+          {children}
         </Wrapper>
       </TransitionScale>
     </Overlay>

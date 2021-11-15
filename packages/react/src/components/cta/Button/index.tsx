@@ -40,7 +40,7 @@ const getVariantColors = (p: StyledProps<BaseProps>) => ({
         border-color: ${p.theme.colors.palette.neutral.c100};
         color: ${p.theme.colors.palette.neutral.c100};
         background-color: ${p.theme.colors.palette.neutral.c00};
-        &:hover {
+        &:hover, &:focus {
           background-color: ${p.theme.colors.palette.neutral.c20};
         }
         &:active {
@@ -50,7 +50,7 @@ const getVariantColors = (p: StyledProps<BaseProps>) => ({
     filled: `
         color: ${p.theme.colors.palette.neutral.c00};
         background-color: ${p.theme.colors.palette.neutral.c100};
-        &:hover {
+        &:hover, &:focus {
           background-color: ${p.theme.colors.palette.neutral.c90};
         }
       `,
@@ -63,7 +63,7 @@ const getVariantColors = (p: StyledProps<BaseProps>) => ({
         border-color: ${p.theme.colors.palette.primary.c80};
       }
 
-      &:hover {
+      &:hover, &:focus {
         background-color: ${p.theme.colors.palette.neutral.c20};
       }
 
@@ -122,6 +122,13 @@ const getVariantColors = (p: StyledProps<BaseProps>) => ({
         background-color: ${p.theme.colors.palette.neutral.c30};
       `,
   },
+  default: `
+    color: ${p.theme.colors.palette.neutral.c100};
+    background-color: transparent;
+    &:hover {
+      text-decoration: underline;
+    }
+  `,
 });
 
 export const Base = baseStyled.button.attrs((p: BaseProps) => ({
@@ -147,7 +154,7 @@ export const Base = baseStyled.button.attrs((p: BaseProps) => ({
   max-width: 100%;
   position: relative;
   cursor: ${(p) => (p.disabled ? "default" : "pointer")};
-  &:focus {
+  &:active {
     box-shadow: 0 0 0 4px ${(p) => p.theme.colors.palette.primary.c60};
   }
 
@@ -172,11 +179,7 @@ export const Base = baseStyled.button.attrs((p: BaseProps) => ({
 
       case "default":
       default:
-        return `
-              &:hover {
-                text-decoration: underline;
-              }
-            `;
+        return variants.default;
     }
   }}
   ${(p) =>
