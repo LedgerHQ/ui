@@ -1,11 +1,5 @@
 import gaps from "../styles/system/gaps";
-import styled, {
-  StyledInterface,
-  AnyStyledComponent,
-  CSSObject,
-  InterpolationFunction,
-  Interpolation,
-} from "styled-components";
+import styled, { StyledInterface, InterpolationFunction } from "styled-components";
 import {
   compose,
   flexbox,
@@ -22,8 +16,6 @@ import {
   OverflowProps,
 } from "styled-system";
 
-export const baseStyles = compose(flexbox, space, position, color, layout, overflow, gaps);
-
 export type BaseStyledProps = SpaceProps &
   FlexboxProps &
   PositionProps &
@@ -34,33 +26,27 @@ export type BaseStyledProps = SpaceProps &
     rowGap?: string | number;
     color?: string;
     display?: string;
+    position?: string;
+    maxHeight?: number;
   };
 
-type styledFnArgs = [
-  first: CSSObject | InterpolationFunction<any> | TemplateStringsArray,
-  ...rest: Interpolation<any>[]
-];
+export const baseStyles: InterpolationFunction<any> = compose(
+  flexbox,
+  space,
+  position,
+  color,
+  layout,
+  overflow,
+  gaps,
+);
 
-function styledFunc(tag: AnyStyledComponent) {
-  const func = (...args: any) =>
-    styled(tag).apply(styled, <styledFnArgs>(<unknown>[...args, baseStyles]));
-
-  func.attrs =
-    (attrs: any) =>
-    (...args: any) =>
-      styled(tag)
-        .attrs(attrs)
-        .apply(styled, <styledFnArgs>(<unknown>[...args, baseStyles]));
-
-  return func;
-}
-
-Object.keys(styled).forEach((htmlTag: string) => {
-  Object.defineProperty(styledFunc, htmlTag, {
-    value: styledFunc(<AnyStyledComponent>htmlTag),
-  });
+const proxyStyled = new Proxy(styled, {
+  apply(target: typeof styled, thisArg, argumentsList: Parameters<typeof styled>) {
+    return styled(target.apply(thisArg, argumentsList)(baseStyles));
+  },
+  get(target, property: keyof typeof styled) {
+    return styled(target[property].apply(styled, [baseStyles]));
+  },
 });
 
-const wrappedStyled: unknown = styledFunc;
-
-export default <StyledInterface>wrappedStyled;
+export default <StyledInterface>proxyStyled;
