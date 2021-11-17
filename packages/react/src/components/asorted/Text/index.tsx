@@ -1,4 +1,3 @@
-import React from "react";
 import baseStyled, { BaseStyledProps } from "../../styled";
 import {
   compose,
@@ -30,42 +29,25 @@ type FontFamilies =
   | "Inter|ExtraBold"
   | "Alpha|Medium";
 
-export interface TextProps {
+export interface TextProps extends BaseStyledProps {
   fontFamily?: string;
   ff?: FontFamilies;
   fontSize?: number | string | TextVariants;
   variant?: TextVariants;
   textAlign?: string;
-  textTransform?: string;
-  color?: string;
-  fontWeight?: string;
-  mt?: number | string;
-  mb?: number | string;
-  ml?: number | string;
-  mr?: number | string;
-  lineHeight?: string;
-  children: React.ReactNode;
-}
-
-export interface BaseTextProps extends BaseStyledProps {
-  fontFamily?: string;
-  ff?: FontFamilies;
-  fontSize?: number | string | TextVariants;
-  variant?: TextVariants;
-  textAlign?: string;
-  color?: string;
   fontWeight?: string;
   lineHeight?: string;
   textTransform?: string;
   textOverflow?: string;
+  uppercase?: boolean;
 }
 
-const Text = baseStyled.span.attrs<BaseTextProps>(
-  ({ variant = "body", fontSize, color }: BaseTextProps) => ({
+const Text = baseStyled.span.attrs<TextProps, TextProps>(
+  ({ variant = "body", fontSize, color }) => ({
     fontSize: fontSize ? fontSize : variant,
     color: color || "palette.neutral.c100",
   }),
-)<BaseTextProps>`
+)`
   font-weight: 500;
   ${(p) => textVariantStyle[p.variant || "body"]}
   ${compose(
