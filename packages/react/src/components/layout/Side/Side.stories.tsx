@@ -5,8 +5,6 @@ import Button from "../../cta/Button";
 import { lipsum } from "../../helpers";
 import Side, { SideProps } from "./index";
 import SideProvider, { setSide } from "./Provider";
-import SideDrawer, { SideDrawerProps } from "./Side";
-import { Flex } from "../index";
 
 const DummyContentWrapper = styled.div`
   width: 100%;
@@ -116,58 +114,6 @@ const Template = (args: SideProps & { isOpen: boolean }) => {
     <SideProvider>
       <Side {...args} />
     </SideProvider>
-  );
-};
-
-export const SideSimple = ({ title, big }: SideDrawerProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
-  return (
-    <div>
-      <Button type={"main"} onClick={() => setIsOpen(true)} style={{ flex: 1 }}>
-        Open
-      </Button>
-      <SideDrawer isOpen={isOpen} onClose={() => setIsOpen(false)} title={title} big={big}>
-        <Flex flexDirection={"column"}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elit mi, tempus sed justo
-            et, viverra mattis lorem. Praesent odio ligula, facilisis id porttitor tempor, cursus at
-            metus. Etiam consequat ante efficitur sodales iaculis. Aliquam at justo vel erat
-            eleifend semper eu non lorem. Cras porta, dolor a porttitor varius, augue lectus congue
-            lorem, nec lobortis urna ipsum quis lorem. Nam quis auctor lacus. Aenean sit amet dictum
-            purus, at convallis neque. Etiam ac augue non risus luctus laoreet eget a est. Curabitur
-            magna purus, fermentum at eros a, faucibus sollicitudin erat. Proin purus sem, lacinia
-            tincidunt ornare et, sollicitudin nec libero. Quisque lobortis dui ac lacus mollis
-            posuere. Morbi vitae ligula commodo, scelerisque sapien quis, vulputate justo. Cras
-            sagittis, ligula quis mollis porttitor, massa neque faucibus mauris, quis consectetur
-            eros nibh a ante. Quisque ac porttitor ante. Curabitur in neque a nisl aliquet finibus.
-            Mauris in sapien nec odio molestie vulputate. Suspendisse vitae lorem non quam dapibus
-            cursus sit amet a mauris.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elit mi, tempus sed justo
-            et, viverra mattis lorem. Praesent odio ligula, facilisis id porttitor tempor, cursus at
-            metus. Etiam consequat ante efficitur sodales iaculis. Aliquam at justo vel erat
-            eleifend semper eu non lorem. Cras porta, dolor a porttitor varius, augue lectus congue
-            lorem, nec lobortis urna ipsum quis lorem. Nam quis auctor lacus. Aenean sit amet dictum
-            purus, at convallis neque. Etiam ac augue non risus luctus laoreet eget a est. Curabitur
-            magna purus, fermentum at eros a, faucibus sollicitudin erat. Proin purus sem, lacinia
-            tincidunt ornare et, sollicitudin nec libero. Quisque lobortis dui ac lacus mollis
-            posuere. Morbi vitae ligula commodo, scelerisque sapien quis, vulputate justo. Cras
-            sagittis, ligula quis mollis porttitor, massa neque faucibus mauris, quis consectetur
-            eros nibh a ante. Quisque ac porttitor ante. Curabitur in neque a nisl aliquet finibus.
-            Mauris in sapien nec odio molestie vulputate. Suspendisse vitae lorem non quam dapibus
-            cursus sit amet a mauris.
-          </p>
-
-          <Flex>
-            <Button type={"main"} onClick={() => setIsOpen(false)} style={{ flex: 1 }}>
-              {"Fermer"}
-            </Button>
-          </Flex>
-        </Flex>
-      </SideDrawer>
-    </div>
   );
 };
 

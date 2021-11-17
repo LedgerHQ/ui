@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
-import FlexBox from "../../layout/Flex";
+import FlexBox from "../Flex";
 import Close from "@ledgerhq/icons-ui/react/CloseRegular";
 import ArrowLeft from "@ledgerhq/icons-ui/react/ArrowLeftRegular";
 import TransitionSlide from "../../transitions/TransitionSlide";
@@ -66,7 +66,7 @@ const Button = styled.button`
   color: ${(p) => p.theme.colors.palette.neutral.c100};
 `;
 
-export interface SideDrawerProps {
+export interface DrawerProps {
   isOpen: boolean;
   children: React.ReactNode;
   title?: React.ReactNode;
@@ -78,7 +78,7 @@ export interface SideDrawerProps {
   hideNavigation?: boolean;
 }
 
-const Drawer = ({
+const DrawerContent = ({
   isOpen,
   title,
   children,
@@ -87,7 +87,7 @@ const Drawer = ({
   setTransitionsEnabled = () => 0,
   onBack,
   hideNavigation = true,
-}: SideDrawerProps) => {
+}: DrawerProps) => {
   const disableChildAnimations = useCallback(
     () => setTransitionsEnabled(false),
     [setTransitionsEnabled],
@@ -140,10 +140,10 @@ const Drawer = ({
   );
 };
 
-const DrawerWrapper = ({ children, ...sideProps }: SideDrawerProps): React.ReactElement => {
+const Drawer = ({ children, ...sideProps }: DrawerProps): React.ReactElement => {
   const $root = React.useMemo(() => document.querySelector("#ll-side-root"), []);
   if ($root === null) throw new Error("side root cannot be found");
-  return ReactDOM.createPortal(<Drawer {...sideProps}>{children}</Drawer>, $root);
+  return ReactDOM.createPortal(<DrawerContent {...sideProps}>{children}</DrawerContent>, $root);
 };
 
-export default DrawerWrapper;
+export default Drawer;
