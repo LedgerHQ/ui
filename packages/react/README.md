@@ -20,7 +20,15 @@
 npm i @ledgerhq/react-ui
 ```
 
-_And if the React packages are not installed:_
+### Peer dependencies
+
+This library uses [styled components](https://styled-components.com/) heavily relies on it being installed separately (to avoid package duplication).
+
+```sh
+npm i styled-components
+```
+
+And (obviously) if React packages are not already installed:
 
 ```sh
 npm i react react-dom
@@ -90,6 +98,41 @@ With webpack 5 the rule below will process the font files and save them in the `
     filename: "assets/fonts/[name].woff2",
   },
 },
+```
+
+#### Scoped Imports
+
+If you are using a loader that saves the fonts with custom names (for instance when using `create-react-app`), you can use the `fontMappings` prop to map the font names.
+
+```js
+// These imports return the path to the public folder where the loader saves the fonts during the build.
+import HMAlphaMono from "@ledgerhq/react-ui/assets/fonts/HMAlphaMono-Medium.woff2";
+import InterBold from "@ledgerhq/react-ui/assets/fonts/Inter-Bold.woff2";
+import InterExtraBold from "@ledgerhq/react-ui/assets/fonts/Inter-ExtraBold.woff2";
+import InterExtraLight from "@ledgerhq/react-ui/assets/fonts/Inter-ExtraLight-BETA.woff2";
+import InterLight from "@ledgerhq/react-ui/assets/fonts/Inter-Light-BETA.woff2";
+import InterMedium from "@ledgerhq/react-ui/assets/fonts/Inter-Medium.woff2";
+import InterRegular from "@ledgerhq/react-ui/assets/fonts/Inter-Regular.woff2";
+import InterSemiBold from "@ledgerhq/react-ui/assets/fonts/Inter-SemiBold.woff2";
+
+// Map the font names with the file path.
+const fontMap = {
+  "HMAlphaMono-Medium": HMAlphaMono,
+  "Inter-Bold": InterBold,
+  "Inter-ExtraBold": InterExtraBold,
+  "Inter-ExtraLight-BETA": InterExtraLight,
+  "Inter-Light-BETA": InterLight,
+  "Inter-Medium": InterMedium,
+  "Inter-Regular": InterRegular,
+  "Inter-SemiBold": InterSemiBold,
+};
+
+// The substring call is used to make the path relative (removes the prepending /).
+const fontMappings = (name) => fontMap[name].substring(1);
+
+/* … */
+
+<StyleProvider fontPath="path/to/fonts" fontMappings={fontMappings}>
 ```
 
 #### Manually

@@ -1,19 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import baseStyled, { BaseStyledProps } from "../../styled";
 import {
+  compose,
   fontSize,
   fontWeight,
   textAlign,
-  color,
-  space,
   lineHeight,
   letterSpacing,
   system,
-  SpaceProps,
-  layout,
-  LayoutProps,
-  flexbox,
-  FlexboxProps,
 } from "styled-system";
 import fontFamily from "../../../styles/styled/fontFamily";
 import { TextVariants } from "../../../styles/theme";
@@ -50,11 +44,10 @@ export interface TextProps {
   ml?: number | string;
   mr?: number | string;
   lineHeight?: string;
-  bracket?: boolean;
   children: React.ReactNode;
 }
 
-export interface BaseTextProps extends SpaceProps, LayoutProps, FlexboxProps {
+export interface BaseTextProps extends BaseStyledProps {
   fontFamily?: string;
   ff?: FontFamilies;
   fontSize?: number | string | TextVariants;
@@ -67,7 +60,7 @@ export interface BaseTextProps extends SpaceProps, LayoutProps, FlexboxProps {
   textOverflow?: string;
 }
 
-const Text = styled.span.attrs<BaseTextProps>(
+const Text = baseStyled.span.attrs<BaseTextProps>(
   ({ variant = "body", fontSize, color }: BaseTextProps) => ({
     fontSize: fontSize ? fontSize : variant,
     color: color || "palette.neutral.c100",
@@ -75,20 +68,18 @@ const Text = styled.span.attrs<BaseTextProps>(
 )<BaseTextProps>`
   font-weight: 500;
   ${(p) => textVariantStyle[p.variant || "body"]}
-  ${uppercase};
-  ${lineHeight};
-  ${fontFamily};
-  ${fontSize};
-  ${textAlign};
-  ${color};
-  ${fontWeight};
-  ${space};
-  ${letterSpacing};
-  ${layout}
-  ${flexbox}
-  ${system({
-    textOverflow: true,
-  })}
+  ${compose(
+    uppercase,
+    lineHeight,
+    fontFamily,
+    fontSize,
+    textAlign,
+    fontWeight,
+    letterSpacing,
+    system({
+      textOverflow: true,
+    }),
+  )}
   ${(p) => (p.textTransform ? `text-transform: ${p.textTransform};` : "")}
 `;
 

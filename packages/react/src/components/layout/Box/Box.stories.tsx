@@ -1,32 +1,51 @@
 import React from "react";
-import styled from "styled-components";
-import Box from "./index";
-import { Text } from "../../asorted";
-import { Link } from "../../cta";
+import Box, { BoxProps } from ".";
 export default {
   title: "Layout/Box",
   component: Box,
+  argTypes: {
+    backgroundColor: {
+      type: "text",
+      control: "color",
+      defaultValue: "#0EBDCD",
+      description:
+        "This property defines the backgroundColor of the box. This property any color format.",
+    },
+    width: {
+      type: "text",
+      defaultValue: "200px",
+      description: "Width of the box.",
+    },
+    py: {
+      type: "text",
+      defaultValue: "20px",
+      description: "Padding top and bottom.",
+    },
+    mx: {
+      type: "text",
+      defaultValue: "20px",
+      description: "Margin left and right.",
+    },
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: `The Box component is a helper component that lets you write these common css properties more succinctly and inline.
+      
+It include all the style props exported by the color, layout, position, shadow utilities, and some of the flexbox utility, from the [styled-system](https://styled-system.com) library.
+      
+[See more about styled-system utilities](https://styled-system.com/api)`,
+      },
+    },
+    actions: { argTypesRegex: false },
+  },
 };
 
-const Template = () => (
-  <div>
-    <Text variant={"h3"}>Box</Text>
-    <Text as='p' variant={"body"}>
-      The Box component is a helper component that lets you write these common css properties more succinctly inline.
-    </Text>
-    <Text as='p' variant={"body"}>
-      It include all the style props exported by the color, layout, position, shadow utilies, and some of the flexbox utility, from the stymed-system library.
-    </Text>
-    <a href={'https://styled-system.com/api'}>See more about styled-system utilities</a>
-
-    <Box
-      width={ "100vw"}
-        height={"100vh"}
-      backgroundColor="darkslategray"
-    >
-     A plain good ol'box
-    </Box>
-  </div>
+const Template = (args: BoxProps) => (
+  <Box {...args}>
+    A plain good ol'box with fixed width, backgroundColor, padding and margin, all by using inline
+    props
+  </Box>
 );
 
 export const Default = Template.bind({});

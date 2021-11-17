@@ -1,38 +1,7 @@
-import {
-  flexbox,
-  SpaceProps,
-  FlexboxProps as FlexProps,
-  compose,
-  PositionProps,
-  space,
-  position,
-  color,
-  ColorProps,
-  layout,
-  LayoutProps,
-} from "styled-system";
-import styled from "styled-components";
-import gapsSystem from "../../../styles/system/gaps";
+import baseStyled, { BaseStyledProps } from "../../styled";
 
-export interface FlexBoxProps
-  extends FlexProps,
-    SpaceProps,
-    PositionProps,
-    ColorProps,
-    LayoutProps {
-  columnGap?: string | number;
-  rowGap?: string | number;
-  color?: string;
-}
+export type FlexBoxProps = BaseStyledProps;
 
-const FlexBox = styled.div<FlexBoxProps>`
-  display: flex;
-  ${flexbox};
-  ${space};
-  ${position};
-  ${layout};
-  ${compose(gapsSystem, flexbox)};
-  ${color};
-`;
+const FlexBox = baseStyled.div.attrs<FlexBoxProps>({ display: "flex" })<FlexBoxProps>``;
 
 export default FlexBox;

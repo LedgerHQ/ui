@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "../../cta/Button";
 import Input, { InputProps, InputRenderLeftContainer, InputRenderRightContainer } from "./index";
+import { Flex, Text } from "../..";
 
 export default {
   title: "Form/Input/Base",
@@ -10,6 +11,10 @@ export default {
       defaultValue: false,
     },
     error: {
+      type: "string",
+      defaultValue: undefined,
+    },
+    warning: {
       type: "string",
       defaultValue: undefined,
     },
@@ -61,5 +66,34 @@ export const RenderSideExemple = (): JSX.Element => {
       renderRight={renderRight}
       placeholder={"test"}
     />
+  );
+};
+
+function serialize(value: string) {
+  return value.split("").join(".");
+}
+
+function deserialize(value: string) {
+  return value.replace(/\./g, "");
+}
+
+export const CustomSerializer = (args: InputProps): JSX.Element => {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <Flex flexDirection="column" rowGap={8}>
+      <Input
+        {...args}
+        value={value}
+        onChange={setValue}
+        serialize={serialize}
+        deserialize={deserialize}
+        placeholder={"Placeholder"}
+      />
+      <span>
+        <Text variant="large">Value: </Text>
+        {value}
+      </span>
+    </Flex>
   );
 };

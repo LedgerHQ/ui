@@ -1,10 +1,15 @@
 import React from "react";
-import styled from "styled-components";
-import { border, BorderProps, space, SpaceProps, color, ColorProps } from "styled-system";
-import Text from "../asorted/Text";
+import { TextVariants } from "src/styles/theme";
+import { border, BorderProps } from "styled-system";
+import Text, { TextProps } from "../asorted/Text";
+import baseStyled, { BaseStyledProps } from "../styled";
 
-export type Props = React.PropsWithChildren<
-  {
+export type Size = "large" | "medium" | "small";
+export type Type = "plain" | "opacity" | "outlined" | "outlinedOpacity";
+
+export type TagProps = BaseStyledProps &
+  BorderProps &
+  React.PropsWithChildren<{
     /**
      * Changes the appearance based on the active state.
      */
@@ -12,57 +17,108 @@ export type Props = React.PropsWithChildren<
     /**
      * Tag style.
      */
-    type?: "plain" | "opacity" | "outlined";
-  } & BorderProps &
-    ColorProps
->;
+    type?: Type;
+    /**
+     * Size of the tag, affects the padding and the casing (uppercase for small and medium)
+     */
+    size?: Size;
+    /**
+     * Props passed to the text component, overriding props set internally by Tag component
+     */
+    textProps?: TextProps;
 
-function getColor({ type, active }: Props) {
+    disabled?: boolean;
+  }>;
+
+function getColor({ type, active, disabled }: TagProps) {
   switch (type) {
-    case "opacity":
-    case "outlined":
-      return "palette.primary.c90";
-    default:
+    case "plain":
+      if (disabled) return active ? "palette.neutral.c00" : "palette.neutral.c70";
       return active ? "palette.neutral.c00" : "palette.primary.c90";
-  }
-}
-function getBgColor({ type, active }: Props) {
-  switch (type) {
-    case "opacity":
-      return active ? "palette.primary.c20" : undefined;
-    case "outlined":
-      return;
     default:
-      return active ? "palette.primary.c90" : undefined;
+      return disabled ? "palette.neutral.c70" : "palette.primary.c90";
   }
 }
 
-function getBorderColor({ type, active }: Props) {
-  if (type === "outlined" && active) {
-    return "palette.primary.c90";
+function getBgColor({ type, active, disabled }: TagProps) {
+  switch (type) {
+    case "plain":
+      return active ? (disabled ? "palette.neutral.c70" : "palette.primary.c90") : undefined;
+    case "opacity":
+      return active ? (disabled ? "palette.neutral.c30" : "palette.primary.c20") : undefined;
+    default:
+      return;
   }
 }
 
-const TagContainer = styled.div.attrs((props: Props) => ({
+function getBorderColor({ type, active, disabled }: TagProps) {
+  if (!active) return;
+  switch (type) {
+    case "outlined":
+      return disabled ? "palette.neutral.c70" : "palette.primary.c90";
+    case "outlinedOpacity":
+      return disabled ? "palette.neutral.c40" : "palette.primary.c40";
+  }
+}
+
+function getPadding({ size }: TagProps) {
+  switch (size) {
+    case "small":
+      return "3px 5px";
+    case "medium":
+      return "6px 8px";
+    case "large":
+    default:
+      return "9px 10px 10px";
+  }
+}
+
+function getTextProps({ size }: TagProps): {
+  variant: TextVariants;
+  fontWeight?: string;
+  uppercase?: boolean;
+} {
+  switch (size) {
+    case "small":
+    case "medium":
+      return {
+        variant: "tiny",
+        fontWeight: "semiBold",
+        uppercase: true,
+      };
+    case "large":
+    default:
+      return {
+        variant: "extraSmall",
+        fontWeight: "semiBold",
+      };
+  }
+}
+
+const TagContainer = baseStyled.div.attrs<TagProps, TagProps>((props) => ({
   backgroundColor: props.bg || props.backgroundColor || getBgColor(props),
   color: props.color || getColor(props),
   borderColor: getBorderColor(props),
-  p: "7px", // TODO: use spacing from the theme when it gets updated
-}))<Props & BorderProps & SpaceProps & ColorProps>`
+}))`
   display: inline-flex;
   justify-content: center;
   border: 1px solid transparent;
   border-radius: ${(p) => `${p.theme.radii[1]}px`};
+  padding: ${(p) => getPadding(p)};
   ${border}
-  ${space}
-  ${color}
 `;
 
-export default function Tag({ children, ...props }: Props): JSX.Element {
+export default function Tag({
+  children,
+  textProps,
+  size = "large",
+  ...props
+}: TagProps): JSX.Element {
   const textColor = getColor(props);
+  const baseTextProps = getTextProps({ size, ...props });
   return (
-    <TagContainer {...props}>
-      <Text variant="tiny" color={textColor}>
+    <TagContainer size={size} {...props}>
+      <Text {...baseTextProps} color={textColor} {...(textProps ? textProps : {})}>
         {children}
       </Text>
     </TagContainer>

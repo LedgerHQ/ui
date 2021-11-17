@@ -1,20 +1,18 @@
 name: React Build
 
-defaults:
-  run:
-    working-directory: packages/react
-
 on:
   push:
     branches:
       - main
     paths:
       - "packages/react/**"
+      - "examples/**"
   pull_request:
     branches:
       - main
     paths:
       - "packages/react/**"
+      - "examples/**"
   workflow_dispatch:
 
 jobs:
@@ -27,8 +25,51 @@ jobs:
           cache: yarn
           cache-dependency-path: yarn.lock
       - name: Install dependencies
-        run: yarn install --focus
+        run: yarn --cwd packages/react install --focus
       - name: Linter
-        run: yarn lint
+        run: yarn --cwd packages/react lint
       - name: Typecheck
-        run: yarn typecheck
+        run: yarn --cwd packages/react typecheck
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          cache: yarn
+          cache-dependency-path: yarn.lock
+      - name: Install dependencies
+        run: yarn && yarn playwright install
+      - name: Build packages
+        run: yarn icons build && yarn shared build && yarn react prerelease
+      - name: Run tests
+        run: yarn test:react
+      - name: (On Failure) Upload test data
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: test-run-data
+          path: |
+            tests/react.spec.js-snapshots/
+            test-results/
+      - name: (On Failure) Comment PR
+        uses: actions/github-script@v5
+        if: failure() && github.event_name == 'pull_request'
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const { issue: { number: issue_number }, repo: { owner, repo }, runId } = context;
+
+            const comment = `
+            ### 💥 Ouch!
+
+            **The CI ran into issues while running the end to end tests.**
+
+            Please check the [action page](https://github.com/LedgerHQ/ui/actions/runs/${runId}) to find more details about the test run.
+
+            #### 🖼️ If the [visual comparison](https://playwright.dev/docs/test-snapshots) failed and you think that the changes are legitimate:
+
+            You can download the \`test-run-data\` artifact at the bottom of the action page and replace the reference snapshots located at \`/tests/react.spec.js-snapshots\`.
+            `;
+
+            github.rest.issues.createComment({ issue_number, owner, repo, body: comment });
