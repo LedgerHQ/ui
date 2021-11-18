@@ -5,7 +5,12 @@ import Flex, { FlexBoxProps } from "../../layout/Flex";
 import { rgba } from "../../../styles/helpers";
 import { RadioContext } from "./index";
 
-export const Label = styled(Text)<{ checked: boolean; disabled: boolean | undefined }>`
+type ElementState = {
+  checked: boolean;
+  disabled: boolean | undefined;
+};
+
+export const Label = styled(Text)<ElementState>`
   color: ${(p) =>
     p.disabled
       ? p.theme.colors.palette.neutral.c50
@@ -14,7 +19,7 @@ export const Label = styled(Text)<{ checked: boolean; disabled: boolean | undefi
       : p.theme.colors.palette.neutral.c100};
 `;
 
-const Container = styled(Flex)<{ checked: boolean; disabled: boolean | undefined }>`
+const Container = styled(Flex)<ElementState>`
   cursor: ${(p) => (p.disabled ? "" : "pointer")};
   justify-content: center;
   align-items: center;
@@ -49,7 +54,7 @@ export type RadioListElementProps = InputAttributes & {
    * The string or component that will be rendered as label of this radio element
    * If it's a component, it's rendered with these props: { checked:boolean; disabled:boolean }
    * */
-  label: string | React.ComponentType<{ checked: boolean; disabled: boolean | undefined }>;
+  label: string | React.ComponentType<ElementState> | ((arg1: ElementState) => JSX.Element);
   /** Flex props to pass to the container */
   containerProps?: FlexBoxProps;
 };
