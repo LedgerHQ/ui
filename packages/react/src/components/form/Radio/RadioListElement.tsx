@@ -2,6 +2,7 @@ import React, { InputHTMLAttributes, useContext } from "react";
 import styled from "styled-components";
 import Text from "../../asorted/Text";
 import Flex, { FlexBoxProps } from "../../layout/Flex";
+import { rgba } from "../../../styles/helpers";
 import { RadioContext } from "./index";
 
 export const Label = styled(Text)<{ checked: boolean; disabled: boolean | undefined }>`
@@ -31,6 +32,9 @@ const Container = styled(Flex)<{ checked: boolean; disabled: boolean | undefined
 const Input = styled.input`
   position: relative;
   appearance: none;
+  &:focus ~ ${Container} {
+    box-shadow: 0px 0px 0px 4px ${(p) => rgba(p.theme.colors.palette.primary.c60, 0.48)};
+  }
 `;
 
 const RadioListElement = styled.label.attrs({ tabIndex: -1 })`
@@ -68,16 +72,16 @@ const ListElement = ({
 
   return (
     <RadioListElement>
+      <Input
+        type="radio"
+        checked={isChecked}
+        disabled={disabled}
+        onChange={handleChange}
+        value={value}
+        name={context.name}
+        {...props}
+      />
       <Container checked={isChecked} disabled={disabled} {...containerProps}>
-        <Input
-          type="radio"
-          checked={isChecked}
-          disabled={disabled}
-          onChange={handleChange}
-          value={value}
-          name={context.name}
-          {...props}
-        />
         {typeof label === "string" ? (
           <Label checked={isChecked} disabled={disabled} variant="paragraph">
             {label}
