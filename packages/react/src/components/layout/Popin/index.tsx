@@ -11,9 +11,9 @@ export type PopinProps = {
   isOpen: boolean;
   children: React.ReactNode;
   onClose?: () => void;
-} & Omit<BaseStyledProps, "color">;
+} & BaseStyledProps;
 
-const Wrapper = baseStyled.div.attrs<BaseStyledProps>((p) => ({
+const Wrapper = baseStyled.div.attrs<BaseStyledProps, BaseStyledProps>((p) => ({
   height: p.height || p.theme.sizes.drawer.popin.min.height,
   width: p.width || p.theme.sizes.drawer.popin.min.width,
   minHeight: p.theme.sizes.drawer.popin.min.height,
@@ -22,7 +22,7 @@ const Wrapper = baseStyled.div.attrs<BaseStyledProps>((p) => ({
   maxWidth: Math.max(Number(p.width) || 0, p.theme.sizes.drawer.popin.max.width),
   padding: p.padding === undefined ? 6 : p.padding,
   position: "relative",
-}))<BaseStyledProps>`
+}))`
   display: flex;
   flex-direction: column;
   align-items: stretch;
