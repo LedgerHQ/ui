@@ -4,7 +4,7 @@ import Text from "../../asorted/Text";
 import Flex, { FlexBoxProps } from "../../layout/Flex";
 import { RadioContext } from "./index";
 
-const Label = styled(Text)<{ checked: boolean; disabled: boolean | undefined }>`
+export const Label = styled(Text)<{ checked: boolean; disabled: boolean | undefined }>`
   color: ${(p) =>
     p.disabled
       ? p.theme.colors.palette.neutral.c50
@@ -41,17 +41,17 @@ const RadioListElement = styled.label.attrs({ tabIndex: -1 })`
 type InputAttributes = Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "onChange" | "name">;
 
 export type RadioListElementProps = InputAttributes & {
-  /** The string that will be rendered as label of this radio element, styled according to the input state */
-  label?: string;
-  /** A component to render inside, it will be rendered with these props: { checked:boolean; disabled:boolean } */
-  LabelComponent?: React.ComponentType<{ checked: boolean; disabled: boolean | undefined }>;
+  /**
+   * The string or component that will be rendered as label of this radio element
+   * If it's a component, it's rendered with these props: { checked:boolean; disabled:boolean }
+   * */
+  label: string | React.ComponentType<{ checked: boolean; disabled: boolean | undefined }>;
   /** Flex props to pass to the container */
   containerProps?: FlexBoxProps;
 };
 
 const ListElement = ({
   label,
-  LabelComponent,
   value,
   disabled,
   containerProps,
@@ -78,12 +78,13 @@ const ListElement = ({
           name={context.name}
           {...props}
         />
-        {label && (
+        {typeof label === "string" ? (
           <Label checked={isChecked} disabled={disabled} variant="paragraph">
             {label}
           </Label>
+        ) : (
+          React.createElement(label, { checked: isChecked, disabled })
         )}
-        {LabelComponent ? <LabelComponent checked={isChecked} disabled={disabled} /> : null}
       </Container>
     </RadioListElement>
   );
