@@ -1,4 +1,4 @@
-import React, { InputHTMLAttributes, useContext, useMemo } from "react";
+import React, { InputHTMLAttributes, useContext } from "react";
 import styled from "styled-components";
 import Text from "../../asorted/Text";
 import Flex, { FlexBoxProps } from "../../layout/Flex";
@@ -60,8 +60,7 @@ const ListElement = ({
   const context = useContext(RadioContext);
   if (context === undefined) throw new Error("RadioElement must be used within a RadioProvider");
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  const isChecked = useMemo(() => context.currentValue === value, [context.currentValue]);
+  const isChecked = context.currentValue === value;
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     context.onChange(event.target.value);
