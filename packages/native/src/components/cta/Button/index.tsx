@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from "react";
 import styled, { useTheme } from "styled-components/native";
-import { color, border, space, SpaceProps } from "styled-system";
 import {
   ActivityIndicator,
   TouchableOpacity,
@@ -12,9 +11,10 @@ import {
 } from "../../cta/Button/getButtonStyle";
 import { ctaIconSize, ctaTextType } from "../../cta/getCtaStyle";
 import Text from "../../Text";
+import baseStyled, { BaseStyledProps } from "../../styled";
 
 export type ButtonProps = TouchableOpacityProps &
-  SpaceProps & {
+  BaseStyledProps & {
     Icon?: React.ComponentType<{ size: number; color: string }> | null;
     type?: "main" | "shade" | "error" | "color" | "default";
     size?: "small" | "medium" | "large";
@@ -37,18 +37,14 @@ const IconContainer = styled.View<{
       : `margin-left: 10px;`}
 `;
 
-export const Base = styled(TouchableOpacity).attrs<ButtonProps>((p) => ({
+export const Base = baseStyled(TouchableOpacity).attrs<ButtonProps>((p) => ({
   ...getButtonColorStyle(p.theme.colors, p).button,
 }))<
   {
     iconButton?: boolean;
   } & ButtonProps
 >`
-  ${color};
-  ${border};
-  ${space};
   border-radius: ${(p) => p.theme.space[10]}px;
-  height: ${(p) => p.theme.space[10]}px;
   padding: 0 ${(p) => p.theme.space[7]}px;
   flex-direction: row;
   border-style: solid;
@@ -130,11 +126,11 @@ const Button = (props: ButtonProps): React.ReactElement => {
   const { Icon, children, type = "default", size = "medium" } = props;
   return (
     <Base
-      {...props}
       type={type}
       size={size}
       iconButton={!!Icon && !children}
       activeOpacity={0.5}
+      {...props}
     >
       <ButtonContainer {...props} type={type} size={size} />
     </Base>
