@@ -2,6 +2,8 @@ import styled, {
   ReactNativeStyledInterface,
   DefaultTheme,
 } from "styled-components/native";
+import ProxyPolyfillBuilder from 'proxy-polyfill/src/proxy';
+const proxyPolyfill: typeof Proxy = ProxyPolyfillBuilder();
 
 import {
   compose,
@@ -51,7 +53,7 @@ export const baseStyles: InterpolationFunction<unknown> = compose(
   background
 );
 
-const proxyStyled = new Proxy(styled, {
+const proxyStyled = new proxyPolyfill(styled, {
   apply(
     target: typeof styled,
     thisArg,
