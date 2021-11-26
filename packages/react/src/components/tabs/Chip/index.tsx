@@ -17,13 +17,6 @@ type ItemProps = {
   active: boolean;
 };
 
-const Bar = styled.div`
-  display: inline-flex;
-  border: 1px solid ${(p) => p.theme.colors.neutral.c40};
-  border-radius: 33px;
-  padding: 2px;
-`;
-
 const Item = styled(Flex).attrs({
   flex: 1,
   justifyContent: "center",
@@ -31,15 +24,15 @@ const Item = styled(Flex).attrs({
 })<ItemProps>`
   cursor: pointer;
   padding: 8px 12px 8px 12px;
-  border-radius: 33px;
-  color: ${(p) => (p.active ? p.theme.colors.neutral.c00 : p.theme.colors.neutral.c80)};
-  background-color: ${(p) => (p.active ? p.theme.colors.neutral.c100 : "unset")};
+  border-radius: ${(p) => p.theme.radii[2]}px;
+  color: ${(p) => p.theme.colors.neutral.c100};
+  background-color: ${(p) => (p.active ? p.theme.colors.primary.c30 : "unset")};
 `;
 
 export default function BarTabs({ children, onTabChange, initialActiveIndex }: Props): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(initialActiveIndex);
   return (
-    <Bar>
+    <Flex justifyContent="space-between" flex={1} columnGap={5}>
       {React.Children.toArray(children).map((child, index) => (
         <Item
           key={index}
@@ -52,6 +45,6 @@ export default function BarTabs({ children, onTabChange, initialActiveIndex }: P
           {child}
         </Item>
       ))}
-    </Bar>
+    </Flex>
   );
 }

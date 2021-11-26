@@ -320,7 +320,7 @@ const ColorOption = (props: OptionProps<SelectItem, false>) => {
     <Option
       {...props}
       render={({ children }) => (
-        <Flex flex={1}>
+        <Flex flex={1} py={2} alignItems="center">
           <Flex mr={4} p={4} style={{ background: props.data.value }} />
           <Flex flex={1}>{children}</Flex>
         </Flex>
@@ -390,9 +390,7 @@ export const SideRenders: StoryTemplate<Props> = (args) => {
       onChange={setValue}
       renderLeft={(props) => (
         <Flex mr={3}>
-          <SearchMedium
-            color={props.isDisabled ? "currentColor" : theme["colors"].palette.neutral.c70}
-          />
+          <SearchMedium color={props.isDisabled ? "currentColor" : theme.colors.neutral.c70} />
         </Flex>
       )}
       renderRight={() => (

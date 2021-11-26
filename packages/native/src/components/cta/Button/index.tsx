@@ -172,7 +172,7 @@ export const PromisableButton = (props: ButtonProps): React.ReactElement => {
       <ButtonContainer {...props} type={type} hide={spinnerOn} />
       <SpinnerContainer>
         <ActivityIndicator
-          color={theme.colors.palette.neutral.c50}
+          color={theme.colors.neutral.c50}
           animating={spinnerOn}
         />
       </SpinnerContainer>
