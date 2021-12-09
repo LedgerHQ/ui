@@ -1,9 +1,37 @@
 import React from "react";
 import InfiniteLoader, { Props } from "./index";
 
+const description = `
+### Spinner Component
+
+A simple spinner component with customizable size and color 🎡.
+
+## Usage
+
+\`\`\`js
+
+import { InfiniteLoader } from "@ledgerhq/native-ui"
+\`\`\`
+
+\`\`\`js
+/*
+  Both color and size are optional.
+  Extra props are passed to the child <svg> tag.
+*/
+<InfiniteLoader size={40} color="warning.c50" />
+\`\`\`
+`;
+
 export default {
   title: "Loaders/InfiniteLoader",
   component: InfiniteLoader,
+  parameters: {
+    docs: {
+      description: {
+        component: description,
+      },
+    },
+  },
   argTypes: {
     size: {
       type: "number",
