@@ -10,7 +10,7 @@ A simple spinner component with customizable size and color 🎡.
 
 \`\`\`js
 
-import { InfiniteLoader } from "@ledgerhq/native-ui"
+import { InfiniteLoader } from "@ledgerhq/react-ui"
 \`\`\`
 
 \`\`\`js
