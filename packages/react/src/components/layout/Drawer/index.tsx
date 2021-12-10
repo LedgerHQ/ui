@@ -8,13 +8,10 @@ import TransitionSlide from "../../transitions/TransitionSlide";
 import TransitionInOut from "../../transitions/TransitionInOut";
 import Text from "../../asorted/Text";
 
-const Container = styled(FlexBox)<{
-  backgroundColor?: string;
-}>`
+const Container = styled(FlexBox)`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  background-color: ${(p) => p.backgroundColor ?? p.theme.colors.neutral.c00};
 `;
 const Header = styled(FlexBox)`
   display: flex;
@@ -27,11 +24,13 @@ const Wrapper = styled.div<{
   big?: boolean;
   width?: number;
   height?: number;
+  backgroundColor?: string;
 }>`
   height: 100%;
   width: ${(p) =>
     p.big ? p.theme.sizes.drawer.side.big.width : p.theme.sizes.drawer.side.small.width}px;
   padding: ${(p) => p.theme.space[6]}px ${(p) => p.theme.space[12]}px;
+  background-color: ${(p) => p.backgroundColor ?? p.theme.colors.neutral.c00};
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -111,8 +110,8 @@ const DrawerContent = ({
     >
       <Overlay>
         <TransitionSlide in={isOpen} fixed reverseExit appear mountOnEnter unmountOnExit>
-          <Wrapper big={big}>
-            <Container backgroundColor={backgroundColor}>
+          <Wrapper big={big} backgroundColor={backgroundColor}>
+            <Container>
               <Header>
                 {!hideNavigation && (
                   <>
