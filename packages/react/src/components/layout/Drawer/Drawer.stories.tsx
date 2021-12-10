@@ -58,6 +58,13 @@ const Template = ({ title, big, backgroundColor }: DrawerProps) => {
         onClose={() => updateArgs({ isOpen: false })}
         title={title}
         big={big}
+        footer={
+          <Flex flex={1} justifyContent="flex-end">
+            <Button variant={"main"} onClick={() => updateArgs({ isOpen: false })}>
+              Close
+            </Button>
+          </Flex>
+        }
         backgroundColor={backgroundColor}
       >
         <Flex flexDirection={"column"}>
