@@ -80,6 +80,7 @@ export interface DrawerProps {
   title?: React.ReactNode;
   footer?: React.ReactNode;
   big?: boolean;
+  ignoreBackdropClick?: boolean;
   backgroundColor?: string;
   onClose: () => void;
   onBack?: () => void;
@@ -97,6 +98,7 @@ const DrawerContent = ({
   backgroundColor,
   setTransitionsEnabled = () => 0,
   onBack,
+  ignoreBackdropClick = false,
   hideNavigation = true,
 }: DrawerProps) => {
   const disableChildAnimations = useCallback(
@@ -107,6 +109,17 @@ const DrawerContent = ({
     () => setTransitionsEnabled(true),
     [setTransitionsEnabled],
   );
+
+  const handleBackdropClick = useCallback(() => {
+    if (!ignoreBackdropClick) {
+      onClose();
+    }
+  }, [onClose, ignoreBackdropClick]);
+
+  const stopClickPropagation = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+  }, []);
+
   return (
     <TransitionInOut
       in={isOpen}
@@ -117,9 +130,9 @@ const DrawerContent = ({
       onEntered={enableChildAnimations}
       onExiting={disableChildAnimations}
     >
-      <Overlay>
+      <Overlay onClick={handleBackdropClick}>
         <TransitionSlide in={isOpen} fixed reverseExit appear mountOnEnter unmountOnExit>
-          <Wrapper big={big} backgroundColor={backgroundColor}>
+          <Wrapper big={big} onClick={stopClickPropagation} backgroundColor={backgroundColor}>
             <Container>
               <Header>
                 {!hideNavigation && (
