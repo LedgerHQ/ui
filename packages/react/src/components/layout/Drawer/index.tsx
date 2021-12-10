@@ -8,10 +8,13 @@ import TransitionSlide from "../../transitions/TransitionSlide";
 import TransitionInOut from "../../transitions/TransitionInOut";
 import Text from "../../asorted/Text";
 
-const Container = styled(FlexBox)`
+const Container = styled(FlexBox)<{
+  backgroundColor?: string;
+}>`
   width: 100%;
   height: 100%;
   flex-direction: column;
+  background-color: ${(p) => p.backgroundColor ?? p.theme.colors.neutral.c00};
 `;
 const Header = styled(FlexBox)`
   display: flex;
@@ -28,7 +31,6 @@ const Wrapper = styled.div<{
   height: 100%;
   width: ${(p) =>
     p.big ? p.theme.sizes.drawer.side.big.width : p.theme.sizes.drawer.side.small.width}px;
-  background-color: ${(p) => p.theme.colors.neutral.c00};
   padding: ${(p) => p.theme.space[6]}px ${(p) => p.theme.space[12]}px;
   display: flex;
   flex-direction: column;
@@ -71,6 +73,7 @@ export interface DrawerProps {
   children: React.ReactNode;
   title?: React.ReactNode;
   big?: boolean;
+  backgroundColor?: string;
   onClose: () => void;
   onBack?: () => void;
   setTransitionsEnabled?: (arg0: boolean) => void;
@@ -83,6 +86,7 @@ const DrawerContent = ({
   children,
   big,
   onClose,
+  backgroundColor,
   setTransitionsEnabled = () => 0,
   onBack,
   hideNavigation = true,
@@ -108,7 +112,7 @@ const DrawerContent = ({
       <Overlay>
         <TransitionSlide in={isOpen} fixed reverseExit appear mountOnEnter unmountOnExit>
           <Wrapper big={big}>
-            <Container>
+            <Container backgroundColor={backgroundColor}>
               <Header>
                 {!hideNavigation && (
                   <>
