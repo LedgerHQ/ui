@@ -8,13 +8,10 @@ import TransitionSlide from "../../transitions/TransitionSlide";
 import TransitionInOut from "../../transitions/TransitionInOut";
 import Text from "../../asorted/Text";
 
-const Container = styled(FlexBox)<{
-  backgroundColor?: string;
-}>`
+const Container = styled(FlexBox)`
   width: 100%;
   height: 100%;
   flex-direction: column;
-  background-color: ${(p) => p.backgroundColor ?? p.theme.colors.neutral.c00};
 `;
 const Header = styled(FlexBox)`
   display: flex;
