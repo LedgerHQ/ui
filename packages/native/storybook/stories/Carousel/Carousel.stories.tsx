@@ -139,10 +139,13 @@ const Controlled = (): JSX.Element => {
 };
 
 const CustomIndicator = (): JSX.Element => {
+  const [isPaused, setIsPaused] = React.useState(false);
+  console.log("isPausedStory", isPaused)
+
   return (
-    <Carousel
+    <><Carousel
       scrollOnSidePress={boolean("scrollOnSidePress", true)}
-      autoDelay={number("autoDelay", 5000)}
+      autoDelay={number("autoDelay", 15000)}
       restartAfterEnd={boolean("restartAfterEnd", false)}
       IndicatorComponent={StoriesIndicator}
       onOverflow={action("onOverflow")}
@@ -154,6 +157,7 @@ const CustomIndicator = (): JSX.Element => {
         width: "100%",
         px: 7,
       }}
+      isPaused={isPaused}
     >
       <Item label="primary" />
       <Item label="neutral" />
@@ -161,6 +165,8 @@ const CustomIndicator = (): JSX.Element => {
       <Item label="warning" />
       <Item label="error" />
     </Carousel>
+      <Button onPress={() => setIsPaused(!isPaused)}>test</Button>
+    </>
   );
 };
 

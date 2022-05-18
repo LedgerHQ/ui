@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef, useCallback } from "react";
 import { Platform, ScrollView, ViewProps, NativeScrollEvent } from "react-native";
-import styled from "styled-components/native";
 import { Flex, SlideIndicator } from "../index";
 import type { Props as FlexboxProps } from "../Layout/Flex";
+import styled from "../styled";
+
+const PressableFlex = styled.Pressable`
+  display: flex;
+`;
 
 const HorizontalScrollView = styled.ScrollView.attrs({ horizontal: true })`
   flex: 1;
@@ -77,10 +81,14 @@ function Carousel({
   onOverflow,
   IndicatorComponent = SlideIndicator,
   children,
+  isPaused,
 }: Props) {
   const [init, setInit] = useState(false);
   const [activeIndexState, setActiveIndexState] = useState(activeIndex);
   const disableTimer = useRef(false);
+  const launchTimestamp = useRef(null);
+  const timeRemaining = useRef(autoDelay);
+
   const [resetTimer, setResetTimer] = useState({});
   const dimensions = useRef<{
     contentWidth: number;
@@ -153,21 +161,34 @@ function Carousel({
   };
 
   useEffect(() => {
+    console.log("useEffect")
     if (!autoDelay) return;
 
-    const interval = setTimeout(() => {
-      if (!disableTimer.current) {
-        const newIndex =
-          typeof activeIndexState !== "undefined" ? (activeIndexState + 1) % slidesLength : 0;
-        if (restartAfterEnd || newIndex !== 0) {
-          scrollToIndex(newIndex);
-        } else {
-          onOverflow && onOverflow("end", true);
+    console.log("isPaused", isPaused, timeRemaining.current, launchTimestamp.current, )
+    //timerElapsed.current =  Date.now()
+    let interval;
+    if (!isPaused) {
+      launchTimestamp.current = Date.now()
+      interval = setTimeout(() => {
+        if (!disableTimer.current) {
+          const newIndex =
+            typeof activeIndexState !== "undefined" ? (activeIndexState + 1) % slidesLength : 0;
+          if (restartAfterEnd || newIndex !== 0) {
+            scrollToIndex(newIndex);
+          } else {
+            onOverflow && onOverflow("end", true);
+          }
         }
-      }
-    }, autoDelay);
+      }, timeRemaining.current || autoDelay);
+      timeRemaining.current = timeRemaining.current || autoDelay;
+    } else {
+      timeRemaining.current = timeRemaining.current - (Date.now() - launchTimestamp.current)
+    }
 
     return () => {
+      console.log("clear", isPaused, launchTimestamp, Date.now() - launchTimestamp);
+      console.log("remaining", isPaused, launchTimestamp.current);
+
       return clearTimeout(interval);
     };
   }, [
@@ -179,10 +200,11 @@ function Carousel({
     activeIndexState,
     onOverflow,
     restartAfterEnd,
+    isPaused
   ]);
 
   return (
-    <Flex flex={1} width="100%" alignItems="center" justifyContent="center" {...containerProps}>
+    <PressableFlex flex={1} width="100%" alignItems="center" justifyContent="center" onLongPress={() => console.log('onLongPress')} {...containerProps}>
       <HorizontalScrollView
         ref={scrollRef}
         onScroll={onScroll}
@@ -216,14 +238,13 @@ function Carousel({
             activeIndex={activeIndexState || 0}
             onChange={(index: number) => {
               scrollToIndex(index);
-              setResetTimer({});
             }}
             slidesLength={slidesLength}
             duration={autoDelay}
           />
         )}
       </Flex>
-    </Flex>
+    </PressableFlex>
   );
 }
 
