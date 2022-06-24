@@ -1,3 +1,10 @@
+# ⛔️ DEPRECATED
+
+This repository is now deprecated. We moved to a new mono repository architecture containing all of Ledger Live JavaScript Ecosystem that you can find [here](https://github.com/ledgerhq/ledger-live). 
+You can follow the [migration guide](https://github.com/LedgerHQ/ledger-live/wiki/Migrate-from-previous-repositories#migration) to help you make the transition.
+
+------
+
 # `ui` <br/> [![react storybook](https://img.shields.io/badge/storybook%20📚-react-61DBFB)](https://ledger-live-ui-react.vercel.app) [![native storybook](https://img.shields.io/badge/storybook%20📚-native-9665B7)](https://ledger-live-ui-native.vercel.app)
 
 ### Design and interface resources for React and React Native projects.
